@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxTotal" value="${redis.pool.maxTotal}"></property>
+		<property name="maxIdle" value="${redis.pool.maxIdle}"></property>
+		<property name="maxWaitMillis" value="${redis.pool.maxWaitMillis}"></property>
+		<property name="testOnBorrow" value="${redis.pool.testOnBorrow}"></property>
+	</bean>
+	
+	<bean id="connectionFactory0" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+		<property name="poolConfig" ref="jedisPoolConfig"></property>
+		<property name="hostName" value="${redis.host}"></property>
+		<property name="port" value="${redis.port}"></property>
+		<property name="password" value="${redis.password}"></property>
+		<property name="timeout" value="${redis.timeout}"></property>
+		<property name="database" value="${redis.db.0}"></property>
+	</bean>
+	
+	<bean id="connectionFactoryActiveSessionCache" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+		<property name="poolConfig" ref="jedisPoolConfig"></property>
+		<property name="hostName" value="${redis.host}"></property>
+		<property name="port" value="${redis.port}"></property>
+		<property name="password" value="${redis.password}"></property>
+		<property name="timeout" value="${redis.timeout}"></property>
+		<property name="database" value="${redis.db.activeSessionCache}"></property>
+	</bean>
+	
+	<bean id="connectionFactoryAuthorization" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+		<property name="poolConfig" ref="jedisPoolConfig"></property>
+		<property name="hostName" value="${redis.host}"></property>
+		<property name="port" value="${redis.port}"></property>
+		<property name="password" value="${redis.password}"></property>
+		<property name="timeout" value="${redis.timeout}"></property>
+		<property name="database" value="${redis.db.authorization}"></property>
+	</bean>
+	
+	<bean id="connectionFactoryAuthentication" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+		<property name="poolConfig" ref="jedisPoolConfig"></property>
+		<property name="hostName" value="${redis.host}"></property>
+		<property name="port" value="${redis.port}"></property>
+		<property name="password" value="${redis.password}"></property>
+		<property name="timeout" value="${redis.timeout}"></property>
+		<property name="database" value="${redis.db.authentication}"></property>
+	</bean>
+	
+	<bean id="connectionFactoryRetryCount" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+		<property name="poolConfig" ref="jedisPoolConfig"></property>
+		<property name="hostName" value="${redis.host}"></property>
+		<property name="port" value="${redis.port}"></property>
+		<property name="password" value="${redis.password}"></property>
+		<property name="timeout" value="${redis.timeout}"></property>
+		<property name="database" value="${redis.db.retryCount}"></property>
+	</bean>
+	
+	<bean id="connectionFactoryKickout" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+		<property name="poolConfig" ref="jedisPoolConfig"></property>
+		<property name="hostName" value="${redis.host}"></property>
+		<property name="port" value="${redis.port}"></property>
+		<property name="password" value="${redis.password}"></property>
+		<property name="timeout" value="${redis.timeout}"></property>
+		<property name="database" value="${redis.db.kickout}"></property>
+	</bean>
+	
+</beans> 

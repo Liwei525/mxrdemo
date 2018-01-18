@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:component-scan base-package="cn.weicao.mxr"/>
+	
+	<bean id="memberRealm" class="cn.weicao.mxr.realm.EmpRealm">
+		<property name="cachingEnabled" value="true" />
+		<property name="authenticationCachingEnabled" value="true"></property>
+		<property name="authenticationCacheName" value="authenticationCache" />
+		<property name="authorizationCachingEnabled" value="true" />
+		<property name="authorizationCacheName" value="authorizationCache" />
+		<property name="credentialsMatcher">
+			<bean class="cn.weicao.mxr.util.DefaultCredentialsMatcher">
+				<property name="cacheManager" ref="cacheManager" />
+				<property name="expire" value="${shiro.retry.expire}" />
+				<property name="maxRetryCount" value="${shiro.retry.max}" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="memberRealm"></property>
+		<property name="cacheManager" ref="cacheManager"></property>
+		<property name="sessionManager" ref="sessionManager"></property>
+		<property name="rememberMeManager" ref="remembermeManager"></property>
+	</bean>
+	
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager"></property>	
+		<property name="loginUrl" value="/loginForm.action"></property>
+		<property name="unauthorizedUrl" value="/unauth.action"></property>
+		<property name="successUrl" value="/pages/back/index.action"></property>
+		<property name="filters">
+			<map>
+				<entry key="authc" value-ref="formAuthenticationFilter"></entry>
+				<entry key="logout" value-ref="logoutFilter"></entry>
+				<entry key="kickout" value-ref="kickoutFilter" />
+			</map>
+		</property>
+		<property name="filterChainDefinitions">
+			<value>
+				/logout.page=logout
+				/loginForm.action=authc
+				/pages/**=kickout,authc
+			</value>
+		</property>
+	</bean>
+	
+	<bean id="formAuthenticationFilter" class="cn.weicao.mxr.util.shiro.rand.DefaultFormAuthenticationFilter">
+		<property name="usernameParam" value="eid"></property>	
+		<property name="passwordParam" value="password"></property>
+		<property name="loginUrl" value="/loginForm.action"></property>
+		<property name="failureKeyAttribute" value="error"></property>
+		<property name="rememberMeParam" value="rememberme"></property>
+		<property name="randname" value="rand" />
+		<property name="randparam" value="code"></property>
+	</bean>
+	
+	<bean id="logoutFilter" class="org.apache.shiro.web.filter.authc.LogoutFilter">
+		<property name = "redirectUrl" value="/logout.action"></property>
+	</bean>
+	
+	<bean id="cacheManager" class="cn.weicao.mxr.util.cache.manager.RedisCacheManager">
+		<property name="connectionFactoryMap">
+			<map>
+				<entry key="authentication" value-ref="connectionFactoryAuthentication"></entry>
+				<entry key="authorization" value-ref="connectionFactoryAuthorization"></entry>
+				<entry key="activeSessionCache" value-ref="connectionFactoryActiveSessionCache"></entry>
+				<entry key="retryCount" value-ref="connectionFactoryRetryCount" />
+				<entry key="kickout" value-ref="connectionFactoryKickout" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
+	
+	<bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
+		<property name="activeSessionsCacheName" value="activeSessionCache"></property>
+		<property name="sessionIdGenerator" ref="sessionIdGenerator"></property>
+	</bean>
+	
+	<bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+		<property name="name" value="mxr-session-id"></property>
+	</bean>
+	
+	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+		<property name="sessionDAO" ref="sessionDAO"/>		
+		<property name="sessionIdCookie" ref="sessionIdCookie" />
+		<property name="globalSessionTimeout" value="1000000000000000000" />
+		<property name="deleteInvalidSessions" value="true" />
+		<property name="sessionIdCookieEnabled" value="true" />
+	</bean>
+	
+	<bean id="remembermeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+		<property name="name" value="mxr-rememberme"></property>
+		<property name="maxAge" value="2592000" />
+	</bean>
+	
+	<bean id="remembermeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+		<property name="cookie" ref="remembermeCookie" />
+	</bean>
+	
+	<bean id="kickoutFilter" class="cn.weicao.mxr.filter.KickoutSessionControlFilter">
+		<property name="sessionManager" ref="sessionManager" />
+		<property name="cacheManager" ref="cacheManager" />
+		<property name="kickoutUrl" value="/loginForm.action" />
+		<property name="maxSessionCount" value="1" /> 
+	</bean>
+	
+</beans>
+

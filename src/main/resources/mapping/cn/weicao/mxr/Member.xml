@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.weicao.mxr.dao.IEmpDAO">
+	<select id="findById" parameterType="String" resultType="Emp">
+		SELECT eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,leavedate,leavenote,outeid,lastdate FROM emp WHERE eid=#{eid}
+	</select>
+	<update id="doEditLastDate" parameterType="map">
+		update emp set lastdate=#{lastdate} where eid=#{eid}
+	</update>
+	<update id="doEditPassword" parameterType="map">
+		update emp set password=#{password} where eid=#{eid}
+	</update>
+</mapper>

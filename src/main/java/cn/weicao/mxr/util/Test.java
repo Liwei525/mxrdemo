@@ -1,0 +1,7 @@
+package cn.weicao.mxr.util;
+
+public class Test {
+	public static void main(String[] args) {
+		System.err.println(PasswordUtil.encoder("hello"));
+	}
+}
