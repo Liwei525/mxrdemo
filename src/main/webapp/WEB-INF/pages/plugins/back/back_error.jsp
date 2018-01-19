@@ -15,7 +15,7 @@
 						<strong><span class="glyphicon glyphicon-user"></span>&nbsp;错误提示</strong>
 					</div>
 					<div class="panel-body">
-						操作错误，请与管理员联系！
+						${errors }
 					</div>
 					<div class="panel-footer">
 						<div class="alert alert-success" id="alertDiv" style="display: none;">

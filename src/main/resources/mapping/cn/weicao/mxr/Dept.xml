@@ -5,4 +5,16 @@
 	<select id="findById" parameterType="Integer" resultType="Dept">
 		SELECT did,dname,eid,maxnum,currnum FROM dept WHERE did=#{did}
 	</select>
+	<select id="findByDname" parameterType="String" resultType="Dept">
+		SELECT did,dname,eid,maxnum,currnum FROM dept WHERE dname=#{dname}
+	</select>
+	<insert id="doCreate" parameterType="Dept">
+		insert dept(dname,eid,maxnum,currnum) values(#{dname},#{eid},#{maxnum},#{currnum}) 
+	</insert>
+	<select id="findAll" resultType="Dept">
+		SELECT did,dname,eid,maxnum,currnum FROM dept
+	</select>
+	<update id="doEdit" parameterType="Dept">
+		update dept set dname=#{dname},eid=#{eid},maxnum=#{maxnum},currnum=#{currnum} where did=#{did}
+	</update>
 </mapper>

@@ -25,27 +25,32 @@ $(function(){
 		errorClass : "text-danger",
 		rules : {
 			"dname" : {
-				required : true
-				//remote : {
-//				url : "check.jsp", // 后台处理程序
-//				type : "post", // 数据发送方式
-//				dataType : "html", // 接受数据格式
-//				data : { // 要传递的数据
-//					code : function() {
-//						return $("#code").val();
-//					}
-//				},
-//				dataFilter : function(data, type) {
-//					if (data.trim() == "true")
-//						return true;
-//					else
-//						return false;
-//				}
-//}
+				required : true ,
+				remote : {
+					url : "pages/back/admin/dept/check_dname.action", 
+					type : "post", 
+					dataType : "json", 
+					data : { 
+						dname : function() {
+							return $("#dname").val();
+						}
+					},
+					dataFilter : function(data, type) {
+						if (data.trim() == 'true')
+							return true;
+						else
+							return false;
+					}
+				}
 			} ,
 			"maxnum" : {
 				required : true ,
 				digits: true
+			}
+		} ,
+		messages: {
+			dname : {
+				remote : "该部门已存在！" 
 			}
 		}
 	});

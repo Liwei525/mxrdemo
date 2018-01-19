@@ -7,6 +7,7 @@
 <script type="text/javascript" src="js/pages/back/admin/dept/dept_list.js"></script>
 <%!
 	public static final String DEPT_EDIT_PRE = "pages/back/admin/dept/edit_pre.action" ;
+	public static final String DEPT_EDIT_ROLE = "pages/back/admin/dept/edit_role.action" ;
 	public static final String DEPT_LIST_DETAILS = "pages/back/admin/dept/list_details.action" ;
 %>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -29,36 +30,36 @@
 						<thead>
 							<tr>
 								<th class="text-left" style="width:10%;">部门编号</th> 
-								<th class="text-left" style="width:30%;">部门名称</th> 
+								<th class="text-left" style="width:10%;">部门名称</th> 
 								<th class="text-left" style="width:10%;">名额上限</th>
-								<th class="text-center" style="width:30%;">领导姓名</th>
+								<th class="text-center" style="width:10%;">领导姓名</th>
 								<th class="text-center" style="width:10%;">当前员工数</th>
-								<th class="text-center" style="width:20%;">操作</th>
+								<th class="text-center" style="width:10%;">操作</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="text-left">1</td>
-								<td class="text-left"><a href="<%=DEPT_EDIT_PRE %>" title="修改部门信息">技术部</a></td>
-								<td class="text-left">10</td>
-								<td class="text-center"><span id="eid-7369" style="cursor:pointer;">老李</span></td> 
-								<td class="text-center">10</td>
+							<c:forEach items="${allDepts }" var="dept">
+								<tr>
+								<td class="text-left">${dept.did }</td>
+								<td class="text-left"><a href="<%=DEPT_EDIT_PRE %>?did=${dept.did}" title="修改部门信息">${dept.dname }</a></td>
+								<td class="text-left">${dept.maxnum }</td>
+								<td class="text-center"><span id="eid-${dept.eid }" style="cursor:pointer;">${allEmps[dept.did].ename }</span></td> 
 								<td class="text-center">
-									<a id="edit-2" class="btn btn-warning btn-xs" href="<%=DEPT_LIST_DETAILS%>">
-											<span class="glyphicon glyphicon-edit"></span>权限管理</a>
+									<c:if test="${dept.maxnum == dept.currnum }">
+										<span class="text-error">${dept.currnum }</span>
+									</c:if>
+									<c:if test="${dept.maxnum != dept.currnum }">
+										<span class="text-success">${dept.currnum }</span>
+									</c:if>
+								</td>
+								<td class="text-center">
+									<a class="btn btn-warning btn-xs" href="<%=DEPT_EDIT_ROLE%>?did=${dept.did}">
+											<span class="glyphicon glyphicon-edit"></span>角色管理</a>
+									<a class="btn btn-primary btn-xs" href="<%=DEPT_LIST_DETAILS%>?did=${dept.did}">
+											<span class="glyphicon glyphicon-list"></span>详细列表</a>
 								</td>
 							</tr>
-							<tr>
-								<td class="text-left">2</td>
-								<td class="text-left"><a href="<%=DEPT_EDIT_PRE %>" title="修改部门信息">采购部</a></td>
-								<td class="text-left">10</td>
-								<td class="text-center"><span id="eid-7566" style="cursor:pointer;">老李</span></td>
-								<td class="text-center"><span class="text-success">2</span></td>
-								<td class="text-center">
-									<a id="edit-2" class="btn btn-warning btn-xs" href="<%=DEPT_LIST_DETAILS%>">
-											<span class="glyphicon glyphicon-edit"></span>权限管理</a>
-								</td>
-							</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>

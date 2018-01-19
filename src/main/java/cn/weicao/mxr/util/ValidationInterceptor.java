@@ -34,7 +34,7 @@ public class ValidationInterceptor implements HandlerInterceptor {
 				try {
 					errorPage = this.messageSource.getMessage(validationRuleKey + ".error.page", null, null) ;
 				} catch (Exception e) {	// 如果没有指定的路径则跳转到公共的errorPage
-					errorPage = this.messageSource.getMessage("error.page", null, null) ;
+					errorPage = this.messageSource.getMessage("error.action", null, null) ;
 				}
 				ActionValidationUtil avu = new ActionValidationUtil(validationRule, request, this.messageSource) ;
 				if (avu.getErrors().size() > 0) {	// 现在有错误信息

@@ -26,6 +26,7 @@
 	<jsp.version>2.3.1</jsp.version>
 	<log4j.version>2.9.1</log4j.version>
 	<slf4j.version>1.7.25</slf4j.version>
+	<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
     <compiler.version>3.6.1</compiler.version>
     <profiles.dir>src/main/profiles</profiles.dir>
 	<jdk.version>1.8</jdk.version>
@@ -276,6 +277,22 @@
 		</resource>
 	</resources>
   	<plugins>
+  		<!-- 生成sources源码包的插件 -->
+		<plugin>
+			<artifactId>maven-source-plugin</artifactId>
+			<version>${maven-source-plugin.version}</version>
+			<configuration>
+				<attach>true</attach>
+			</configuration>
+			<executions>
+				<execution>
+					<phase>package</phase>
+					<goals>
+						<goal>jar-no-fork</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
   		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-compiler-plugin</artifactId>

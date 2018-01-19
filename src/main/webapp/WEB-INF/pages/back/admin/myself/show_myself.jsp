@@ -30,7 +30,7 @@
 						<tr>
 							<td><strong>雇员姓名：</strong></td>
 							<td><span>${emp.ename }</span></td>
-							<td rowspan="7"><img src="upload/emp/${emp.photo }" style="height:220px;"></td>
+							<td rowspan="7"><img src="${emp.photo }" style="height:220px;"></td>
 						</tr>
 						<tr>
 							<td><strong>所属部门：</strong></td>

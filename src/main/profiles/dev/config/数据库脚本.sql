@@ -89,30 +89,30 @@ INSERT INTO dept (dname,maxnum,currnum) VALUES ('生产部',1000,0) ;
 
 -- 增加员工信息
 -- 管理部总裁，用户名：mxr-president / 密码：hello
-INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,lastdate) VALUES ('mxr-president',0,1,1,1,'管理部总裁',50000,'010-110','EAB62A7769F0313F8D69CEBA32F4347E','nophoto.png','很好的员工','2018-01-10','mxr-raoleilei',1,'2018-01-10 11:11:11') ;
+INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,lastdate) VALUES ('mxr-president',0,1,1,1,'管理部总裁',50000,'010-110','EAB62A7769F0313F8D69CEBA32F4347E','upload/emp/nophoto.png','很好的员工','2018-01-10','mxr-raoleilei',1,'2018-01-10 11:11:11') ;
 
 -- 人事部经理，用户名：mxr-human / 密码：hello
-INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,lastdate) VALUES ('mxr-human',1,2,1,1,'人事部经理',10000,'010-110','EAB62A7769F0313F8D69CEBA32F4347E','nophoto.png','很好的员工','2018-01-10','mxr-president',1,'2018-01-10 11:11:11') ;
-INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,lastdate) VALUES ('test',1,3,1,1,'test',10000,'010-110','','nophoto.png','很好的员工','2018-01-10','mxr-president',1,'2018-01-10 11:11:11') ;
+INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,lastdate) VALUES ('mxr-human',1,2,1,1,'人事部经理',10000,'010-110','EAB62A7769F0313F8D69CEBA32F4347E','upload/emp/nophoto.png','很好的员工','2018-01-10','mxr-president',1,'2018-01-10 11:11:11') ;
+INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,lastdate) VALUES ('test',1,3,1,1,'test',10000,'010-110','','upload/emp/nophoto.png','很好的员工','2018-01-10','mxr-president',1,'2018-01-10 11:11:11') ;
 
 
 -- 财务部经理，用户名：mxr-finance / 密码：hello
-INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,lastdate) VALUES ('mxr-finance',1,3,1,1,'财务部经理',10000,'010-110','EAB62A7769F0313F8D69CEBA32F4347E','nophoto.png','很好的员工','2018-01-10','mxr-human',1,'2018-01-10 11:11:11') ;
+INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,lastdate) VALUES ('mxr-finance',1,3,1,1,'财务部经理',10000,'010-110','EAB62A7769F0313F8D69CEBA32F4347E','upload/emp/nophoto.png','很好的员工','2018-01-10','mxr-human',1,'2018-01-10 11:11:11') ;
 
 -- 营销部经理，用户名：mxr-sale / 密码：hello
-INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,lastdate) VALUES ('mxr-sale',1,4,1,1,'营销部经理',10000,'010-110','EAB62A7769F0313F8D69CEBA32F4347E','nophoto.png','很好的员工','2018-01-10','mxr-human',1,'2018-01-10 11:11:11') ;
+INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,lastdate) VALUES ('mxr-sale',1,4,1,1,'营销部经理',10000,'010-110','EAB62A7769F0313F8D69CEBA32F4347E','upload/emp/nophoto.png','很好的员工','2018-01-10','mxr-human',1,'2018-01-10 11:11:11') ;
 
 -- 市场部经理，用户名：mxr-market / 密码：hello
-INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,lastdate) VALUES ('mxr-market',1,5,1,1,'市场部经理',10000,'010-110','EAB62A7769F0313F8D69CEBA32F4347E','nophoto.png','很好的员工','2018-01-10','mxr-human',1,'2018-01-10 11:11:11') ;
+INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,lastdate) VALUES ('mxr-market',1,5,1,1,'市场部经理',10000,'010-110','EAB62A7769F0313F8D69CEBA32F4347E','upload/emp/nophoto.png','很好的员工','2018-01-10','mxr-human',1,'2018-01-10 11:11:11') ;
 
 -- 规划部经理，用户名：mxr-plan / 密码：hello
-INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,lastdate) VALUES ('mxr-plan',1,6,1,1,'规划部经理',10000,'010-110','EAB62A7769F0313F8D69CEBA32F4347E','nophoto.png','很好的员工','2018-01-10','mxr-human',1,'2018-01-10 11:11:11') ;
+INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,lastdate) VALUES ('mxr-plan',1,6,1,1,'规划部经理',10000,'010-110','EAB62A7769F0313F8D69CEBA32F4347E','upload/emp/nophoto.png','很好的员工','2018-01-10','mxr-human',1,'2018-01-10 11:11:11') ;
 
 -- 仓储部经理，用户名：mxr-warehouse / 密码：hello
-INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,lastdate) VALUES ('mxr-warehouse',1,7,1,1,'仓储部经理',10000,'010-110','EAB62A7769F0313F8D69CEBA32F4347E','nophoto.png','很好的员工','2018-01-10','mxr-human',1,'2018-01-10 11:11:11') ;
+INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,lastdate) VALUES ('mxr-warehouse',1,7,1,1,'仓储部经理',10000,'010-110','EAB62A7769F0313F8D69CEBA32F4347E','upload/emp/nophoto.png','很好的员工','2018-01-10','mxr-human',1,'2018-01-10 11:11:11') ;
 
 -- 生产部经理，用户名：mxr-product / 密码：hello
-INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,lastdate) VALUES ('mxr-product',1,8,1,1,'生产部经理',10000,'010-110','EAB62A7769F0313F8D69CEBA32F4347E','nophoto.png','很好的员工','2018-01-10','mxr-human',1,'2018-01-10 11:11:11') ;
+INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,lastdate) VALUES ('mxr-product',1,8,1,1,'生产部经理',10000,'010-110','EAB62A7769F0313F8D69CEBA32F4347E','upload/emp/nophoto.png','很好的员工','2018-01-10','mxr-human',1,'2018-01-10 11:11:11') ;
 
 -- 增加部门经理信息
 UPDATE dept SET eid='mxr-president' WHERE did=1 ;
@@ -125,13 +125,13 @@ UPDATE dept SET eid='mxr-warehouse' WHERE did=7 ;
 UPDATE dept SET eid='mxr-product' WHERE did=8 ;
 
 -- 更新部门对应人数
-UPDATE dept SET currnum=2 WHERE did=1 ;
-UPDATE dept SET currnum=3 WHERE did=2 ;
-UPDATE dept SET currnum=4 WHERE did=3 ;
-UPDATE dept SET currnum=8 WHERE did=4 ;
-UPDATE dept SET currnum=6 WHERE did=5 ;
-UPDATE dept SET currnum=9 WHERE did=6 ;
-UPDATE dept SET currnum=16 WHERE did=7 ;
+UPDATE dept SET currnum=1 WHERE did=1 ;
+UPDATE dept SET currnum=1 WHERE did=2 ;
+UPDATE dept SET currnum=1 WHERE did=3 ;
+UPDATE dept SET currnum=1 WHERE did=4 ;
+UPDATE dept SET currnum=1 WHERE did=5 ;
+UPDATE dept SET currnum=1 WHERE did=6 ;
+UPDATE dept SET currnum=1 WHERE did=7 ;
 
 -- 增加角色信息
 INSERT INTO role(rid,title) VALUES ('dept','【人事部】部门信息管理') ;

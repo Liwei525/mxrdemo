@@ -47,7 +47,7 @@ public class PageAction extends AbstractAction{
 	public Object unauth() {
 		return "【ERROR - AUTH】没有此类处理权限 " ;
 	}
-	@RequestMapping("/back_error")
+	@RequestMapping("/pages/plugins/back/back_error")
 	public Object backError() {
 		ModelAndView mav = new ModelAndView(super.getPage("error.page"));
 		return mav;

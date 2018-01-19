@@ -5,7 +5,7 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <jsp:include page="/WEB-INF/pages/plugins/back/back_header.jsp"/>
 <%!
-	public static final String DEPT_EDIT_URL = "" ;
+	public static final String DEPT_EDIT_URL = "pages/back/admin/dept/edit.action" ;
 %>
 <script type="text/javascript" src="js/pages/back/admin/dept/dept_edit.js"></script>
 <body class="hold-transition skin-blue sidebar-mini"> 
@@ -33,7 +33,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="dname" name="dname" class="form-control"
-											placeholder="请输入修改的部门名称">
+											placeholder="请输入修改的部门名称" value="${dept.dname }" disabled>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="dnameMsg"></div>
@@ -44,7 +44,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="maxnum" name="maxnum" class="form-control"
-											placeholder="请输入该部门的最多雇员人数">
+											placeholder="请输入该部门的最多雇员人数" value="${dept.maxnum }">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="maxnumMsg"></div>
@@ -52,6 +52,7 @@
 								<!-- 定义输入表单样式，其中id主要用于设置颜色样式 -->
 								<div class="form-group">
 									<div class="col-md-5 col-md-offset-3">
+										<input type="hidden" value="${param.did }" id="did" name="did">
 										<button type="submit" class="btn btn-primary">修改</button>
 										<button type="reset" class="btn btn-warning">重置</button>
 									</div>

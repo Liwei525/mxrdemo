@@ -57,7 +57,7 @@
 		<!-- Sidebar user panel -->
 		<div class="user-panel">
 			<div class="pull-left image">
-				<img src="upload/emp/${emp.photo }" class="img-circle"
+				<img src="${emp.photo }" class="img-circle"
 					alt="User Image">
 			</div>
 			<div class="pull-left info">

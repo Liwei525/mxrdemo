@@ -5,4 +5,7 @@
 	<select id="findAllByDid" parameterType="Integer" resultType="String">
 		select actid from action where rid in (select rid from dept_role where did=#{did})
 	</select>
+	<select id="findAllByRid" parameterType="String" resultType="Action">
+		select actid,rid,title from action where rid=#{rid}
+	</select>
 </mapper>
