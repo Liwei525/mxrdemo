@@ -25,7 +25,7 @@
 		<property name="realm" ref="memberRealm"></property>
 		<property name="cacheManager" ref="cacheManager"></property>
 		<property name="sessionManager" ref="sessionManager"></property>
-		<property name="rememberMeManager" ref="remembermeManager"></property>
+		<!-- <property name="rememberMeManager" ref="remembermeManager"></property> -->
 	</bean>
 	
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -54,7 +54,7 @@
 		<property name="passwordParam" value="password"></property>
 		<property name="loginUrl" value="/loginForm.action"></property>
 		<property name="failureKeyAttribute" value="error"></property>
-		<property name="rememberMeParam" value="rememberme"></property>
+		<!-- <property name="rememberMeParam" value="rememberme"></property> -->
 		<property name="randname" value="rand" />
 		<property name="randparam" value="code"></property>
 	</bean>
@@ -89,19 +89,19 @@
 	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
 		<property name="sessionDAO" ref="sessionDAO"/>		
 		<property name="sessionIdCookie" ref="sessionIdCookie" />
-		<property name="globalSessionTimeout" value="1000000000000000000" />
+		<property name="globalSessionTimeout" value="-1" />
 		<property name="deleteInvalidSessions" value="true" />
 		<property name="sessionIdCookieEnabled" value="true" />
 	</bean>
 	
-	<bean id="remembermeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+	<!-- <bean id="remembermeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
 		<property name="name" value="mxr-rememberme"></property>
 		<property name="maxAge" value="2592000" />
 	</bean>
 	
 	<bean id="remembermeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
 		<property name="cookie" ref="remembermeCookie" />
-	</bean>
+	</bean> -->
 	
 	<bean id="kickoutFilter" class="cn.weicao.mxr.filter.KickoutSessionControlFilter">
 		<property name="sessionManager" ref="sessionManager" />

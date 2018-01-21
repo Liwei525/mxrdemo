@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/pages/plugins/back/back_header.jsp"/>
-<script type="text/javascript" src="js/pages/back/admin/myself/show_myself.js"></script>
+<script type="text/javascript" src="js/pages/back/admin/emp/emp_list_details.js"></script>
 <script type="text/javascript" src="js/split_page.js"></script>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -11,13 +11,13 @@
 		<jsp:include page="/WEB-INF/pages/plugins/back/include_title_head.jsp" />
 		<!-- 导入左边菜单项 -->
 		<jsp:include page="/WEB-INF/pages/plugins/back/include_menu_item.jsp">
-			<jsp:param name="mi" value="0"/>
-			<jsp:param name="msi" value="00"/>
+			<jsp:param name="mi" value="2"/>
+			<jsp:param name="msi" value="22"/>
 		</jsp:include>
 		<div class="content-wrapper text-left">
 		<div class="panel panel-info">
 			<div class="panel-heading">
-				<strong><span class="glyphicon glyphicon-user"></span>&nbsp;个人信息</strong>
+				<strong><span class="glyphicon glyphicon-user"></span>&nbsp;雇员信息</strong>
 			</div>
 			<div class="panel-body">
 				<div>

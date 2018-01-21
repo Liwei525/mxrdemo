@@ -5,4 +5,7 @@
 	<select id="findById" parameterType="Integer" resultType="Level">
 		SELECT lid,title,losal,hisal FROM level WHERE lid=#{lid}
 	</select>
+	<select id="findAllNoMaster" resultType="Level">
+		SELECT lid,title,losal,hisal FROM level WHERE title!='总裁'
+	</select>
 </mapper>

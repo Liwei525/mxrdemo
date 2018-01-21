@@ -6,9 +6,32 @@
 		SELECT eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,leavedate,leavenote,outeid,lastdate FROM emp WHERE eid=#{eid}
 	</select>
 	<update id="doEditLastDate" parameterType="map">
-		update emp set lastdate=#{lastdate} where eid=#{eid}
+		update emp set lastdate=#{lastDate} where eid=#{eid}
 	</update>
 	<update id="doEditPassword" parameterType="map">
 		update emp set password=#{password} where eid=#{eid}
 	</update>
+	<update id="doEdit" parameterType="Emp">
+		update emp set lid=#{lid},did=#{did},sex=#{sex},etid=#{etid},ename=#{ename},salary=#{salary},phone=#{phone},password=#{password},photo=#{photo},empnote=#{empnote},
+			hiredate=#{hiredate},ineid=#{ineid},state=#{state},leavedate=#{leaveDate},leavenote=#{leaveNote},outeid=#{outeid},lastdate=#{lastDate} where eid=#{eid}
+	</update>
+	<insert id="doCreate" parameterType="Emp">
+		insert emp(eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,leavedate,leavenote,outeid,lastdate) values (#{eid},#{lid},#{did},#{sex},#{etid},#{ename},#{salary},#{phone},#{password},#{photo},#{empnote},#{hiredate},#{ineid},#{state},#{leaveDate},#{leaveNote},#{outeid},#{lastDate})
+	</insert>
+	<select id="findSplit" parameterType="Map" resultType="Emp">
+		select eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,leavedate,leavenote,outeid,lastdate 
+		from emp
+		where 1 = 1
+		<if test="column != null and keyWord != null">
+			and ${column} like #{keyWord}
+		</if>
+		<if test="startTime != null">
+			and hiredate &gt;= #{startTime}
+		</if>
+		<if test="endTime != null">
+			and hiredate &lt;= #{endTime}
+		</if>
+		order by hiredate desc
+		limit #{start},#{lineSize}
+	</select>
 </mapper>

@@ -43,6 +43,7 @@ public class DeptAction extends AbstractAction{
 	@RequestMapping("add")
 	public Object add(Dept dept) {
 		ModelAndView mav = new ModelAndView(super.getPage("forward.page"));
+		dept.setCurrnum(0);
 		if(this.deptService.add(dept)) {
 			super.setMsgAndUrl(mav, "dept.list.action", "vo.add.success",ACTION_TITLE);
 		}else {

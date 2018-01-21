@@ -2,23 +2,23 @@
 <script>
 	$(function(){
 		$("#startTime").datetimepicker({
-			format: 'yyyy-mm-dd',
+			format: 'yyyy-mm-dd hh:ii:ss',
 			autoclose: true,
 			todayBtn: true,
 	        pickerPosition: "bottom-right",
 	        startDate: "2015-01-01 00:00",
 	        language:  'zh-CN',
-	        minView: 2,
+	        minView: 0,
 	        todayHighlight: true
 		});
 		$("#endTime").datetimepicker({
-			format: 'yyyy-mm-dd',
+			format: 'yyyy-mm-dd hh:ii:ss',
 			autoclose: true,
 			todayBtn: true,
 	        pickerPosition: "bottom-right",
 	        startDate: "2015-01-01 00:00",
 	        language:  'zh-CN',
-	        minView: 2,
+	        minView: 0,
 	        todayHighlight: true
 		});	
 	})

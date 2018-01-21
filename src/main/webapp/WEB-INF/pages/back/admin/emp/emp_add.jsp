@@ -5,7 +5,7 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <jsp:include page="/WEB-INF/pages/plugins/back/back_header.jsp"/>
 <%!
-	public static final String EMP_ADD_URL = "" ;
+	public static final String EMP_ADD_URL = "pages/back/admin/emp/add.action" ;
 %>
 <script type="text/javascript" src="js/pages/back/admin/emp/emp_add.js"></script>
 <body class="hold-transition skin-blue sidebar-mini"> 
@@ -79,9 +79,9 @@
 									<div class="col-md-5">
 										<select id="did" name="did" class="form-control">
 											<option value="">====== 请选择所在部门 ======</option>
-											<option value="1">技术部</option>
-											<option value="2">财务部</option>
-											<option value="3">市场部</option>
+											<c:forEach items="${allDepts }" var="dept">
+												<option value="${dept.did }">${dept.dname}</option>
+											</c:forEach>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -93,8 +93,9 @@
 									<div class="col-md-5">
 										<select id="lid" name="lid" class="form-control">
 											<option value="">====== 请选择雇员职位 ======</option>
-											<option value="2">部门经理</option>
-											<option value="3">部门员工</option>
+											<c:forEach items="${allLevelsNoMaster }" var="level">
+												<option value="${level.lid }">${level.title}</option>
+											</c:forEach>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -106,9 +107,9 @@
 									<div class="col-md-5">
 										<select id="etid" name="etid" class="form-control">
 											<option value="">====== 请选择雇员种类 ======</option>
-											<option value="1">管理</option>
-											<option value="2">焊工</option>
-											<option value="3">普工</option>
+											<c:forEach items="${allEmpTypes }" var="empType">
+												<option value="${empType.etid }">${empType.title}</option>
+											</c:forEach>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -137,16 +138,16 @@
 									<div class="col-md-4" id="picMsg"></div>
 								</div>
 								<!-- 定义输入表单样式，其中id主要用于设置颜色样式 -->
-								<div class="form-group" id="noteDiv">
+								<div class="form-group" id="empnoteDiv">
 									<!-- 定义表单提示文字 -->
-									<label class="col-md-3 control-label" for="note">备注信息：</label>
+									<label class="col-md-3 control-label" for="empnote">备注信息：</label>
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
-										<textarea id="note" name="note"
+										<textarea id="empnote" name="empnote"
 											class="form-control" placeholder="请输入雇员的面试情况" rows="10"></textarea>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
-									<div class="col-md-4" id="noteMsg"></div>
+									<div class="col-md-4" id="empnoteMsg"></div>
 								</div> 
 								<div class="form-group">
 									<div class="col-md-5 col-md-offset-3">

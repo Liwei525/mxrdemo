@@ -44,12 +44,15 @@ function addDetails(tdid) {
 		trElement = document.createElement("tr") ;
 		trElement.setAttribute("id","dettr-" + tdid) ;
 		trElement.setAttribute("class","text-danger") ;
+		
 		roleTdElement = document.createElement("td") ;
 		btnTdElement = document.createElement("td") ;
 		btnTdElement.setAttribute("class","text-center") ;
+		
 		selectElement = document.createElement("select") ;
 		selectElement.setAttribute("class","form-control") ;
 		selectElement.setAttribute("id","role-" + tdid) ;
+		
 		saveButtonElement = document.createElement("button") ;
 		saveButtonElement.setAttribute("id","save-" + tdid) ;
 		saveButtonElement.setAttribute("class","btn btn-primary btn-xs") ;
@@ -57,6 +60,7 @@ function addDetails(tdid) {
 		saveSpanElement.setAttribute("class","glyphicon glyphicon-save") ;
 		saveButtonElement.appendChild(saveSpanElement) ;
 		saveButtonElement.appendChild(document.createTextNode(" 保存")) ;
+		
 		deleteButtonElement = document.createElement("button") ;
 		deleteButtonElement.setAttribute("id","remove-" + tdid) ;
 		deleteButtonElement.setAttribute("class","btn btn-danger btn-xs") ;
@@ -64,14 +68,17 @@ function addDetails(tdid) {
 		deleteSpanElement.setAttribute("class","glyphicon glyphicon-edit") ;
 		deleteButtonElement.appendChild(deleteSpanElement) ;
 		deleteButtonElement.appendChild(document.createTextNode(" 移除")) ;
+		
 		btnTdElement.appendChild(deleteButtonElement) ;
 		trElement.appendChild(roleTdElement) ;
 		trElement.appendChild(btnTdElement) ;
 		roleTdElement.appendChild(selectElement) ;
+		
 		optionElement = document.createElement("option") ;
 		optionElement.setAttribute("value",0) ;
 		optionElement.appendChild(document.createTextNode("=============== 请选择角色 ================")) ;
 		selectElement.appendChild(optionElement) ;
+		
 		for(var i = 0 ; i < data.length ; i ++){
 			optionElement = document.createElement("option") ;
 			optionElement.setAttribute("value",data[i].rid) ;

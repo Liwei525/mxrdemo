@@ -1,5 +1,6 @@
 package cn.weicao.mxr.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import cn.weicao.mxr.vo.Emp;
@@ -23,4 +24,22 @@ public interface IEmpDAO {
 	 * @return 修改成功返回true
 	 */
 	public boolean doEditPassword(Map<String,Object> map) ;
+	/**
+	 * 修改雇员信息
+	 * @param emp 雇员信息
+	 * @return 修改成功返回true
+	 */
+	public boolean doEdit(Emp emp) ;
+	/**
+	 * 增加雇员
+	 * @param emp 雇员信息
+	 * @return 增加成功返回true
+	 */
+	public boolean doCreate(Emp emp) ;
+	/**
+	 * 日期分页模糊查询
+	 * @param map 里面包含有日期分页模糊的信息
+	 * @return 列出满足条件的雇员信息
+	 */
+	public List<Emp> findSplit(Map<String,Object> map) ;
 }

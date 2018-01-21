@@ -1,4 +1,6 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ page import="java.text.*" %>
 <%--	// 考虑到以后的结合开发，本处使用request属性范围传递
 	request.setAttribute("columnData",columnData) ;	// 属性名称
 	request.setAttribute("handleUrl",dept_list_url) ;
@@ -16,8 +18,8 @@
 	String handleUrl = null ; 
 	String column = (String) request.getAttribute("column") ;
 	String keyWord = (String) request.getAttribute("keyWord") ;
-	String startTime = (String) request.getAttribute("startTime") ;
-	String endTime = (String) request.getAttribute("endTime") ;
+	String startTime = (String)request.getAttribute("startTime") ;
+	String endTime = (String)request.getAttribute("endTime") ;
 	long allRecorders = 0 ;
 	long currentPage = 1 ;
 	long allPages = 1 ;

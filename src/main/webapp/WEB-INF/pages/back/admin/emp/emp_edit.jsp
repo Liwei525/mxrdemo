@@ -5,7 +5,7 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <jsp:include page="/WEB-INF/pages/plugins/back/back_header.jsp"/>
 <%!
-	public static final String EMP_EDIT_URL = "" ;
+	public static final String EMP_EDIT_URL = "pages/back/admin/emp/edit.action" ;
 %>
 <script type="text/javascript" src="js/pages/back/admin/emp/emp_edit.js"></script>
 <body class="hold-transition skin-blue sidebar-mini"> 
@@ -26,23 +26,13 @@
 					<div class="panel-body">
 						<form class="form-horizontal" action="<%=EMP_EDIT_URL%>" id="myform" method="post" enctype="multipart/form-data">
 							<fieldset>
-								<div class="form-group" id="eidDiv">
-									<!-- 定义表单提示文字 -->
-									<label class="col-md-3 control-label" for="eid">雇员编号：</label>
-									<div class="col-md-5">
-										<!-- 定义表单输入组件 -->
-										<input type="text" id="eid" name="eid" class="form-control" disabled>
-									</div>
-									<!-- 定义表单错误提示显示元素 -->
-									<div class="col-md-4" id="eidMsg"></div>
-								</div>
 								<div class="form-group" id="enameDiv">
 									<!-- 定义表单提示文字 -->
 									<label class="col-md-3 control-label" for="ename">雇员姓名：</label>
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="ename" name="ename" class="form-control"
-											placeholder="请输入雇员真实姓名">
+											placeholder="请输入雇员真实姓名" value="${emp.ename }">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="enameMsg"></div>
@@ -53,8 +43,8 @@
 									<div class="col-md-5">
 										<select id="sex" name="sex" class="form-control">
 											<option value="">====== 请选择雇员性别 ======</option>
-											<option value="1">男</option>
-											<option value="2">女</option>
+											<option value="1" ${emp.sex == 1 ?"selected":""}>男</option>
+											<option value="2" ${emp.sex == 2 ?"selected":""}>女</option>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -66,7 +56,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="phone" name="phone" class="form-control"
-											placeholder="请输入雇员联系电话">
+											placeholder="请输入雇员联系电话" value="${emp.phone }">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="phoneMsg"></div>
@@ -77,9 +67,9 @@
 									<div class="col-md-5">
 										<select id="did" name="did" class="form-control">
 											<option value="">====== 请选择所在部门 ======</option>
-											<option value="1">技术部</option>
-											<option value="2">财务部</option>
-											<option value="3">市场部</option>
+											<c:forEach items="${allDepts }" var="dept">
+												<option value="${dept.did }" ${emp.did == dept.did ? "selected":"" }>${dept.dname }</option>
+											</c:forEach>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -91,8 +81,9 @@
 									<div class="col-md-5">
 										<select id="lid" name="lid" class="form-control">
 											<option value="">====== 请选择雇员职位 ======</option>
-											<option value="2">部门经理</option>
-											<option value="3">部门员工</option>
+											<c:forEach items="${allLevelsNoMaster }" var="level">
+												<option value="${level.lid }" ${emp.lid == level.lid ? "selected":"" }>${level.title }</option>
+											</c:forEach>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -104,9 +95,9 @@
 									<div class="col-md-5">
 										<select id="etid" name="etid" class="form-control">
 											<option value="">====== 请选择雇员种类 ======</option>
-											<option value="1">管理</option>
-											<option value="2">焊工</option>
-											<option value="3">普工</option>
+											<c:forEach items="${allEmpTypes }" var="empType">
+												<option value="${empType.etid }" ${emp.etid == empType.etid ? "selected":"" }>${empType.title }</option>
+											</c:forEach>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -118,7 +109,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="salary" name="salary" class="form-control"
-											placeholder="请输入雇员基本工资">
+											placeholder="请输入雇员基本工资" value="${emp.salary }">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="salaryMsg"></div>
@@ -127,7 +118,7 @@
 									<!-- 定义表单提示文字 -->
 									<label class="col-md-3 control-label" for="pic">雇员照片：</label>
 									<div class="col-md-5">
-										<img src="upload/emp/nophoto.png" style="width:200px;"/>
+										<img src="${emp.photo }" style="width:200px;"/>
 										<!-- 定义表单输入组件 -->
 										<input type="file" id="pic" name="pic" class="form-control"
 											placeholder="请选择雇员照片">
@@ -136,21 +127,21 @@
 									<div class="col-md-4" id="picMsg"></div>
 								</div>
 								<!-- 定义输入表单样式，其中id主要用于设置颜色样式 -->
-								<div class="form-group" id="noteDiv">
+								<div class="form-group" id="empnoteDiv">
 									<!-- 定义表单提示文字 -->
-									<label class="col-md-3 control-label" for="note">备注信息：</label>
+									<label class="col-md-3 control-label" for="empnote">备注信息：</label>
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
-										<textarea id="note" name="note"
-											class="form-control" placeholder="请输入雇员的面试情况" rows="10"></textarea>
+										<textarea id="empnote" name="empnote"
+											class="form-control" placeholder="请输入雇员的面试情况" rows="10">${emp.empnote }</textarea>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
-									<div class="col-md-4" id="noteMsg"></div>
+									<div class="col-md-4" id="empnoteMsg"></div>
 								</div> 
 								<div class="form-group">
 									<div class="col-md-5 col-md-offset-3">
-										<input type="hidden" id="pic" value="">
-										<input type="hidden" id="eid" value="">
+										<input type="hidden" id="photo" name="photo" value="${emp.photo }">
+										<input type="hidden" id="eid" name="eid" value="${emp.eid }">
 										<button type="submit" class="btn btn-primary">编辑</button>
 										<button type="reset" class="btn btn-warning">重置</button>
 									</div>

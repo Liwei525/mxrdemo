@@ -36,7 +36,7 @@ $(function(){
 						}
 					},
 					dataFilter : function(data, type) {
-						if (data.trim() == 'true')
+						if (data == "true")
 							return true;
 						else
 							return false;

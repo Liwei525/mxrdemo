@@ -7,7 +7,7 @@
 <header class="main-header">
 
 	<!-- Logo -->
-	<a href="loginForm.action" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+	<a href="pages/back/index.action" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 		<span class="logo-mini"><b>MX</b>R</span> <!-- logo for regular state and mobile devices -->
 		<span class="logo-lg"><b>Internal</b>System</span>
 	</a>
@@ -31,18 +31,18 @@
 				<li class="dropdown user user-menu">
 				
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<img src="${emp.photo }" class="user-image" alt="User Image">
-						<span class="hidden-xs">${emp.ename}</span>
+						<img src="${loginEmp.photo }" class="user-image" alt="User Image">
+						<span class="hidden-xs">${loginEmp.ename}</span>
 					</a>
 					<ul class="dropdown-menu"> 
 						<!-- User image -->
-						<li class="user-header"><img src="${emp.photo }"
+						<li class="user-header"><img src="${loginEmp.photo }"
 							class="img-circle" alt="User Image"> 
 						</li>
 						<!-- Menu Body -->
 						<li>
 							<div class="text-center">
-								上次登录日期：<fmt:formatDate value="${emp.lastDate}" type="both"/>
+								上次登录日期：<fmt:formatDate value="${loginEmp.lastDate}" type="both"/>
 							</div>
 						</li>
 						<!-- Menu Footer-->

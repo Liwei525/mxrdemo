@@ -57,11 +57,11 @@
 		<!-- Sidebar user panel -->
 		<div class="user-panel">
 			<div class="pull-left image">
-				<img src="${emp.photo }" class="img-circle"
+				<img src="${loginEmp.photo }" class="img-circle"
 					alt="User Image">
 			</div>
 			<div class="pull-left info">
-				<p>${emp.ename}</p>
+				<p>${loginEmp.ename}</p>
 			</div> 
 		</div>
 		<!-- /.search form -->

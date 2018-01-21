@@ -8,6 +8,7 @@
 <%!
 	public static final String EMP_EDIT_URL = "pages/back/admin/emp/edit_pre.action" ;
 	public static final String EMP_EDIT_STATE_URL = "pages/back/admin/emp/state_pre.action" ;	
+	public static final String EMP_LIST_DETAILS_URL = "pages/back/admin/emp/list_details.action" ;
 %>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -43,24 +44,30 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="text-center">00001</td>
-								<td class="text-center">
-									<img src="upload/emp/nophoto.png" style="width:20px;"/> 
-								</td> 
-								<td class="text-center">老李</td>
-								<td class="text-center">经理</td>
-								<td class="text-center">人事部</td>
-								<td class="text-center">2019-10-10</td>
-								<td class="text-center">3000</td>
-								<td class="text-center">13010109992</td>
-								<td class="text-center">
-									<a type="button" class="btn btn-warning btn-xs" href="<%=EMP_EDIT_URL%>?eid=1">
-											<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>
-									<a type="button" class="btn btn-danger btn-xs" href="<%=EMP_EDIT_STATE_URL%>?eid=1">
-											<span class="glyphicon glyphicon-pencil"></span>&nbsp;状态</a>
-								</td>
-							</tr>
+							<c:forEach items="${allEmps }" var="emp">
+								<tr ${emp.state == 0 ? "class='text-danger'":"" }>
+									<td class="text-center">${emp.eid }</td>
+									<td class="text-center">
+										<img src="${emp.photo }" style="width:20px;"/> 
+									</td> 
+									<td class="text-center">${emp.ename }</td>
+									<td class="text-center">${levelTitles[emp.eid].title }</td>
+									<td class="text-center">${deptNames[emp.eid].dname }</td>
+									<td class="text-center"><fmt:formatDate type="date" value="${emp.hiredate }" /></td>
+									<td class="text-center">${emp.salary }</td>
+									<td class="text-center">${emp.phone }</td>
+									<td class="text-center">
+										<c:if test="${emp.lid != 0 && emp.state == 1}">
+											<a type="button" class="btn btn-warning btn-xs" href="<%=EMP_EDIT_URL%>?eid=${emp.eid}">
+													<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>
+											<a type="button" class="btn btn-danger btn-xs" href="<%=EMP_EDIT_STATE_URL%>?eid=${emp.eid}">
+													<span class="glyphicon glyphicon-pencil"></span>&nbsp;离职</a>
+										</c:if>
+										<a type="button" class="btn btn-primary btn-xs" href="<%=EMP_LIST_DETAILS_URL%>?eid=${emp.eid}">
+													<span class="glyphicon glyphicon-list"></span>&nbsp;查看详情</a>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 					<div id="splitBarDiv" style="float:right">

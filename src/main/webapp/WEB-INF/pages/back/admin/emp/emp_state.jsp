@@ -5,7 +5,7 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <jsp:include page="/WEB-INF/pages/plugins/back/back_header.jsp"/>
 <%!
-	public static final String EMP_LEAVE_URL = "" ;
+	public static final String EMP_LEAVE_URL = "pages/back/admin/emp/state.action" ;
 %>
 <script type="text/javascript" src="js/pages/back/admin/emp/emp_state.js"></script>
 <body class="hold-transition skin-blue sidebar-mini"> 
@@ -27,22 +27,12 @@
 						<form class="form-horizontal" action="<%=EMP_LEAVE_URL%>" id="myform" method="post" enctype="multipart/form-data">
 							<fieldset>
 								<!-- 定义输入表单样式，其中id主要用于设置颜色样式 -->
-								<div class="form-group" id="eidDiv">
-									<!-- 定义表单提示文字 -->
-									<label class="col-md-3 control-label" for="eid">雇员编号：</label>
-									<div class="col-md-5">
-										<!-- 定义表单输入组件 -->
-										<input type="text" id="eid" name="eid" class="form-control" disabled>
-									</div>
-									<!-- 定义表单错误提示显示元素 -->
-									<div class="col-md-4" id="eidMsg"></div>
-								</div>
 								<div class="form-group" id="leaveDateDiv">
 									<!-- 定义表单提示文字 -->
 									<label class="col-md-3 control-label" for="leaveDate">离职日期：</label>
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
-										<input type="text" id="leaveDate" name="leaveDate" class="form-control" placeholder="请选择离职日期">
+										<input type="text" id="leaveDate" name="leaveDate" class="form-control" placeholder="请选择离职日期" >
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="leaveDateMsg"></div>
@@ -61,6 +51,7 @@
 								</div> 
 								<div class="form-group">
 									<div class="col-md-5 col-md-offset-3">
+									<input type="hidden" id="eid" name="eid" value="${param.eid }">
 										<button type="submit" class="btn btn-primary">增加</button>
 										<button type="reset" class="btn btn-warning">重置</button>
 									</div>

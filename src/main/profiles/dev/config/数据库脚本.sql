@@ -93,8 +93,6 @@ INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,
 
 -- 人事部经理，用户名：mxr-human / 密码：hello
 INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,lastdate) VALUES ('mxr-human',1,2,1,1,'人事部经理',10000,'010-110','EAB62A7769F0313F8D69CEBA32F4347E','upload/emp/nophoto.png','很好的员工','2018-01-10','mxr-president',1,'2018-01-10 11:11:11') ;
-INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,lastdate) VALUES ('test',1,3,1,1,'test',10000,'010-110','','upload/emp/nophoto.png','很好的员工','2018-01-10','mxr-president',1,'2018-01-10 11:11:11') ;
-
 
 -- 财务部经理，用户名：mxr-finance / 密码：hello
 INSERT INTO emp (eid,lid,did,sex,etid,ename,salary,phone,password,photo,empnote,hiredate,ineid,state,lastdate) VALUES ('mxr-finance',1,3,1,1,'财务部经理',10000,'010-110','EAB62A7769F0313F8D69CEBA32F4347E','upload/emp/nophoto.png','很好的员工','2018-01-10','mxr-human',1,'2018-01-10 11:11:11') ;

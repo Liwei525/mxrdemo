@@ -45,7 +45,7 @@ public class DefaultCredentialsMatcher extends SimpleCredentialsMatcher{
         boolean flag = super.equals(tokenCredentials, accountCredentials) ;
         if(flag) {
         	this.unlock(eid);
-    		SecurityUtils.getSubject().getSession().setAttribute("emp", this.empService.get(eid)) ;
+    		SecurityUtils.getSubject().getSession().setAttribute("loginEmp", this.empService.get(eid)) ;
     		this.empService.editLastDate(eid) ;
         }
         return flag;

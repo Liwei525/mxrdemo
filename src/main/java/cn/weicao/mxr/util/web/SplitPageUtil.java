@@ -1,5 +1,8 @@
 package cn.weicao.mxr.util.web;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.context.request.RequestContextHolder;
@@ -10,12 +13,12 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  * @author mxr
  */
 public class SplitPageUtil {
-	private long currentPage = 1 ;	// 参数：cp
-	private int lineSize = 5 ;		// 参数：ls
+	private int currentPage = 1 ;	// 参数：cp
+	private int lineSize = 10 ;		// 参数：ls
 	private String column ;		// 参数：col
 	private String keyWord ;	// 参数：kw
-	private String startTime ; 
-	private String endTime ;
+	private Date startTime ; 
+	private Date endTime ;
 	private HttpServletRequest request ;
 	/**
 	 * 将你需要进行模糊查询的columnData（下拉框）传递到组件之中，目的是为了属性操作
@@ -27,15 +30,25 @@ public class SplitPageUtil {
 		this.request.setAttribute("columnData", columnData);
 		this.request.setAttribute("handleUrl", handleUrlKey); 
 		try {	// 这行代码出错只有不传递或传递非法参数的时候出现
-			this.currentPage = Long.parseLong(this.request.getParameter("cp")) ;
+			this.currentPage = Integer.parseInt(this.request.getParameter("cp")) ;
 		} catch (Exception e) {}
 		try {	// 如果出错就使用默认值
 			this.lineSize = Integer.parseInt(this.request.getParameter("ls")) ;
 		} catch (Exception e) {}
 		this.column = this.request.getParameter("col") ;
 		this.keyWord = this.request.getParameter("kw") ;
-		this.startTime = this.request.getParameter("startTime") ;
-		this.endTime = this.request.getParameter("endTime") ;
+		try {
+			String startTemp = this.request.getParameter("startTime") ;
+			String endTemp = this.request.getParameter("endTime") ;
+			if(startTemp != null && !"null".equals(startTemp)) {
+				this.startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(startTemp) ;	
+			}
+			if(endTemp != null && !"null".equals(endTemp)) {
+				this.endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(endTemp) ;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		if (this.column == null) {
 			this.column = "" ;
 		}
@@ -46,10 +59,18 @@ public class SplitPageUtil {
 		this.request.setAttribute("lineSize", this.lineSize);
 		this.request.setAttribute("keyWord", this.keyWord);
 		this.request.setAttribute("column", this.column);
-		this.request.setAttribute("startTime", this.startTime);
-		this.request.setAttribute("endTime", this.endTime);
+		if(this.startTime != null) {
+			this.request.setAttribute("startTime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(this.startTime));
+		}else {
+			this.request.setAttribute("startTime", this.startTime);
+		}
+		if(this.endTime != null) {
+			this.request.setAttribute("endTime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(this.endTime));
+		}else {
+			this.request.setAttribute("endTime", this.endTime);
+		}
 	}
-	public long getCurrentPage() {
+	public int getCurrentPage() {
 		return currentPage;
 	}
 	public int getLineSize() {
@@ -61,10 +82,10 @@ public class SplitPageUtil {
 	public String getKeyWord() {
 		return keyWord;
 	}
-	public String getStartTime() {
+	public Date getStartTime() {
 		return startTime;
 	}
-	public String getEndTime() {
+	public Date getEndTime() {
 		return endTime;
 	}
 }

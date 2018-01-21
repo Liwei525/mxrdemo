@@ -179,7 +179,7 @@ public class ActionValidationUtil {
 	 */
 	private boolean validateDouble(String str) {
 		if (this.validateString(str)) {	// 验证通过
-			return str.matches("\\d+(\\.\\d+)") ;
+			return str.matches("\\d+(\\.\\d+)?") ;
 		}
 		return false ;
 	}

@@ -24,9 +24,6 @@ $(function(){
 		},
 		errorClass : "text-danger",
 		rules : {
-			"eid" : {
-				required : true
-			} ,
 			"leaveDate": {
 				required : true
 			} ,

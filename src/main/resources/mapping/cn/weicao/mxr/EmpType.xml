@@ -5,4 +5,7 @@
 	<select id="findById" parameterType="Integer" resultType="EmpType">
 		SELECT etid,title FROM emptype WHERE etid=#{etid}
 	</select>
+	<select id="findAll" resultType="EmpType">
+		SELECT etid,title FROM emptype 
+	</select>
 </mapper>
