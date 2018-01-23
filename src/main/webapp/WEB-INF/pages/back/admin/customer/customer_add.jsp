@@ -137,7 +137,7 @@
 								</div>
 								<div class="form-group" id="lnameDiv">
 									<!-- 定义表单提示文字 -->
-									<label class="col-md-3 control-label" for="tid">联系人姓名：</label>
+									<label class="col-md-3 control-label" for="lname">联系人姓名：</label>
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="lname" name="lname" class="form-control"

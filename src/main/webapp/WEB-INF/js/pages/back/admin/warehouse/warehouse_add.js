@@ -55,6 +55,9 @@ $(function(){
 			"iid" : {
 				required : true 
 			},
+			"pic" : {
+				required : true
+			},
 			"note" : {
 				required : true
 			}

@@ -59,6 +59,19 @@
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="sizeMsg"></div>
 								</div>
+								<div class="form-group" id="unitDiv">
+									<!-- 定义表单提示文字 -->
+									<label class="col-md-3 control-label" for="unit">半成品单位：</label>
+									<div class="col-md-5">
+										<select id="unit" name="unit" class="form-control">
+											<option value="">====== 请选择半成品单位 ======</option>
+											<option value="1">个数</option>
+											<option value="2">长度（米）</option>
+										</select>
+									</div>
+									<!-- 定义表单错误提示显示元素 -->
+									<div class="col-md-4" id="unitMsg"></div>
+								</div>
 								<div class="form-group" id="picDiv">
 									<!-- 定义表单提示文字 -->
 									<label class="col-md-3 control-label" for="pic">商品图片：</label>

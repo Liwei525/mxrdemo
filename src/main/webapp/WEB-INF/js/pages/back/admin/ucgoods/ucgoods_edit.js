@@ -34,6 +34,9 @@ $(function(){
 			"size" : {
 				required : true 
 			},
+			"unit" : {
+				required : true
+			},
 			"pic" : {
 				required : true ,
 				accept : ["jpg","png","gif","bmp"]
