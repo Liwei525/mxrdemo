@@ -40,10 +40,10 @@ public class SplitPageUtil {
 		try {
 			String startTemp = this.request.getParameter("startTime") ;
 			String endTemp = this.request.getParameter("endTime") ;
-			if(startTemp != null && !"null".equals(startTemp)) {
+			if(startTemp != null && !"null".equals(startTemp) && !"".equals(startTemp)) {
 				this.startTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(startTemp) ;	
 			}
-			if(endTemp != null && !"null".equals(endTemp)) {
+			if(endTemp != null && !"null".equals(endTemp) && !"".equals(endTemp)) {
 				this.endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(endTemp) ;
 			}
 		} catch (Exception e) {

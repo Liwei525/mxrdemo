@@ -1,11 +1,12 @@
 package cn.weicao.mxr.vo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 public class UCGoodsStorageApplyRecord implements Serializable {
 	private Integer usarid ;
-	private Integer usawid ;
+	private String usawid ;
 	private Integer ucid ;
 	private Integer wid ;
 	private String name ;
@@ -14,16 +15,17 @@ public class UCGoodsStorageApplyRecord implements Serializable {
 	private Integer unit ;
 	private Integer num ;
 	private Double totalPrice ;
+	private Date date ;
 	public Integer getUsarid() {
 		return usarid;
 	}
 	public void setUsarid(Integer usarid) {
 		this.usarid = usarid;
 	}
-	public Integer getUsawid() {
+	public String getUsawid() {
 		return usawid;
 	}
-	public void setUsawid(Integer usawid) {
+	public void setUsawid(String usawid) {
 		this.usawid = usawid;
 	}
 	public Integer getUcid() {
@@ -74,5 +76,10 @@ public class UCGoodsStorageApplyRecord implements Serializable {
 	public void setTotalPrice(Double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public Date getDate() {
+		return date;
+	}
 }

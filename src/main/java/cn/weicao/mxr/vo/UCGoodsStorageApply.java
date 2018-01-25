@@ -19,6 +19,7 @@ public class UCGoodsStorageApply implements Serializable{
 	private String auditMid ;
 	private Date auditDate ;
 	private String auditNote ;
+	private Integer flag ; //1代表未删除，0代表已删除
 	public String getUsaid() {
 		return usaid;
 	}
@@ -103,5 +104,10 @@ public class UCGoodsStorageApply implements Serializable{
 	public void setAuditNote(String auditNote) {
 		this.auditNote = auditNote;
 	}
-	
+	public void setFlag(Integer flag) {
+		this.flag = flag;
+	}
+	public Integer getFlag() {
+		return flag;
+	}
 }

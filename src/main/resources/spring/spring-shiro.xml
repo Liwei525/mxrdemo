@@ -28,27 +28,6 @@
 		<!-- <property name="rememberMeManager" ref="remembermeManager"></property> -->
 	</bean>
 	
-	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
-		<property name="securityManager" ref="securityManager"></property>	
-		<property name="loginUrl" value="/loginForm.action"></property>
-		<property name="unauthorizedUrl" value="/unauth.action"></property>
-		<property name="successUrl" value="/pages/back/index.action"></property>
-		<property name="filters">
-			<map>
-				<entry key="authc" value-ref="formAuthenticationFilter"></entry>
-				<entry key="logout" value-ref="logoutFilter"></entry>
-				<entry key="kickout" value-ref="kickoutFilter" />
-			</map>
-		</property>
-		<property name="filterChainDefinitions">
-			<value>
-				/logout.page=logout
-				/loginForm.action=authc
-				/pages/**=kickout,authc
-			</value>
-		</property>
-	</bean>
-	
 	<bean id="formAuthenticationFilter" class="cn.weicao.mxr.util.shiro.rand.DefaultFormAuthenticationFilter">
 		<property name="usernameParam" value="eid"></property>	
 		<property name="passwordParam" value="password"></property>
@@ -89,9 +68,8 @@
 	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
 		<property name="sessionDAO" ref="sessionDAO"/>		
 		<property name="sessionIdCookie" ref="sessionIdCookie" />
-		<property name="globalSessionTimeout" value="-1" />
-		<property name="deleteInvalidSessions" value="true" />
 		<property name="sessionIdCookieEnabled" value="true" />
+		<property name="sessionValidationSchedulerEnabled" value="false"/>
 	</bean>
 	
 	<!-- <bean id="remembermeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
@@ -110,5 +88,25 @@
 		<property name="maxSessionCount" value="1" /> 
 	</bean>
 	
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager"></property>	
+		<property name="loginUrl" value="/loginForm.action"></property>
+		<property name="unauthorizedUrl" value="/unauth.action"></property>
+		<property name="successUrl" value="/pages/back/index.action"></property>
+		<property name="filters">
+			<map>
+				<entry key="authc" value-ref="formAuthenticationFilter"></entry>
+				<entry key="logout" value-ref="logoutFilter"></entry>
+				<entry key="kickout" value-ref="kickoutFilter" />
+			</map>
+		</property>
+		<property name="filterChainDefinitions">
+			<value>
+				/logout.page=logout
+				/loginForm.action=authc
+				/pages/**=authc,kickout
+			</value>
+		</property>
+	</bean>
 </beans>
 

@@ -5,7 +5,7 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <jsp:include page="/WEB-INF/pages/plugins/back/back_header.jsp"/>
 <%!
-	public static final String UCGOODS_ADD_URL = "" ;
+	public static final String UCGOODS_ADD_URL = "pages/back/admin/ucgoods/add.action" ;
 %>
 <script type="text/javascript" src="js/pages/back/admin/ucgoods/ucgoods_add.js"></script>
 <body class="hold-transition skin-blue sidebar-mini"> 

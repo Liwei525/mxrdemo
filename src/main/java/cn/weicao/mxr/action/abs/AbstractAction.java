@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.context.MessageSource;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -18,6 +19,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class AbstractAction {
 	@Resource
 	protected MessageSource messageSource ;
+	/**
+	 * 当前登录人
+	 * @return 当前登录人编号
+ 	 */
+	public String loginMid() {
+		return (String)SecurityUtils.getSubject().getPrincipal() ;
+	}
 	/**
 	 * 拆分后转为Set集合
 	 * @param str

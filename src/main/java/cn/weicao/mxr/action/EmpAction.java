@@ -106,6 +106,10 @@ public class EmpAction extends AbstractAction{
 	@RequestMapping("edit_pre")
 	public ModelAndView editPre(String eid) {
 		ModelAndView mav = new ModelAndView(super.getPage("emp.edit.page"));
+		Emp emp = (Emp)this.empService.editPre(eid).get("emp") ;
+		if(emp == null) {
+			mav.addObject("errors", "不存在该雇员！") ;
+		}
 		mav.addAllObjects(this.empService.editPre(eid)) ;
 		return mav;
 	}
@@ -176,8 +180,6 @@ public class EmpAction extends AbstractAction{
 		mav.addAllObjects(this.empService.getMyself(eid)) ;
 		return mav;
 	}
-	@RequiresRoles("emp")
-	@RequiresPermissions("emp:list")
 	@RequestMapping("show_emp")
 	@ResponseBody
 	public Object showEmp(String eid) {

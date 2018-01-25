@@ -3,6 +3,7 @@
 <title>MXR内部系统</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="refresh" content="300">
 <script type="text/javascript" src="jquery/jquery.min.js"></script>
 <script type="text/javascript" src="js/mxr.js"></script>
 <script type="text/javascript" src="jquery/jquery.validate.min.js"></script>

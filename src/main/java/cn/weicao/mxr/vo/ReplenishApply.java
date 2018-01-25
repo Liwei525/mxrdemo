@@ -18,6 +18,7 @@ public class ReplenishApply implements Serializable{
 	private Date sendDate ;
 	private String watchMid ;
 	private Date watchDate ;
+	private Integer flag ; //1代表未删除，0代表已删除
 	public Integer getRaid() {
 		return raid;
 	}
@@ -96,5 +97,10 @@ public class ReplenishApply implements Serializable{
 	public void setWatchDate(Date watchDate) {
 		this.watchDate = watchDate;
 	}
-	
+	public void setFlag(Integer flag) {
+		this.flag = flag;
+	}
+	public Integer getFlag() {
+		return flag;
+	}
 }

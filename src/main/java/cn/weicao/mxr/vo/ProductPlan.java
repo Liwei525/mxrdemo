@@ -35,6 +35,7 @@ public class ProductPlan implements Serializable{
 	private Date sendDate ;
 	private String driver ;
 	private String sendNote ;
+	private Integer flag ; //1代表未删除，0代表已删除
 	public Integer getPpid() {
 		return ppid;
 	}
@@ -214,5 +215,11 @@ public class ProductPlan implements Serializable{
 	}
 	public void setSendNote(String sendNote) {
 		this.sendNote = sendNote;
+	}
+	public void setFlag(Integer flag) {
+		this.flag = flag;
+	}
+	public Integer getFlag() {
+		return flag;
 	}
 }	

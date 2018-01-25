@@ -13,6 +13,7 @@ public class Plant implements Serializable {
 	private String photo ;
 	private String note ;
 	private String recorder ;
+	private Integer flag ; //1代表未删除，0代表已删除
 	public Integer getPlid() {
 		return plid;
 	}
@@ -67,5 +68,10 @@ public class Plant implements Serializable {
 	public void setRecorder(String recorder) {
 		this.recorder = recorder;
 	}
-	
+	public void setFlag(Integer flag) {
+		this.flag = flag;
+	}
+	public Integer getFlag() {
+		return flag;
+	}
 }

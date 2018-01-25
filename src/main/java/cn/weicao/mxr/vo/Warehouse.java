@@ -15,6 +15,7 @@ public class Warehouse implements Serializable{
 	private String note ;
 	private String recorder ;
 	private Date recordDate ;
+	private Integer flag ; //1代表未删除，0代表已删除
 	public Integer getWid() {
 		return wid;
 	}
@@ -75,5 +76,10 @@ public class Warehouse implements Serializable{
 	public void setRecordDate(Date recordDate) {
 		this.recordDate = recordDate;
 	}
-	
+	public void setFlag(Integer flag) {
+		this.flag = flag;
+	}
+	public Integer getFlag() {
+		return flag;
+	}
 }

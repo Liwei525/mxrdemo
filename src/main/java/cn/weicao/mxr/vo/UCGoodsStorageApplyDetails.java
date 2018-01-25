@@ -5,7 +5,7 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class UCGoodsStorageApplyDetails implements Serializable{
 	private Integer usadid ;
-	private Integer usaid ;
+	private String usaid ;
 	private Integer ucid ;
 	private String name ;
 	private String size ;
@@ -18,10 +18,10 @@ public class UCGoodsStorageApplyDetails implements Serializable{
 	public void setUsadid(Integer usadid) {
 		this.usadid = usadid;
 	}
-	public Integer getUsaid() {
+	public String getUsaid() {
 		return usaid;
 	}
-	public void setUsaid(Integer usaid) {
+	public void setUsaid(String usaid) {
 		this.usaid = usaid;
 	}
 	public Integer getUcid() {

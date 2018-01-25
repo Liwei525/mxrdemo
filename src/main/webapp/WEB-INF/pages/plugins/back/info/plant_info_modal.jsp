@@ -11,25 +11,33 @@
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-xs-3">
-						<img src="upload/emp/nophoto.png" style="width:200px;">
+						<img id="plantPhoto" style="width:200px;">
 					</div>
 					<div class="col-xs-8">
 						<table class="table table-condensed" style="width:700px;">
 							<tr>
-								<td style="width:30%;"><strong>车间名称：</strong></td>
-								<td><span>相城车间1</span></td>
+								<td style="width:20%;"><strong>车间名称：</strong></td>
+								<td><span id="plantName"></span></td>
+							</tr>
+							<tr>
+								<td><strong>省份：</strong></td>
+								<td id="plantProvince"></td>
+							</tr>
+							<tr>
+								<td><strong>城市：</strong></td>
+								<td id="plantCity"></td>
 							</tr>
 							<tr>
 								<td><strong>车间地址：</strong></td>
-								<td>江苏省 苏州市 相城区</td>
+								<td id="plantAddress"></td>
 							</tr>
 							<tr>
 								<td><strong>车间电话：</strong></td>
-								<td>123123213</td>
+								<td id="plantPhone"></td>
 							</tr>
 							<tr>
 								<td><strong>备注信息：</strong></td>
-								<td><pre class="pre-scrollable" style="width:400px;height:210px;">发神经阿德里飞洒抵抗力 范德克鲁斯建立开放撒 方力申搭建了开发商的 发动机萨拉空间来看 234uop富士达会计分录款手机范德萨进来进来看范德萨克利夫兰斯顿卡机了开发商大量了快捷方式的拉开建立开放撒酒 刘嘉玲发撒旦机立刻地方撒刻录机弗拉基反抗螺丝钉</pre></td>
+								<td><pre class="pre-scrollable" style="width:400px;height:210px;" id="plantNote"></pre></td>
 							</tr>
 						</table>
 					</div>

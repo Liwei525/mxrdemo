@@ -25,7 +25,26 @@ $(function(){
 		errorClass : "text-danger",
 		rules : {
 			"name" : {
-				required : true
+				required : true ,
+				remote : {
+					url : "pages/back/admin/ucgoods/check_name_myself.action", // 后台处理程序
+					type : "post", // 数据发送方式
+					dataType : "json", // 接受数据格式
+					data : { // 要传递的数据
+						ucid : function(){
+							return $("#ucid").val() ;
+						} ,
+						name : function() {
+							return $("#name").val();
+						}
+					},
+					dataFilter : function(data, type) {
+						if (data == "true")
+							return true;
+						else
+							return false;
+					}
+				}
 			} ,
 			"price" : {
 				required : true ,
@@ -38,11 +57,15 @@ $(function(){
 				required : true
 			},
 			"pic" : {
-				required : true ,
 				accept : ["jpg","png","gif","bmp"]
 			},
 			"note" : {
 				required : true
+			}
+		},
+		messages : {
+			name : {
+				remote : "该半成品名称已存在！"
 			}
 		}
 	});

@@ -1,6 +1,7 @@
 package cn.weicao.mxr.vo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 public class CGoodsStorageRecord implements Serializable{
@@ -13,6 +14,7 @@ public class CGoodsStorageRecord implements Serializable{
 	private Double price ;
 	private Integer num ;
 	private Double totalPrice ;
+	private Date date ;
 	public Integer getCsrid() {
 		return csrid;
 	}
@@ -66,5 +68,11 @@ public class CGoodsStorageRecord implements Serializable{
 	}
 	public void setTotalPrice(Double totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public Date getDate() {
+		return date;
 	}
 }

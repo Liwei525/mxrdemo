@@ -21,6 +21,7 @@ public class Customer implements Serializable{
 	private String note ;
 	private Date indate ;
 	private String recorder ;
+	private Integer flag ; //1代表未删除，0代表已删除
 	public Integer getCtid() {
 		return ctid;
 	}
@@ -117,5 +118,10 @@ public class Customer implements Serializable{
 	public void setRecorder(String recorder) {
 		this.recorder = recorder;
 	}
-	
+	public void setFlag(Integer flag) {
+		this.flag = flag;
+	}
+	public Integer getFlag() {
+		return flag;
+	}
 }

@@ -6,7 +6,7 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class UCGoodsStorageApplyWarehouse implements Serializable {
 	private String usawid ;
-	private Integer said ;
+	private String usaid ;
 	private String note ;
 	private Date date ;
 	private String inmid ;
@@ -16,11 +16,11 @@ public class UCGoodsStorageApplyWarehouse implements Serializable {
 	public void setUsawid(String usawid) {
 		this.usawid = usawid;
 	}
-	public Integer getSaid() {
-		return said;
+	public void setUsaid(String usaid) {
+		this.usaid = usaid;
 	}
-	public void setSaid(Integer said) {
-		this.said = said;
+	public String getUsaid() {
+		return usaid;
 	}
 	public String getNote() {
 		return note;

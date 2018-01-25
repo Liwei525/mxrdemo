@@ -20,6 +20,15 @@ function datetimeFormat(longTypeDate){
 	datetimeType+= ":" + getSeconds(date);   //分
 	return datetimeType;
 } 
+function dateFormat(longTypeDate){ 
+	var datetimeType = ""; 
+	var date = new Date(); 
+	date.setTime(longTypeDate); 
+	datetimeType+= date.getFullYear();  //年 
+	datetimeType+= "-" + getMonth(date); //月  
+	datetimeType += "-" + getDay(date);  //日 
+	return datetimeType;
+} 
 //返回 01-12 的月份值  
 function getMonth(date){ 
 	var month = ""; 
@@ -65,33 +74,8 @@ function getSeconds(date){
 	} 
 	return second; 
 }
-function dateFormat(longTypeDate){ 
-	var datetimeType = ""; 
-	var date = new Date(); 
-	date.setTime(longTypeDate); 
-	datetimeType+= date.getFullYear();  //年 
-	datetimeType+= "-" + getMonth(date); //月  
-	datetimeType += "-" + getDay(date);  //日 
-	return datetimeType;
-} 
-//返回 01-12 的月份值  
-function getMonth(date){ 
-	var month = ""; 
-	month = date.getMonth() + 1; //getMonth()得到的月份是0-11 
-	if(month<10){ 
-		month = "0" + month; 
-	} 
-	return month; 
-} 
-//返回01-30的日期 
-function getDay(date){ 
-	var day = ""; 
-	day = date.getDate(); 
-	if(day<10){ 
-		day = "0" + day; 
-	} 
-	return day; 
-}
+
+
 
 function round(num,scale) {
     return Math.round(num * Math.pow(10,scale)) /Math.pow(10,scale) ;

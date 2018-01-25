@@ -26,7 +26,11 @@ public abstract class AbstractService {
 				map.put("startTime", start) ;
 				map.put("endTime", end) ;
 			}
-		}
+		}else if(start == null && end != null) {
+			map.put("endTime", end) ;
+		}else if(start != null && end == null) {
+			map.put("startTime", start) ;
+		}else {}
 		return map ;
 	}
 }

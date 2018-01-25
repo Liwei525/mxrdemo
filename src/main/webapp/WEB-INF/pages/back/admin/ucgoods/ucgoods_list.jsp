@@ -33,29 +33,32 @@
 						<thead>
 							<tr>
 								<th class="text-left" style="width:10%;">半成品编号</th> 
-								<th class="text-left" style="width:30%;">半成品名称</th> 
+								<th class="text-left" style="width:20%;">半成品名称</th> 
 								<th class="text-center" style="width:10%;">单价（￥）</th>
 								<th class="text-center" style="width:10%;">规格</th>
 								<th class="text-center" style="width:10%;">最近入库日期</th>
 								<th class="text-center" style="width:10%;">库存量</th>
 								<th class="text-center" style="width:10%;">录入员工</th>
-								<th class="text-left" style="width:20%;">操作</th>
+								<th class="text-center" style="width:20%;">操作</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="text-left">100001</td>
-								<td class="text-left"><a href="<%=UCGOODS_SHOW_URL%>" title="查看半成品详情">胡友牌化粪池</a></td>
-								<td class="text-center">4456</td>
-								<td class="text-center">200g</td>
-								<td class="text-center">2018-10-13</td>
-								<td class="text-center"><span id="storage-1" style="cursor:pointer;">3000</span></td>
-								<td class="text-center"><span id="mid-admin" style="cursor:pointer;">老李</span></td> 
-								<td class="text-left">
-									<a href="<%=UCGOODS_EDIT_URL%>" class="btn btn-primary btn-xs">
-											<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>
-								</td>
-							</tr>
+							<c:forEach items="${allUCGoods}" var="ucgoods">
+								<tr>
+									<td class="text-left">${ucgoods.ucid }</td>
+									<td class="text-left"><a href="<%=UCGOODS_SHOW_URL%>?ucid=${ucgoods.ucid}" title="查看半成品详情">${ucgoods.name }</a></td>
+									<td class="text-center">${ucgoods.price }</td>
+									<td class="text-center">${ucgoods.size }</td>
+									<td class="text-center"><fmt:formatDate type="date" value="${ucgoods.lastin }" /></td>
+									<td class="text-center"><span id="storage-${ucgoods.ucid }" style="cursor:pointer;">${ucgoods.stornum }${ucgoods.unit == 1 ? "个" : "米" }</span></td>
+									<td class="text-center"><span id="mid-${allRecorders[ucgoods.ucid].eid }" style="cursor:pointer;">${allRecorders[ucgoods.ucid].ename }</span></td> 
+									<td class="text-center">
+										<a href="<%=UCGOODS_EDIT_URL%>?ucid=${ucgoods.ucid}" class="btn btn-primary btn-xs">
+												<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>
+									</td>
+								</tr>
+							</c:forEach>
+							
 						</tbody>
 					</table>
 					<div id="splitBarDiv" style="float:right">

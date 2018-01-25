@@ -89,6 +89,7 @@ CREATE TABLE warehouse (
    note        text ,
    recorder    varchar(50) ,
    recorddate  datetime ,
+   flag        int ,
    CONSTRAINT pk_wid PRIMARY KEY(wid)
 ) engine='innodb' ;
 -- 11、半成品信息表
@@ -103,6 +104,7 @@ CREATE TABLE ucgoods(
    lastin               datetime ,
    stornum              int ,
    recorder             varchar(50) ,
+   flag                 int ,
    CONSTRAINT pk_ucid PRIMARY KEY(ucid)
 ) engine='innodb' ;
 -- 12、创建半成品入库申请单
@@ -121,12 +123,13 @@ CREATE TABLE ucgoods_storage_apply(
    auditmid             varchar(50) ,
    auditdate            datetime , 
    auditnote            varchar(50) ,
+   flag                 int ,
    CONSTRAINT pk_usaid PRIMARY KEY (usaid)
 ) engine='innodb';
 -- 13、创建半成品入库申请单详情
 CREATE TABLE ucgoods_storage_apply_details(
    usadid               int      auto_increment ,
-   usaid                int ,
+   usaid                varchar(50) ,
    ucid                 int ,
    name                 varchar(50) ,
    size                 varchar(50) ,
@@ -139,7 +142,7 @@ CREATE TABLE ucgoods_storage_apply_details(
 -- 14、创建半成品合同号和入库单号
 CREATE TABLE ucgoods_storage_apply_warehouse(
    usawid               varchar(50) ,
-   said                 int ,
+   usaid                varchar(50) ,
    note                 text ,
    date                 datetime ,
    inmid                varchar(50) ,
@@ -148,7 +151,7 @@ CREATE TABLE ucgoods_storage_apply_warehouse(
 -- 15、创建半成品入库记录表
 CREATE TABLE ucgoods_storage_apply_record(
    usarid               bigint    auto_increment ,
-   usawid               int ,
+   usawid               varchar(50) ,
    ucid                 int ,
    wid                  int ,
    name                 varchar(50) ,
@@ -157,6 +160,7 @@ CREATE TABLE ucgoods_storage_apply_record(
    unit                 int ,
    num                  int ,
    totalprice           double ,
+   date                 datetime ,
    CONSTRAINT pk_usarid PRIMARY KEY (usarid)
 ) engine='innodb' ;
 -- 16、创建仓库半成品表
@@ -180,6 +184,7 @@ CREATE TABLE cgoods(
    note                 varchar(50) ,
    lastin               datetime ,
    recorder             varchar(50) ,
+   flag                 int ,
    CONSTRAINT pk_cid PRIMARY KEY (cid)       
 ) engine='innodb' ;
 -- 18、创建成品半成品表
@@ -208,6 +213,7 @@ CREATE TABLE replenish_apply(
    senddate             datetime ,
    watchmid             varchar(50) ,
    watchdate            datetime ,
+   flag                 int ,
    CONSTRAINT pk_raid PRIMARY KEY (raid)
 ) engine='innodb' ;
 -- 20、创建补货详情表
@@ -247,6 +253,7 @@ CREATE TABLE customer(
    note                 text ,
    indate               datetime ,
    recorder             varchar(50) ,
+   flag                 int ,
    CONSTRAINT pk_ctid PRIMARY KEY (ctid)
 ) engine='innodb' ;
 -- 23、创建车间表
@@ -260,6 +267,7 @@ CREATE TABLE plant(
    photo                varchar(50) ,
    note                 text ,
    recorder             varchar(50) ,
+   flag                 int ,
    CONSTRAINT pk_plid PRIMARY KEY(plid)
 ) engine='innodb' ;
 -- 24、创建生产计划表
@@ -294,6 +302,7 @@ CREATE TABLE product_plan(
    senddate             datetime ,
    driver               varchar(50) ,
    sendnote             text ,
+   flag                 int ,
    CONSTRAINT pk_ppid PRIMARY KEY (ppid)
 ) engine='innodb' ;
 -- 25、创建生产计划详情表
@@ -308,7 +317,23 @@ CREATE TABLE product_plan_details(
    totalprice           double ,
    CONSTRAINT pk_ppdid PRIMARY KEY(ppdid)
 ) engine='innodb' ;
--- 26、创建成品入库记录表
+-- 26、创建半成品出库记录表
+CREATE TABLE ucgoods_output_record(
+   uorid                int            auto_increment ,
+   ppid                 int ,
+   ucid                 int ,
+   wid                  int ,
+   plid                 int ,
+   name                 varchar(50) ,
+   size                 varchar(50) ,
+   price                double ,
+   unit                 int ,
+   num                  int ,
+   totalprice           double ,
+   date                 datetime ,
+   CONSTRAINT pk_uorid PRIMARY KEY(uorid)
+) engine='innodb' ;
+-- 27、创建成品入库记录表
 CREATE TABLE cgoods_storage_record(
    csrid                int            auto_increment ,
    ppid                 int ,
@@ -319,9 +344,10 @@ CREATE TABLE cgoods_storage_record(
    price                double ,
    num                  int ,
    totalprice           double ,
+   date                 datetime ,
    CONSTRAINT pk_csrid PRIMARY KEY(csrid)
 ) engine='innodb' ;
--- 27、创建仓库成品表
+-- 28、创建仓库成品表
 CREATE TABLE warehouse_cgoods(
    wcid                 int            auto_increment ,
    wid                  int ,
@@ -330,6 +356,20 @@ CREATE TABLE warehouse_cgoods(
    size                 varchar(50) ,
    num                  int ,
    CONSTRAINT pk_wcid PRIMARY KEY(wcid)
+) engine='innodb' ;
+-- 29、创建成品出库记录表
+CREATE TABLE cgoods_output_record(
+   corid                int            auto_increment ,
+   ppid                 int ,
+   cid                  int ,
+   wid                  int ,
+   name                 varchar(50) ,
+   size                 varchar(50) ,
+   price                double ,
+   num                  int ,
+   totalprice           double ,
+   date                 datetime ,
+   CONSTRAINT pk_corid PRIMARY KEY(corid)
 ) engine='innodb' ;
 
 -- 增加员工等级信息

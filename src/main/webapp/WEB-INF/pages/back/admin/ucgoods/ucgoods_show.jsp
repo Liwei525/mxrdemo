@@ -20,86 +20,111 @@
 					<strong><span class="glyphicon glyphicon-user"></span>&nbsp;半成品信息</strong>
 				</div>
 				<shiro:hasPermission name="ucgoods:show">
-					<div class="panel-body">
-						<div>
-							<table class="table table-condensed" >
-								<tr>
-									<td style="width:20%;"><strong>半成品编号：</strong></td> 
-									<td><span>100001</span></td>
-									<td><strong>半成品图片：</strong></td>
-								</tr>
-								<tr>
-									<td><strong>半成品名称：</strong></td>
-									<td><span>弹簧</span></td>
-									<td rowspan="7"><img src="upload/emp/nophoto.png" style="220px" /></td>
-								</tr>
-								<tr>
-									<td><strong>入库次数：</strong></td>
-									<td>3</td>
-								</tr>
-								<tr>
-									<td><strong>半成品库存量：</strong></td>
-									<td>3000（
-										<button id="storage-1" class="btn btn-danger btn-xs">
-											<span class="glyphicon glyphicon-edit"></span>&nbsp;库存详情</button>）</td>
-								</tr>
-								<tr>
-									<td><strong>当前半成品价格：</strong></td>
-									<td>30（￥）</td>
-								</tr>
-								<tr>
-									<td><strong>当前半成品规格：</strong></td>
-									<td>30</td>
-								</tr>
-								<tr>
-									<td><strong>最后入库日期：</strong></td>
-									<td>2019-10-10</td>
-								</tr>
-								<tr>
-									<td><strong>备注信息：</strong></td>
-									<td><pre class="pre-scrollable" style="width:700px;height:150px;">发神经阿德里飞洒抵抗力 范德克鲁斯建立开放撒 方力申搭建了开发商的 发动机萨拉空间来看 234uop富士达会计分录款手机范德萨进来进来看范德萨克利夫兰斯顿卡机了开发商大量了快捷方式的拉开建立开放撒酒 刘嘉玲发撒旦机立刻地方撒刻录机弗拉基反抗螺丝钉</pre></td>
-								</tr>
-							</table>
-						</div>
-						<div class="panel-group" id="storageDetails">
-							<div class="panel panel-info">
-								<div class="panel-heading">
-									<h4 class="panel-title"> 
-										<a data-toggle="collapse" data-parent="news" href="#contentOne">
-											<strong><span class="glyphicon glyphicon-user"></span>&nbsp;半成品库存详情：</strong>
-										</a>
-									</h4>
+					<c:if test="${errors == null}">
+						<div class="panel-body">
+							<div>
+								<table class="table table-condensed" >
+									<tr>
+										<td style="width:20%;"><strong>半成品编号：</strong></td> 
+										<td><span id="ucid">${ucgoods.ucid }</span></td>
+										<td><strong>半成品图片：</strong></td>
+									</tr>
+									<tr>
+										<td><strong>半成品名称：</strong></td>
+										<td><span>${ucgoods.name }</span></td>
+										<td rowspan="7"><img src="${ucgoods.photo }" style="width:220px" /></td>
+									</tr>
+									<tr>
+										<td><strong>入库次数：</strong></td>
+										<td>${storageCount }</td>
+									</tr>
+									<tr>
+										<td><strong>出库次数：</strong></td>
+										<td>${outputCount }</td>
+									</tr>
+									<tr>
+										<td><strong>半成品库存量：</strong></td>
+										<td>${ucgoods.stornum }${ucgoods.unit == 1 ? "个" : "米" }（
+											<button id="storage-${ucgoods.ucid }" class="btn btn-danger btn-xs">
+												<span class="glyphicon glyphicon-list"></span>&nbsp;库存详情</button>）</td>
+									</tr>
+									<tr>
+										<td><strong>当前半成品价格：</strong></td>
+										<td>${ucgoods.price }（￥）</td>
+									</tr>
+									<tr>
+										<td><strong>当前半成品规格：</strong></td>
+										<td>${ucgoods.size }</td>
+									</tr>
+									<tr>
+										<td><strong>备注信息：</strong></td>
+										<td><pre class="pre-scrollable" style="width:700px;height:150px;">${ucgoods.note }</pre></td>
+									</tr>
+								</table>
+							</div>
+							<div class="panel-group" id="storageDetails">
+								<div class="panel panel-info">
+									<div class="panel-heading">
+										<h4 class="panel-title"> 
+											<a data-toggle="collapse" data-parent="news" href="#contentOne">
+												<strong><span class="glyphicon glyphicon-user"></span>&nbsp;半成品入库详情：</strong>
+											</a>
+										</h4>
+									</div>
+									<div id="contentOne" class="panel-collapse collapse"> 
+										<div class="panel-body">
+											<table class="table table-condensed">
+												<thead>
+													<tr>
+														<th class="text-center" style="width:10%;">入库单号</th> 
+														<th class="text-left" style="width:20%;">入库仓库</th> 
+														<th class="text-center" style="width:10%;">入库数量</th>
+														<th class="text-center" style="width:20%;">入库日期</th> 
+													</tr>
+												</thead>
+												<tbody id="storageTable">
+												</tbody>
+											</table>
+										</div>
+									</div>
 								</div>
-								<div id="contentOne" class="panel-collapse collapse"> 
-									<div class="panel-body">
-										<table class="table table-condensed">
-											<thead>
-												<tr>
-													<th class="text-center" style="width:10%;">入库日期</th> 
-													<th class="text-left" style="width:40%;">仓库</th> 
-													<th class="text-center" style="width:10%;">入库人员</th> 
-													<th class="text-center" style="width:10%;">审核人员</th> 
-													<th class="text-center" style="width:10%;">库存数量</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr class="text-primary">
-													<td class="text-center">2010-10-10</td>
-													<td class="text-left">北京 北京 通州一号仓库</td>
-													<td class="text-center"><span id="mid-admin" style="cursor:pointer;">老李</span></td>
-													<td class="text-center"><span id="mid-admin" style="cursor:pointer;">老张</span></td>
-													<td class="text-center">200</td>
-												</tr>
-											</tbody>
-										</table>
+							</div>
+							<div class="panel-group" id="outputDetails">
+								<div class="panel panel-info">
+									<div class="panel-heading">
+										<h4 class="panel-title"> 
+											<a data-toggle="collapse" data-parent="news" href="#contentTwo">
+												<strong><span class="glyphicon glyphicon-user"></span>&nbsp;半成品出库详情：</strong>
+											</a>
+										</h4>
+									</div>
+									<div id="contentTwo" class="panel-collapse collapse"> 
+										<div class="panel-body">
+											<table class="table table-condensed">
+												<thead>
+													<tr>
+														<th class="text-center" style="width:10%;">计划编号</th> 
+														<th class="text-left" style="width:20%;">出库仓库</th> 
+														<th class="text-center" style="width:20%;">入库车间</th> 
+														<th class="text-center" style="width:10%;">出库数量</th>
+														<th class="text-center" style="width:20%;">出库日期</th>
+													</tr>
+												</thead>
+												<tbody id="outputTable">
+												</tbody>
+											</table>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="panel-footer" style="height:100px;">
-						<jsp:include page="/WEB-INF/pages/plugins/include_alert.jsp"/>
-					</div>
+						<div class="panel-footer" style="height:100px;">
+							<jsp:include page="/WEB-INF/pages/plugins/include_alert.jsp"/>
+						</div>
+					</c:if>
+					<c:if test="${errors != null }">
+						${errors }
+					</c:if>
 				</shiro:hasPermission>
 				<shiro:lacksPermission name="ucgoods:show">
 					您没有该权限哦！
@@ -112,7 +137,9 @@
 		<jsp:include page="/WEB-INF/pages/plugins/back/include_menu_sidebar.jsp" />
 		<div class="control-sidebar-bg"></div>
 	</div>
-	<jsp:include page="/WEB-INF/pages/plugins/back/info/emp_info_modal.jsp"/>
-	<jsp:include page="/WEB-INF/pages/plugins/back/info/goods_storage_modal.jsp"/>
-	<jsp:include page="/WEB-INF/pages/plugins/back/include_javascript_foot.jsp" />
+<jsp:include page="/WEB-INF/pages/plugins/back/info/plant_info_modal.jsp"/>	
+<jsp:include page="/WEB-INF/pages/plugins/back/info/warehouse_info_modal.jsp"/>	
+<jsp:include page="/WEB-INF/pages/plugins/back/info/emp_info_modal.jsp"/>
+<jsp:include page="/WEB-INF/pages/plugins/back/info/goods_storage_modal.jsp"/>
+<jsp:include page="/WEB-INF/pages/plugins/back/include_javascript_foot.jsp" />
 <jsp:include page="/WEB-INF/pages/plugins/back/back_footer.jsp"/>
