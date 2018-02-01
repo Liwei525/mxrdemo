@@ -38,15 +38,17 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<th class="text-center" style="width:10%;">20001010</th> 
-								<td class="text-left"><span id="sid-1" style="cursor:pointer;">2017双十一衣帽入库</span></td>
-								<td class="text-left"><span id="wid-1" style="cursor:pointer;">北京通州仓库一号库</span></td>
-								<td class="text-center">2019-10-10</td>
-								<td class="text-center"><span id="mid-admin" style="cursor:pointer;">老李</span></td>
-								<td class="text-center">10000</td>
-								<td class="text-center"><span id="mid-admin" style="cursor:pointer;">老张</span></td>
-							</tr>
+							<c:forEach items="${allUCGoodsStorageApply }" var="ucgoodsStorageApply">
+								<tr>
+									<td class="text-center" style="width:10%;">${ucgoodsStorageApply.usaid }</td> 
+									<td class="text-left"><span id="usaid-${ucgoodsStorageApply.usaid }" style="cursor:pointer;">${ucgoodsStorageApply.title }</span></td>
+									<td class="text-left"><span id="storageWid-${ucgoodsStorageApply.wid}" style="cursor:pointer;">${allUCWarehouse[ucgoodsStorageApply.usaid].name }</span></td>
+									<td class="text-center"><fmt:formatDate value="${ucgoodsStorageApply.auditDate }" type="date"/></td>
+									<td class="text-center"><span id="eid-${ucgoodsStorageApply.sendMid }" style="cursor:pointer;">${allSendMember[ucgoodsStorageApply.usaid].ename }</span></td>
+									<td class="text-center">${allTotalPrice[ucgoodsStorageApply.usaid] }</td>
+									<td class="text-center"><span id="eid-${ucgoodsStorageApply.auditMid }" style="cursor:pointer;">${allAuditMember[ucgoodsStorageApply.usaid].ename }</span></td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 					<div id="splitBarDiv" style="float:right">

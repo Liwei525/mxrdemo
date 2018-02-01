@@ -32,4 +32,19 @@
 	<update id="doRemove" parameterType="String">
 		delete from ucgoods_storage_apply where usaid=#{usaid}
 	</update>
+	<select id="findSplitByStatus" parameterType="Map" resultType="UCGoodsStorageApply">
+		select usaid,title,pid,cid,wid,note,status,appmid,appdate,sendmid,senddate,auditmid,auditdate,auditnote,storageMid,storageDate,pinyin
+		from ucgoods_storage_apply where 1 = 1 and status=#{status}
+		<if test="column != null and keyWord != null">
+			and ${column} like #{keyWord}
+		</if>
+		<if test="startTime != null">
+			and senddate &gt;= #{startTime}
+		</if>
+		<if test="endTime != null">
+			and senddate &lt;= #{endTime}
+		</if>
+		order by senddate desc
+		limit #{start},#{lineSize}
+	</select>
 </mapper>

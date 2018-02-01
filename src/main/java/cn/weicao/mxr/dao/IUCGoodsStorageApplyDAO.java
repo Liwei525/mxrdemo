@@ -36,4 +36,11 @@ public interface IUCGoodsStorageApplyDAO {
 	 * @return 删除成功返回true
 	 */
 	public boolean doRemove(String usaid) ;
+	
+	/**
+	 * 根据时间日期分页以及状态查询入库申请单信息
+	 * @param map 里面包含有时间日期分页以及状态
+	 * @return 返回查询的结果
+	 */
+	public List<UCGoodsStorageApply> findSplitByStatus(Map<String,Object> map) ;
 }

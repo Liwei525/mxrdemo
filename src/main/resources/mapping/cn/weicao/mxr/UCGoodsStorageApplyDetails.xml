@@ -6,4 +6,16 @@
 		insert ucgoods_storage_apply_details(usaid,ucid,name,size,price,unit,num,totalprice) value(
 			#{usaid},#{ucid},#{name},#{size},#{price},#{unit},#{num},#{totalPrice})
 	</insert>
+	<select id="findByUsaid" parameterType="String" resultType="UCGoodsStorageApplyDetails">
+		select usadid,usaid,ucid,name,size,price,unit,num,totalprice from ucgoods_storage_apply_details where usaid=#{usaid}
+	</select>
+	<select id="getCountByUsaid" parameterType="String" resultType="int">
+		select count(*) from ucgoods_storage_apply_details where usaid=#{usaid}
+	</select>
+	<select id="findSplitByUsaid" parameterType="Map" resultType="UCGoodsStorageApplyDetails">
+		select usadid,usaid,ucid,name,size,price,unit,num,totalprice from ucgoods_storage_apply_details where usaid=#{usaid} limit #{start},#{lineSize}
+	</select>
+	<delete id="doRemove" parameterType="String">
+		delete from ucgoods_storage_apply_details where usaid=#{usaid}
+	</delete>
 </mapper>

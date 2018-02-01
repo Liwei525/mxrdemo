@@ -29,27 +29,27 @@
 						<table class="table table-striped table-bordered table-hover">
 							<tr> 
 								<td style="width:150px;"><strong>入库标题：</strong></td>
-								<td>双13备货</td>
+								<td>${ucgoodsStorageApply.title }</td>
 							</tr>
 							<tr>
 								<td><strong>存入仓库名称：</strong></td>
-								<td><span id="showWarehouse" style="cursor:pointer;">北京市 北京市 通州一号仓库</span></td>
+								<td><span id="storageWid-${ucgoodsStorageApply.wid}" style="cursor:pointer;">${warehouse.name }</span></td>
 							</tr>
 							<tr>
 								<td><strong>申请人：</strong></td>
-								<td><span id="showMember" style="cursor:pointer;">老李</span></td>
+								<td><span id="eid-${ucgoodsStorageApply.sendMid }" style="cursor:pointer;">${sendMember.ename }</span></td>
 							</tr>
 							<tr>
 								<td><strong>入库商品总价：</strong></td>
-								<td>￥20000</td>
+								<td>${totalPrice }</td>
 							</tr>
 							<tr>
 								<td><strong>入库单备注信息：</strong></td>
-								<td>我要上</td>
+								<td>${ucgoodsStorageApply.note }</td>
 							</tr>
 							<tr>
 								<td><strong>审核历史：</strong></td>
-								<td>历史的所有审核信息</td>
+								<td>${ucgoodsStorageApply.auditNote }</td>
 							</tr>
 						</table>
 					</div>
@@ -61,11 +61,11 @@
 									<label class="col-md-3 control-label" for="destination">审核结论：</label>
 									<div class="col-md-5">
 										<div class="radio-inline">
-											<label><input type="radio" id="audit" value="2" checked>
+											<label><input type="radio" id="audit" name="audit" value="2" checked>
 												&nbsp;<span class="text-danger">拒绝</span></label>
 										</div> 
 										<div class="radio-inline">
-											<label><input type="radio" id="audit" value="1">
+											<label><input type="radio" id="audit" name="audit" value="1">
 												&nbsp;<span class="text-success">通过</span></label>
 										</div> 
 									</div>
@@ -86,6 +86,7 @@
 								</div> 
 								<div class="form-group">
 									<div class="col-md-5 col-md-offset-3">
+										<input type="hidden" name="usaid" value="${ucgoodsStorageApply.usaid }">
 										<button type="submit" class="btn btn-primary">增加</button>
 										<button type="reset" class="btn btn-warning">重置</button>
 									</div>
@@ -116,14 +117,16 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr class="text-primary">
-												<td class="text-center">10001</td>
-												<td class="text-left">衣服</td>
-												<td class="text-center">50</td>
-												<td class="text-center">39.2</td>
-												<td class="text-center">200</td>
-												<td class="text-center">2000</td>
-											</tr>
+											<c:forEach items="${allUCGoodsStorageApplyDetails }" var="ucgoodsStorageApplyDetails">
+												<tr class="text-primary">
+													<td class="text-center">${ucgoodsStorageApplyDetails.ucid }</td>
+													<td class="text-left">${ucgoodsStorageApplyDetails.name }</td>
+													<td class="text-center">${ucgoodsStorageApplyDetails.num }&nbsp;${ucgoodsStorageApplyDetails.unit == 1 ? "个" : "米" }</td>
+													<td class="text-center">${ucgoodsStorageApplyDetails.price }</td>
+													<td class="text-center">${ucgoodsStorageApplyDetails.size }</td>
+													<td class="text-center">${ucgoodsStorageApplyDetails.totalPrice }</td>
+												</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>
