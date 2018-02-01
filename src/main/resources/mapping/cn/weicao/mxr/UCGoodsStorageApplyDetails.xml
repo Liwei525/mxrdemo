@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.weicao.mxr.dao.IUCGoodsStorageApplyDetailsDAO">
+	<insert id="doCreate" parameterType="UCGoodsStorageApplyDetails">
+		insert ucgoods_storage_apply_details(usaid,ucid,name,size,price,unit,num,totalprice) value(
+			#{usaid},#{ucid},#{name},#{size},#{price},#{unit},#{num},#{totalPrice})
+	</insert>
+</mapper>

@@ -67,7 +67,7 @@ public class EmpAction extends AbstractAction{
 	@RequestMapping("add")
 	public ModelAndView add(Emp emp , MultipartFile pic) {
 		ModelAndView mav = new ModelAndView(super.getPage("forward.page"));
-		if(!(boolean)this.checkEid(emp.getEid()) == true) {
+		if((boolean)this.checkEid(emp.getEid()) == false) {
 			mav.addObject("msg", "该雇员编号已存在！") ;
 			mav.addObject("url",super.getPage("emp.add.pre.action")) ;
 		}else {

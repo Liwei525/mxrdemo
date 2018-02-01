@@ -5,13 +5,13 @@ import java.util.Date;
 
 @SuppressWarnings("serial")
 public class UCGoodsStorageApply implements Serializable{
-	private String usaid ;
+	private String usaid ;  //合同号
 	private String title ;
 	private Integer pid ;
 	private Integer cid ;
 	private Integer wid ;
 	private String note ;
-	private Integer status ;
+	private Integer status ; //0表示未提交，1表示待审核，2表示未通过，3表示待入库，4表示已完成
 	private String appMid ;
 	private Date appDate ;
 	private String sendMid ;
@@ -19,7 +19,9 @@ public class UCGoodsStorageApply implements Serializable{
 	private String auditMid ;
 	private Date auditDate ;
 	private String auditNote ;
-	private Integer flag ; //1代表未删除，0代表已删除
+	private String storageMid ;
+	private Date storageDate ;
+	private String pinyin ;
 	public String getUsaid() {
 		return usaid;
 	}
@@ -104,10 +106,23 @@ public class UCGoodsStorageApply implements Serializable{
 	public void setAuditNote(String auditNote) {
 		this.auditNote = auditNote;
 	}
-	public void setFlag(Integer flag) {
-		this.flag = flag;
+	public void setStorageMid(String storageMid) {
+		this.storageMid = storageMid;
 	}
-	public Integer getFlag() {
-		return flag;
+	public String getStorageMid() {
+		return storageMid;
 	}
+	public void setStorageDate(Date storageDate) {
+		this.storageDate = storageDate;
+	}
+	public Date getStorageDate() {
+		return storageDate;
+	}
+	public void setPinyin(String pinyin) {
+		this.pinyin = pinyin;
+	}
+	public String getPinyin() {
+		return pinyin;
+	}
+
 }

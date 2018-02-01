@@ -5,4 +5,10 @@
 	<select id="findByUcid" parameterType="int" resultType="UCGoodsStorageApplyRecord">
 		select usarid,usawid,ucid,wid,name,size,price,unit,num,totalprice,date from ucgoods_storage_apply_record where ucid=#{ucid} order by date desc
 	</select>
+	<select id="findByUsawid" parameterType="Map" resultType="UCGoodsStorageApplyRecord">
+		select usarid,usawid,ucid,wid,name,size,price,unit,num,totalprice,date from ucgoods_storage_apply_record where usawid=#{usawid} limit #{start},#{lineSize}
+	</select>
+	<select id="getCountByUsawid" parameterType="String" resultType="int">
+		select count(*) from ucgoods_storage_apply_record where usawid=#{usawid}
+	</select>
 </mapper>

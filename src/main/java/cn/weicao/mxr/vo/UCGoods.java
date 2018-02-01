@@ -15,6 +15,7 @@ public class UCGoods implements Serializable {
 	private Date lastin ;
 	private int stornum ; 
 	private String recorder ;
+	private String pinyin ;
 	private Integer flag ; //1代表未删除，0代表已删除
 	public Integer getUcid() {
 		return ucid;
@@ -75,6 +76,12 @@ public class UCGoods implements Serializable {
 	}
 	public void setRecorder(String recorder) {
 		this.recorder = recorder;
+	}
+	public void setPinyin(String pinyin) {
+		this.pinyin = pinyin;
+	}
+	public String getPinyin() {
+		return pinyin;
 	}
 	public void setFlag(Integer flag) {
 		this.flag = flag;

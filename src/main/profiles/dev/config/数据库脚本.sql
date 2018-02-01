@@ -33,11 +33,11 @@ CREATE TABLE emp (
    empnote              text,
    hiredate             datetime,
    ineid                varchar(50) ,
-   state				   int ,
-   leavedate			datetime,
-   leavenote			text,
-   outeid				varchar(50),
-   lastdate          datetime,
+   state				      int ,
+   leavedate			   datetime,
+   leavenote			   text,
+   outeid				   varchar(50),
+   lastdate             datetime,
    CONSTRAINT pk_eid PRIMARY KEY (eid)
 ) engine='innodb';
 -- 4、创建角色信息表
@@ -104,6 +104,7 @@ CREATE TABLE ucgoods(
    lastin               datetime ,
    stornum              int ,
    recorder             varchar(50) ,
+   pinyin               varchar(50) ,
    flag                 int ,
    CONSTRAINT pk_ucid PRIMARY KEY(ucid)
 ) engine='innodb' ;
@@ -123,7 +124,9 @@ CREATE TABLE ucgoods_storage_apply(
    auditmid             varchar(50) ,
    auditdate            datetime , 
    auditnote            varchar(50) ,
-   flag                 int ,
+   storagemid           varchar(50) ,
+   storagedate          datetime ,
+   pinyin               varchar(50) ,
    CONSTRAINT pk_usaid PRIMARY KEY (usaid)
 ) engine='innodb';
 -- 13、创建半成品入库申请单详情
@@ -184,6 +187,7 @@ CREATE TABLE cgoods(
    note                 varchar(50) ,
    lastin               datetime ,
    recorder             varchar(50) ,
+   pinyin               varchar(50) ,
    flag                 int ,
    CONSTRAINT pk_cid PRIMARY KEY (cid)       
 ) engine='innodb' ;
@@ -280,6 +284,7 @@ CREATE TABLE product_plan(
    plandate             datetime , 
    note                 text ,
    status               int ,
+   pinyin               varchar(50) ,
    appmid               varchar(50) ,
    appdate              datetime ,
    plansendmid          varchar(50) ,
@@ -288,6 +293,8 @@ CREATE TABLE product_plan(
    productsenddate      datetime ,
    warehousesendmid     varchar(50) ,
    warehousesenddate    datetime ,
+   productreceivedmid   varchar(50) ,
+   productreceiveddate  datetime ,
    productmid           varchar(50) ,
    productdate          datetime ,
    productcompletemid   varchar(50) ,

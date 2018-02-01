@@ -2,20 +2,20 @@ loadFlag = false ;
 $(function() {
 	$("button[id^=constitute-]").each(function(){
 		$(this).on("click",function(){
-			wid = this.id.split("-")[1] ;
+			wid = splitGet(this.id) ;
 			loadData() ;
 			$("#ucgoodsConstituteInfo").modal("toggle") ;
 		}) ;
 	}) ;
 	$("button[id^=storage-]").each(function(){
 		$(this).on("click",function(){
-			mid = this.id.split("-")[1] ;
+			mid = splitGet(this.id) ;
 			$("#goodsRecordInfo").modal("toggle") ; 
 		}) ;
 	}) ;
 	$("span[id^=mid-]").each(function(){
 		$(this).on("click",function(){
-			mid = this.id.split("-")[1] ;
+			mid = splitGet(this.id) ;
 			$("#userInfo").modal("toggle") ;
 		}) ;
 	}) ;
@@ -26,7 +26,7 @@ $(function() {
 			loadFlag = true ; // 数据已经加载完成
 			$("span[id^=mid-]").each(function(){
 				$(this).on("click",function(){
-					mid = this.id.split("-")[1] ;
+					mid = splitGet(this.id) ;
 					$("#memberInfo").modal("toggle") ;
 				}) ;
 			}) ;

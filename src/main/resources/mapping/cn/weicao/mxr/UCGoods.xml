@@ -3,14 +3,14 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.weicao.mxr.dao.IUCGoodsDAO">
 	<select id="findByName" parameterType="String" resultType="UCGoods">
-		select ucid,name,price,size,unit,photo,note,lastin,stornum,recorder,flag from ucgoods where flag=1 and name=#{name}
+		select ucid,name,price,size,unit,photo,note,lastin,stornum,recorder,pinyin,flag from ucgoods where flag=1 and name=#{name}
 	</select>
 	<insert id="doCreate" parameterType="UCGoods">
-		insert ucgoods(name,price,size,unit,photo,note,lastin,stornum,recorder,flag) 
-			values(#{name},#{price},#{size},#{unit},#{photo},#{note},#{lastin},#{stornum},#{recorder},#{flag}) ;
+		insert ucgoods(name,price,size,unit,photo,note,lastin,stornum,recorder,pinyin,flag) 
+			values(#{name},#{price},#{size},#{unit},#{photo},#{note},#{lastin},#{stornum},#{recorder},#{pinyin},#{flag}) ;
 	</insert>
 	<select id="findSplit" parameterType="Map" resultType="UCGoods">
-		select ucid,name,price,size,unit,photo,note,lastin,stornum,recorder,flag from ucgoods 
+		select ucid,name,price,size,unit,photo,note,lastin,stornum,recorder,pinyin,flag from ucgoods 
 		where flag=1 
 		<if test="column != null and keyWord != null">
 			and ${column} like #{keyWord}
@@ -25,10 +25,14 @@
 		limit #{start},#{lineSize}
 	</select>
 	<select id="findById" parameterType="Integer" resultType="UCGoods">
-		select ucid,name,price,size,unit,photo,note,lastin,stornum,recorder,flag from ucgoods where flag=1 and ucid=#{ucid}
+		select ucid,name,price,size,unit,photo,note,lastin,stornum,recorder,pinyin,flag from ucgoods where flag=1 and ucid=#{ucid}
 	</select>
 	<update id="doEdit" parameterType="UCGoods">
 		update ucgoods set name=#{name},price=#{price},size=#{size},unit=#{unit},photo=#{photo},
-				note=#{note},lastin=#{lastin},stornum=#{stornum},recorder=#{recorder},flag=#{flag} where ucid=#{ucid}	
+				note=#{note},lastin=#{lastin},stornum=#{stornum},recorder=#{recorder},pinyin=#{pinyin},flag=#{flag} where ucid=#{ucid}	
 	</update>
+	<select id="findByLike" parameterType="String" resultType="UCGoods">
+		select ucid,name,price,size,unit,photo,note,lastin,stornum,recorder,pinyin,flag from ucgoods 
+		where flag=1 and (ucid like #{keyWord} or name like #{keyWord} or pinyin like #{keyWord})
+	</select>
 </mapper>

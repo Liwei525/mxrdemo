@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <jsp:include page="/WEB-INF/pages/plugins/back/back_header.jsp"/>
+<link rel="stylesheet" type="text/css" href="css/tautocomplete.css" />
 <script type="text/javascript" src="js/pages/back/admin/ucgoodsstorage/ucgoodsstorage_list_details.js"></script>
 <script type="text/javascript" src="js/split_page.js"></script>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -25,50 +26,60 @@
 					<div>
 						<table class="table table-striped table-bordered table-hover">
 							<tr> 
-								<td style="width:150px;"><strong>入库标题：</strong></td>
-								<td>双13备货</td>
+								<td style="width:150px;"><strong>合同号：</strong></td>
+								<td id="usaid">${ucgoodsStorageApply.usaid }</td>
+							</tr>
+							<tr> 
+								<td><strong>入库标题：</strong></td>
+								<td>${ucgoodsStorageApply.title }</td>
 							</tr>
 							<tr>
 								<td><strong>存入仓库名称：</strong></td>
-								<td>北京市 北京市 通州一号仓库</td>
+								<td><span style="cursor:pointer;" id="storageWid-${warehouse.wid }">${warehouse.name}</span></td>
 							</tr>
 							<tr>
 								<td><strong>备注信息：</strong></td>
-								<td>我要上</td>
+								<td>${ucgoodsStorageApply.note }</td>
 							</tr>
-							<tr>
-								<td><strong>入库操作：</strong></td>
-								<td>
-									<button id="addbut" class="btn btn-danger btn-xs">
-											<span class="glyphicon glyphicon-edit"></span>&nbsp;追加商品</button>
-								</td>
-							</tr>
+							<c:if test="${ucgoodsStorageApply.status == 0 || ucgoodsStorageApply.status == 2 }">
+								<tr>
+									<td><strong>入库操作：</strong></td>
+									<td>
+										<button id="addbut" class="btn btn-danger btn-xs">
+												<span class="glyphicon glyphicon-edit"></span>&nbsp;追加商品</button>
+									</td>
+								</tr>
+							</c:if>
 						</table>
 					</div>
 					<div>
 						<table class="table table-condensed" id="detailsTab">
 							<thead>
 								<tr>
-									<th class="text-left" style="width:10%;">半成品编号</th> 
+									<th class="text-left" style="width:20%;">半成品编号</th> 
 									<th class="text-left" style="width:20%;">半成品名称</th> 
-									<th class="text-left" style="width:10%;">规格</th>
-									<th class="text-left" style="width:10%;">数量</th>
-									<th class="text-left" style="width:20%;">操作</th>
+									<th class="text-left" style="width:15%;">规格</th>
+									<th class="text-left" style="width:15%;">数量</th>
+									<c:if test="${ucgoodsStorageApply.status == 0 || ucgoodsStorageApply.status == 2 }">
+										<th class="text-left" style="width:20%;">操作</th>
+									</c:if>
 								</tr>
 							</thead>
 							<tbody>
-								<tr id="dettr-1" class="text-success">
-									<td><input type="text" id="gid-1" value="100001"/></td>
-									<td><input type="text" id="name-1" value="衣服" size="30"/></td>
-									<td><input type="text" id="weight-1" value="200g" maxlength="8" size="8"/></td>
-									<td><input type="text" id="amount-1" value="50" maxlength="8" size="8"/></td>
-									<td>
-										<button id="save-1" class="btn btn-primary btn-xs">
-											<span class="glyphicon glyphicon-edit"></span>&nbsp;保存</button>
-										<button id="remove-1" class="btn btn-danger btn-xs">
-											<span class="glyphicon glyphicon-edit"></span>&nbsp;移除</button>
-									</td>
-								</tr>		
+								<c:forEach items="${allUCGoods }" var="ucgoods">
+									<tr id="dettr-${ucgoods.ucid }" class="text-success">
+										<td id="ucid-${ucgoods.ucid }">${ucgoods.ucid }</td>
+										<td>${ucgoods.name }</td>
+										<td>${ucgoods.size }</td>
+										<td>${allUCGoodsAmount[ucgoods.ucid] }&nbsp;${ucgoods.unit == 1 ?"个":"米" }</td>
+										<c:if test="${ucgoodsStorageApply.status == 0 || ucgoodsStorageApply.status == 2 }">
+											<td>
+												<button id="remove-${ucgoods.ucid }" class="btn btn-danger btn-xs">
+													<span class="glyphicon glyphicon-edit"></span>&nbsp;移除</button>
+											</td>
+										</c:if>
+									</tr>
+								</c:forEach>		
 							</tbody>
 						</table>
 					</div>
@@ -88,6 +99,7 @@
 		<jsp:include page="/WEB-INF/pages/plugins/back/include_menu_sidebar.jsp" />
 		<div class="control-sidebar-bg"></div>
 	</div>
-	<jsp:include page="/WEB-INF/pages/plugins/back/info/emp_info_modal.jsp"/>
-	<jsp:include page="/WEB-INF/pages/plugins/back/include_javascript_foot.jsp" />
+<jsp:include page="/WEB-INF/pages/plugins/back/info/warehouse_info_modal.jsp"/>
+<jsp:include page="/WEB-INF/pages/plugins/back/info/emp_info_modal.jsp"/>
+<jsp:include page="/WEB-INF/pages/plugins/back/include_javascript_foot.jsp" />
 <jsp:include page="/WEB-INF/pages/plugins/back/back_footer.jsp"/>

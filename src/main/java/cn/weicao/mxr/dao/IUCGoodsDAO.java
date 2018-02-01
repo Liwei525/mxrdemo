@@ -36,4 +36,10 @@ public interface IUCGoodsDAO {
 	 * @return 修改成功返回true
 	 */
 	public boolean doEdit(UCGoods ucgoods) ;
+	/**
+	 * 模糊查询
+	 * @param keyWord 模糊查询的关键字
+	 * @return 所有满足条件的半成品信息
+	 */
+	public List<UCGoods> findByLike(String keyWord) ;
 }

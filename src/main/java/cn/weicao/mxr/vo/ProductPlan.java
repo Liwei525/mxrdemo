@@ -13,6 +13,7 @@ public class ProductPlan implements Serializable{
 	private Date planDate ;
 	private String note ;
 	private Integer status ;
+	private String pinyin ;
 	private String appMid ;
 	private Date appDate ;
 	private String planSendMid ;
@@ -21,6 +22,8 @@ public class ProductPlan implements Serializable{
 	private Date productSendDate ;
 	private String warehouseSendMid ;
 	private Date warehouseSendDate ;
+	private String productReceivedMid ;
+	private Date productReceivedDate ;
 	private String productMid ;
 	private Date productDate ;
 	private String productCompleteMid ;
@@ -84,6 +87,12 @@ public class ProductPlan implements Serializable{
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
+	public String getPinyin() {
+		return pinyin;
+	}
+	public void setPinyin(String pinyin) {
+		this.pinyin = pinyin;
+	}
 	public String getAppMid() {
 		return appMid;
 	}
@@ -131,6 +140,18 @@ public class ProductPlan implements Serializable{
 	}
 	public void setWarehouseSendDate(Date warehouseSendDate) {
 		this.warehouseSendDate = warehouseSendDate;
+	}
+	public String getProductReceivedMid() {
+		return productReceivedMid;
+	}
+	public void setProductReceivedMid(String productReceivedMid) {
+		this.productReceivedMid = productReceivedMid;
+	}
+	public Date getProductReceivedDate() {
+		return productReceivedDate;
+	}
+	public void setProductReceivedDate(Date productReceivedDate) {
+		this.productReceivedDate = productReceivedDate;
 	}
 	public String getProductMid() {
 		return productMid;
@@ -216,10 +237,10 @@ public class ProductPlan implements Serializable{
 	public void setSendNote(String sendNote) {
 		this.sendNote = sendNote;
 	}
-	public void setFlag(Integer flag) {
-		this.flag = flag;
-	}
 	public Integer getFlag() {
 		return flag;
+	}
+	public void setFlag(Integer flag) {
+		this.flag = flag;
 	}
 }	

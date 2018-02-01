@@ -26,7 +26,7 @@
 	public static final String CGOODS_LIST_URL = "pages/back/admin/cgoods/list.action" ;
 	
 	public static final String UCGOODSSTORAGE_ADD_URL = "pages/back/admin/ucgoodsstorage/add_pre.action" ;
-	public static final String UCGOODSSTORAGE_LIST_URL = "pages/back/admin/ucgoodsstorage/list_myself.action" ;
+	public static final String UCGOODSSTORAGE_LIST_URL = "pages/back/admin/ucgoodsstorage/list.action" ;
 	
 	public static final String UCGOODSSTORAGE_AUDIT_LIST_URL = "pages/back/admin/ucgoodsstorageaudit/list_prepare.action" ;
 	public static final String UCGOODSSTORAGE_AUDIT_HISTORY_URL = "pages/back/admin/ucgoodsstorageaudit/list_history.action" ;
@@ -146,7 +146,7 @@
 							<li class="${param.msi==71 ? 'active' : ''}"><a href="<%=UCGOODSSTORAGE_ADD_URL%>"><i
 								class="fa fa-train"></i> 入库申请单</a></li>
 							<li class="${param.msi==72 ? 'active' : ''}"><a href="<%=UCGOODSSTORAGE_LIST_URL%>"><i
-								class="fa fa-history"></i> 我的入库申请</a></li>
+								class="fa fa-history"></i> 入库申请列表</a></li>
 					</ul></li>
 				</shiro:hasRole>
 				<shiro:hasRole name="ucgoodsstorageaudit">

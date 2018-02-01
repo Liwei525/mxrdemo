@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cn.weicao.mxr.action.abs.AbstractAction;
 import cn.weicao.mxr.service.IUCGoodsService;
+import cn.weicao.mxr.util.PinyinUtils;
 import cn.weicao.mxr.util.web.SplitPageUtil;
 import cn.weicao.mxr.vo.UCGoods;
 
@@ -45,6 +46,7 @@ public class UCGoodsAction extends AbstractAction {
 		ModelAndView mav = new ModelAndView(super.getPage("forward.page"));
 		ucgoods.setStornum(0);
 		ucgoods.setRecorder(super.loginMid());
+		ucgoods.setPinyin(PinyinUtils.chineseToPinYinS(ucgoods.getName()).toLowerCase());
 		ucgoods.setFlag(1);
 		String file = super.getRequest().getServletContext().getRealPath("/") + "WEB-INF/";
 		String photo = "upload/ucgoods/" + UUID.randomUUID().toString() + pic.getOriginalFilename().substring(pic.getOriginalFilename().lastIndexOf("."));
@@ -102,10 +104,12 @@ public class UCGoodsAction extends AbstractAction {
 		ModelAndView mav = new ModelAndView(super.getPage("forward.page"));
 		UCGoods olducgoods = this.ucgoodsService.get(ucgoods.getUcid()) ;
 		if(olducgoods.getFlag() == 0) {
-			super.setMsgAndUrl(mav, "ucgoods.list.action", "vo.edit.failure", TITLE);
+			mav.addObject("msg", "非法操作！") ;
+			mav.addObject("url", super.getPage("ucgoods.list.action")) ;
 		} else {
 			ucgoods.setLastin(olducgoods.getLastin());
 			ucgoods.setStornum(olducgoods.getStornum());
+			ucgoods.setPinyin(PinyinUtils.chineseToPinYinS(ucgoods.getName()).toLowerCase());
 			ucgoods.setFlag(1);
 			ucgoods.setRecorder(super.loginMid());
 			if(pic.getSize() != 0) {

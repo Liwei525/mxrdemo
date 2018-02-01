@@ -35,6 +35,10 @@
 										<td rowspan="7"><img src="${ucgoods.photo }" style="width:220px" /></td>
 									</tr>
 									<tr>
+										<td><strong>拼音码：</strong></td>
+										<td>${ucgoods.pinyin }</td>
+									</tr>
+									<tr>
 										<td><strong>入库次数：</strong></td>
 										<td>${storageCount }</td>
 									</tr>

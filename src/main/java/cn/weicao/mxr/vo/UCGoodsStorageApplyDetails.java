@@ -9,6 +9,7 @@ public class UCGoodsStorageApplyDetails implements Serializable{
 	private Integer ucid ;
 	private String name ;
 	private String size ;
+	private Double price ;
 	private Integer unit ;
 	private Integer num ;
 	private Double totalPrice ;
@@ -41,6 +42,12 @@ public class UCGoodsStorageApplyDetails implements Serializable{
 	}
 	public void setSize(String size) {
 		this.size = size;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+	public Double getPrice() {
+		return price;
 	}
 	public Integer getUnit() {
 		return unit;

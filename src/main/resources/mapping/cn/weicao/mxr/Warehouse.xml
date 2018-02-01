@@ -5,4 +5,14 @@
 	<select id="findById" parameterType="int" resultType="Warehouse">
 		SELECT wid,name,pid,cid,wiid,address,photo,note,recorder,recorddate,flag from warehouse where wid=#{wid}
 	</select>
+	<select id="findUcWarehousePid" resultType="int">
+		SELECT pid from warehouse where wiid=1 and flag=1
+	</select>
+	<select id="findUcWarehouseCidByPid" parameterType="int" resultType="int">
+		SELECT cid from warehouse where wiid=1 and flag=1 and pid=#{pid}
+	</select>
+	<select id="findUcWarehouseByPidAndCid" parameterType="Map" resultType="Warehouse">
+		SELECT wid,name,pid,cid,wiid,address,photo,note,recorder,recorddate,flag from warehouse
+		where wiid=1 and flag=1 and pid=#{pid} and cid=#{cid}
+	</select>
 </mapper>

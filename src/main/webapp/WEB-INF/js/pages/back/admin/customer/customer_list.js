@@ -2,26 +2,26 @@ cid = 0 ;
 $(function(){
 	$("span[id^=mid-]").each(function(){
 		$(this).on("click",function(){
-			mid = this.id.split("-")[1] ;
+			mid = splitGet(this.id) ;
 			$("#memberInfo").modal("toggle") ;
 		}) ;
 	}) ;
 	$("span[id^=cid-]").each(function(){
 		$(this).on("click",function(){
-			cid = this.id.split("-")[1] ;
+			cid = splitGet(this.id) ;
 			loadData() ;
 			$("#customerRecordInfo").modal("toggle") ;
 		}) ;
 	}) ;
 	$("button[id^=out-]").each(function(){
 		$(this).on("click",function(){
-			cid = this.id.split("-")[1] ;
+			cid = splitGet(this.id) ;
 			operateAlert(true,"出库客户追加成功！","出库客户追加失败！") ;
 		}) ;
 	}) ;
 	$("button[id^=input-]").each(function(){
 		$(this).on("click",function(){
-			cid = this.id.split("-")[1] ;
+			cid = splitGet(this.id) ;
 			$("#customerRecordInputInfo").modal("toggle") ;
 		}) ;
 	}) ;

@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <jsp:include page="/WEB-INF/pages/plugins/back/back_header.jsp"/>
-<script type="text/javascript" src="js/pages/back/admin/ucgoodsstorage/ucgoodsstorage_ucgsid_show.js"></script>
+<script type="text/javascript" src="js/pages/back/admin/ucgoodsstorage/ucgoodsstorage_usawid_show.js"></script>
 <script type="text/javascript" src="js/split_page.js"></script>
 <body class="hold-transition skin-blue sidebar-mini"> 
 	<div class="wrapper">
@@ -25,45 +25,40 @@
 						<table class="table table-striped table-bordered table-hover">
 							<tr> 
 								<td style="width:150px;"><strong>合同号：</strong></td>
-								<td>321123321</td>
+								<td>${ucgoodsStorageApply.usaid }</td>
 							</tr>
 							<tr> 
 								<td style="width:150px;"><strong>入库标题：</strong></td>
-								<td>双13备货</td>
+								<td>${ucgoodsStorageApply.title }</td>
 							</tr>
 							<tr>
 								<td><strong>存入仓库名称：</strong></td>
-								<td>北京市 北京市 通州一号仓库</td>
+								<td><span style="cursor:pointer;" id="storageWid-${warehouse.wid }">${warehouse.name }</span></td>
 							</tr>
 							<tr>
 								<td><strong>备注信息：</strong></td>
-								<td>我要上</td>
+								<td>${ucgoodsStorageApply.note }</td>
 							</tr>
 							<tr>
 								<td><strong>订单号</strong></td>
 								<td>
 									<table class="table table-bordered table-hover">
-										<tr id="ucgsid-1" style="cursor:pointer;" title="查看入库单详情">
-											<td>入库单编号</td>
-											<td class="text:align">
-												<div>
-													<span>123123123</span>
-												</div>
-											</td>
-										</tr>
-										<tr id="ucgsid-2"  style="cursor:pointer;" title="查看入库单详情">
-											<td>入库单编号</td>
-											<td class="text:align">
-												<div>
-													<span>321321321</span>
-												</div>
-											</td>
-										</tr>
+										<c:forEach items="${allUsawid }" var="usawid">
+											<tr id="usawid-${usawid }" style="cursor:pointer;" title="查看入库单详情">
+												<td>入库单编号</td>
+												<td class="text:align">
+													<div>
+														<span>${usawid }</span>
+													</div>
+												</td>
+											</tr>
+										</c:forEach>
 									</table>									
 								</td>
 							</tr>
 						</table>
 					</div>
+					<div style="display: none" id="selectUsawid"></div>
 					<div class="panel-footer" style="height:100px;">
 						<jsp:include page="/WEB-INF/pages/plugins/include_alert.jsp"/>
 					</div>
@@ -79,6 +74,7 @@
 		<jsp:include page="/WEB-INF/pages/plugins/back/include_menu_sidebar.jsp" />
 		<div class="control-sidebar-bg"></div>
 	</div>
-<jsp:include page="/WEB-INF/pages/plugins/back/info/ucgsid_details_modal.jsp" />
+<jsp:include page="/WEB-INF/pages/plugins/back/info/warehouse_info_modal.jsp"/>
+<jsp:include page="/WEB-INF/pages/plugins/back/info/usawid_details_modal.jsp" />
 <jsp:include page="/WEB-INF/pages/plugins/back/include_javascript_foot.jsp" />
 <jsp:include page="/WEB-INF/pages/plugins/back/back_footer.jsp"/>

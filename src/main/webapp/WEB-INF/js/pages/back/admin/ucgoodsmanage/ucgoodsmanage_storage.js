@@ -34,14 +34,14 @@ $(function(){
 	});
 	$("button[id^=access-]").each(function(){
 		$(this).on("click",function(){
-			sdid = this.id.split("-")[1] ;
+			sdid = splitGet(this.id) ;
 			operateAlert(true,"半成品入库成功！","半成品入库失败！") ;
 			$("input[id$=" + sdid + "]").attr("disabled","disabled") ;
 		}) ;
 	}) ;
 	$("button[id^=edit-]").each(function(){
 		$(this).on("click",function(){
-			sdid = this.id.split("-")[1] ;
+			sdid = splitGet(this.id) ;
 			$("input[id$=" + sdid + "]").removeAttr("disabled") ;
 		}) ;
 	}) ;
