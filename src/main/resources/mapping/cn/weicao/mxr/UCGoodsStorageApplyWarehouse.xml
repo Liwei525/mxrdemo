@@ -8,4 +8,7 @@
 	<select id="findById" parameterType="String" resultType="UCGoodsStorageApplyWarehouse">
 		select usawid,usaid,note,date,inmid from ucgoods_storage_apply_warehouse where usawid=#{usawid}
 	</select>
+	<insert id="doCreate" parameterType="UCGoodsStorageApplyWarehouse">
+		insert ucgoods_storage_apply_warehouse(usawid,usaid,note,date,inmid) value(#{usawid},#{usaid},#{note},#{date},#{inmid})
+	</insert>
 </mapper>

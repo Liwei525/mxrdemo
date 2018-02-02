@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <jsp:include page="/WEB-INF/pages/plugins/back/back_header.jsp"/>
+<link rel="stylesheet" type="text/css" href="css/tautocomplete.css" />
 <%!
 	public static final String UCGOODSSTORAGE_INPUT_URL = "pages/back/admin/ucgoodsmanage/storage_input.action" ;
 %>
@@ -27,17 +28,27 @@
 						<form class="form-horizontal" action="<%=UCGOODSSTORAGE_INPUT_URL%>" id="myform" method="post">
 							<fieldset>
 								<!-- 定义输入表单样式，其中id主要用于设置颜色样式 -->
-								<div class="form-group" id="sidDiv">
+								<div class="form-group" id="usaidDiv">
 									<!-- 定义表单提示文字 -->
-									<label class="col-md-3 control-label" for="sid">合同编号：</label>
+									<label class="col-md-3 control-label" for="usaid">合同编号：</label>
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
-										<input type="text" id="sid" name="sid" class="form-control"
+										<input type="text" id="usaid" name="usaid" class="form-control"
 											placeholder="请输入合同编号">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
-									<div class="col-md-4" id="titleMsg"></div>
-								</div>
+									<div class="col-md-4" id="usaidMsg"></div>
+								</div><div>&nbsp;</div>
+								<div class="form-group" id="searchDiv">
+									<!-- 定义表单提示文字 -->
+									<label class="col-md-3 control-label" for="search">搜索框：</label>
+									<div class="col-md-5">
+										<!-- 定义表单输入组件 -->
+										<input type="text" id="search" name="search" class="form-control">
+									</div>
+									<!-- 定义表单错误提示显示元素 -->
+									<div class="col-md-4" id="searchMsg"></div>
+								</div><div>&nbsp;</div>
 								<div class="form-group">
 									<div class="col-md-5 col-md-offset-3">
 										<button type="submit" class="btn btn-primary">查询</button>

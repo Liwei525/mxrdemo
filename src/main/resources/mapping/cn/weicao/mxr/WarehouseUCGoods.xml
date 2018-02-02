@@ -5,4 +5,13 @@
 	<select id="findByUcid" parameterType="int" resultType="WarehouseUCGoods">
 		select wuid,wid,ucid,name,size,unit,num from warehouse_ucgoods where ucid=#{ucid}
 	</select>
+	<select id="findByWidAndUcid" parameterType="Map" resultType="WarehouseUCGoods">
+		select wuid,wid,ucid,name,size,unit,num from warehouse_ucgoods where wid=#{wid} and ucid=#{ucid}
+	</select>
+	<insert id="doCreate" parameterType="WarehouseUCGoods">
+		insert warehouse_ucgoods(wid,ucid,name,size,unit,num) value (#{wid},#{ucid},#{name},#{size},#{unit},#{num})
+	</insert>
+	<update id="doEdit" parameterType="WarehouseUCGoods">
+		update warehouse_ucgoods set wid=#{wid},ucid=#{ucid},name=#{name},size=#{size},unit=#{unit},num=#{num} where wuid=#{wuid}
+	</update>
 </mapper>

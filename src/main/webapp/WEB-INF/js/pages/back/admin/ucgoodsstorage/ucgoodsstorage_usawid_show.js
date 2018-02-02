@@ -27,7 +27,6 @@ $(function(){
 function loadData() {	
 	usawid = $("#selectUsawid").text() ;
 	$.post("pages/back/admin/ucgoodsstorage/usawid_details.action",{"usawid":usawid,"jsCommonCp":jsCommonCp,"jsCommonLs":jsCommonLs},function(data){
-		console.log(data) ;
 		$("#usawid").text(data.ucgoodsStorageApplyWarehouse.usawid) ;
 		$("#inMember").text(data.inMember.ename) ;
 		$("#inDate").text(datetimeFormat(data.ucgoodsStorageApplyWarehouse.date)) ;

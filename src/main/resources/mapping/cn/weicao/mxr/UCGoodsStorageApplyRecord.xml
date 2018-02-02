@@ -5,10 +5,17 @@
 	<select id="findByUcid" parameterType="int" resultType="UCGoodsStorageApplyRecord">
 		select usarid,usawid,ucid,wid,name,size,price,unit,num,totalprice,date from ucgoods_storage_apply_record where ucid=#{ucid} order by date desc
 	</select>
-	<select id="findByUsawid" parameterType="Map" resultType="UCGoodsStorageApplyRecord">
+	<select id="findSplitByUsawid" parameterType="Map" resultType="UCGoodsStorageApplyRecord">
 		select usarid,usawid,ucid,wid,name,size,price,unit,num,totalprice,date from ucgoods_storage_apply_record where usawid=#{usawid} limit #{start},#{lineSize}
 	</select>
 	<select id="getCountByUsawid" parameterType="String" resultType="int">
 		select count(*) from ucgoods_storage_apply_record where usawid=#{usawid}
 	</select>
+	<select id="findByUsawid" parameterType="String" resultType="UCGoodsStorageApplyRecord">
+		select usarid,usawid,ucid,wid,name,size,price,unit,num,totalprice,date from ucgoods_storage_apply_record where usawid=#{usawid}
+	</select>
+	<insert id="doCreate" parameterType="UCGoodsStorageApplyRecord">
+		insert ucgoods_storage_apply_record(usawid,ucid,wid,name,size,price,unit,num,totalprice,date) values(
+			#{usawid},#{ucid},#{wid},#{name},#{size},#{price},#{unit},#{num},#{totalPrice},#{date})
+	</insert>
 </mapper>

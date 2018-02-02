@@ -36,4 +36,10 @@ public interface IUCGoodsStorageApplyDetailsDAO {
  	 * @return 删除成功返回true
 	 */
 	public boolean doRemove(String usaid) ;
+	/**
+	 * 根据合同号查询和半成品编号查询出对应的半成品详情
+	 * @param param 里面有合同号和半成品编号
+	 * @return 半成品详情
+	 */
+	public UCGoodsStorageApplyDetails findByUsaidAndUcid(Map<String,Object> param) ;
 }

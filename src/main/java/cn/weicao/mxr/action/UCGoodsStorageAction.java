@@ -200,8 +200,6 @@ public class UCGoodsStorageAction extends AbstractAction {
 		mav.addAllObjects(this.ucgoodsStorageApplyService.usawidShow(usaid)) ;
 		return mav;
 	}
-	@RequiresRoles("ucgoodsstorage")
-	@RequiresPermissions("ucgoodsstorage:list")
 	@RequestMapping("usawid_details") 
 	@ResponseBody
 	public Object usaidDetails(String usawid,int jsCommonCp,int jsCommonLs) {

@@ -6,12 +6,21 @@ $(function() {
 				$('#recordTable').empty() ;
 				for(var i = 0 ; i < data.allWarehouseUCGoods.length ; i ++){
 					warehouseUCGoods = data.allWarehouseUCGoods[i] ;
-					trInfo = $("<tr class='text-primary'> " +
+					if(warehouseUCGoods.unit == 1){
+						trInfo = $("<tr class='text-primary'> " +
+									"	<td class='text-left'>" + data.allWarehouse[warehouseUCGoods.wuid].name + "</td>" + 
+									"	<td class='text-center'>" + data.allProvince[data.allWarehouse[warehouseUCGoods.wuid].wid].title + "</td> " +
+									"	<td class='text-center'>" + data.allCity[data.allWarehouse[warehouseUCGoods.wuid].wid].title + "</td> " +
+									"	<td class='text-center'>" + warehouseUCGoods.num + " 个</td> " + 
+									"</tr> ") ;
+					}else{
+						trInfo = $("<tr class='text-primary'> " +
 								"	<td class='text-left'>" + data.allWarehouse[warehouseUCGoods.wuid].name + "</td>" + 
 								"	<td class='text-center'>" + data.allProvince[data.allWarehouse[warehouseUCGoods.wuid].wid].title + "</td> " +
 								"	<td class='text-center'>" + data.allCity[data.allWarehouse[warehouseUCGoods.wuid].wid].title + "</td> " +
-								"	<td class='text-center'>" + warehouseUCGoods.num + "</td> " + 
+								"	<td class='text-center'>" + warehouseUCGoods.num + " 米</td> " + 
 								"</tr> ") ;
+					}
 					$('#recordTable').append(trInfo) ;
 				}
 				$("#goodsRecordInfo").modal("toggle") ; 
@@ -20,16 +29,24 @@ $(function() {
 	}) ;
 	$('#storageDetails').on('show.bs.collapse', function () {
 		$.post("pages/back/admin/ucgoods/show_storage_details",{"ucid":$("#ucid").text()},function(data){
-			console.log(data) ;
 			$('#storageTable').empty() ;
 			for(var i = 0 ; i < data.allUCGoodsStorageApplyRecord.length ; i ++){
 				ucgoodsStorageApplyRecord = data.allUCGoodsStorageApplyRecord[i] ;
-				trInfo = $("<tr class='text-primary'> " +
-							"	<td class='text-center'>" + ucgoodsStorageApplyRecord.usarid + "</td>" + 
+				if(ucgoodsStorageApplyRecord.unit == 1){
+					trInfo = $("<tr class='text-primary'> " +
+								"	<td class='text-center'>" + ucgoodsStorageApplyRecord.usawid + "</td>" + 
+								"	<td class='text-left'><span style='cursor:pointer;' id='storageWid-" + data.allWarehouse[ucgoodsStorageApplyRecord.usarid].wid + "'>" + data.allWarehouse[ucgoodsStorageApplyRecord.usarid].name + "</td> " +
+								"	<td class='text-center'>" + ucgoodsStorageApplyRecord.num + " 个</td> " +
+								"	<td class='text-center'>" + datetimeFormat(ucgoodsStorageApplyRecord.date) + "</td> " + 
+								"</tr> ") ;
+				}else{
+					trInfo = $("<tr class='text-primary'> " +
+							"	<td class='text-center'>" + ucgoodsStorageApplyRecord.usawid + "</td>" + 
 							"	<td class='text-left'><span style='cursor:pointer;' id='storageWid-" + data.allWarehouse[ucgoodsStorageApplyRecord.usarid].wid + "'>" + data.allWarehouse[ucgoodsStorageApplyRecord.usarid].name + "</td> " +
-							"	<td class='text-center'>" + ucgoodsStorageApplyRecord.num + "</td> " +
+							"	<td class='text-center'>" + ucgoodsStorageApplyRecord.num + " 米</td> " +
 							"	<td class='text-center'>" + datetimeFormat(ucgoodsStorageApplyRecord.date) + "</td> " + 
 							"</tr> ") ;
+				}
 				$('#storageTable').append(trInfo) ;
 			}
 			$("span[id^=storageWid-]").each(function(){
@@ -52,7 +69,6 @@ $(function() {
 	}) ;
 	$('#outputDetails').on('show.bs.collapse', function () {
 		$.post("pages/back/admin/ucgoods/show_output_details",{"ucid":$("#ucid").text()},function(data){
-			console.log(data) ;
 			$('#outputTable').empty() ;
 			for(var i = 0 ; i < data.allUCGoodsOutputRecord.length ; i ++){
 				ucgoodsOutputRecord = data.allUCGoodsOutputRecord[i] ;

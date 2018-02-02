@@ -287,7 +287,7 @@ public class UCGoodsStorageServiceApplyImpl extends AbstractService implements I
 		Emp inMember = this.empDAO.findById(ucgoodsStorageApplyWarehouse.getInmid()) ;
 		map.put("ucgoodsStorageApplyWarehouse", ucgoodsStorageApplyWarehouse) ;
 		map.put("inMember", inMember) ;
-		map.put("allUCGoodsStorageApplyRecord", this.ucgoodsStorageApplyRecordDAO.findByUsawid(param)) ;
+		map.put("allUCGoodsStorageApplyRecord", this.ucgoodsStorageApplyRecordDAO.findSplitByUsawid(param)) ;
 		map.put("count", this.ucgoodsStorageApplyRecordDAO.getCountByUsawid(usawid)) ;
 		return map;
 	}

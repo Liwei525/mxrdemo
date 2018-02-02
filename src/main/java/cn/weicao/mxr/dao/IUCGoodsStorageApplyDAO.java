@@ -43,4 +43,10 @@ public interface IUCGoodsStorageApplyDAO {
 	 * @return 返回查询的结果
 	 */
 	public List<UCGoodsStorageApply> findSplitByStatus(Map<String,Object> map) ;
+	/**
+	 * 入库申请单模糊查询（状态为3和4）
+	 * @param keyWord 关键字
+	 * @return 返回查询的结果
+	 */
+	public List<UCGoodsStorageApply> usaidLikeByStatus3AndStatus4(String keyWord) ;
 }

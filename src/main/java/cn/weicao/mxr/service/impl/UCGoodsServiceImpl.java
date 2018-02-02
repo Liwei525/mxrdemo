@@ -145,7 +145,7 @@ public class UCGoodsServiceImpl extends AbstractService implements IUCGoodsServi
 			Warehouse warehouse = this.warehouseDAO.findById(warehouseUCGoods.getWid()) ;
 			allProvince.put(warehouse.getWid(), this.provinceDAO.findById(warehouse.getPid())) ;
 			allCity.put(warehouse.getWid(), this.cityDAO.findById(warehouse.getCid())) ;
-			allWarehouse.put(warehouseUCGoods.getWuid(), warehouseUCGoods) ;
+			allWarehouse.put(warehouseUCGoods.getWuid(), warehouse) ;
 		}
 		map.put("allWarehouseUCGoods", allWarehouseUCGoods) ;
 		map.put("allWarehouse", allWarehouse) ;

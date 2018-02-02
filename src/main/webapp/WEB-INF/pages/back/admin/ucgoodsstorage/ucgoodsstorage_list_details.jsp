@@ -41,6 +41,12 @@
 								<td><strong>备注信息：</strong></td>
 								<td>${ucgoodsStorageApply.note }</td>
 							</tr>
+							<c:if test="${ucgoodsStorageApply.status == 2 }">
+								<tr>
+									<td><strong>审核信息：</strong></td>
+									<td>${ucgoodsStorageApply.auditNote }</td>
+								</tr>
+							</c:if>
 							<c:if test="${ucgoodsStorageApply.status == 0 || ucgoodsStorageApply.status == 2 }">
 								<tr>
 									<td><strong>入库操作：</strong></td>

@@ -18,4 +18,7 @@
 	<delete id="doRemove" parameterType="String">
 		delete from ucgoods_storage_apply_details where usaid=#{usaid}
 	</delete>
+		<select id="findByUsaidAndUcid" parameterType="Map" resultType="UCGoodsStorageApplyDetails">
+		select usadid,usaid,ucid,name,size,price,unit,num,totalprice from ucgoods_storage_apply_details where usaid=#{usaid} and ucid=#{ucid}
+	</select>
 </mapper>

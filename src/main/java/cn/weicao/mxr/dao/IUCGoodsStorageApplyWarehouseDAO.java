@@ -17,4 +17,10 @@ public interface IUCGoodsStorageApplyWarehouseDAO {
 	 * @return 入库的详细信息
 	 */
 	public UCGoodsStorageApplyWarehouse findById(String usawid) ;
+	/**
+	 * 增加合同-入库单表记录
+	 * @param ucgoodsStorageApplyWarehouse 合同-入库单表
+	 * @return 增加成功返回true
+	 */
+	public boolean doCreate(UCGoodsStorageApplyWarehouse ucgoodsStorageApplyWarehouse) ;
 }
