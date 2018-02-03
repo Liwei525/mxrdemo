@@ -75,6 +75,7 @@ public interface IEmpService {
 	 * 1、key = levelTitles , value 表示雇员对应的级别名称
 	 * 2、key = deptNames , value 表示雇员所在部门名称
 	 * 3、key = allEmps , value 表示所有的雇员
+	 * 4、key = allRecorders , value 表示雇员的数量
 	 */
 	public Map<String,Object> list(int currentPage,int lineSize,String column,String keyWord,Date start,Date end) ;
 	/**

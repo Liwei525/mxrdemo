@@ -29,4 +29,34 @@ public interface IWarehouseDAO {
 	 * @return 满足条件的半成品仓库编号
 	 */
 	public List<Warehouse> findUcWarehouseByPidAndCid(Map<String,Object> map) ;
+	/**
+	 * 根据仓库名称查询仓库信息
+	 * @param name 仓库名称
+	 * @return 仓库信息
+	 */
+	public Warehouse findByName(String name) ;
+	/**
+	 * 增加仓库
+	 * @param warehouse 仓库的信息
+	 * @return 增加成功返回true
+	 */
+	public boolean doCreate(Warehouse warehouse) ;
+	/**
+	 * 分页模糊查询
+	 * @param map 里面有分页模糊查询参数
+	 * @return 返回满足条件的仓库信息
+	 */
+	public List<Warehouse> findSplit(Map<String,Object> map) ;
+	/**
+	 * 模糊查询的数据量
+	 * @param map 里面有模糊查询参数
+	 * @return 返回数据量
+	 */
+	public Integer getCount(Map<String,Object> map) ;
+	/**
+	 * 修改仓库
+	 * @param warehouse 仓库的信息
+	 * @return 修改成功返回true
+	 */
+	public boolean doEdit(Warehouse warehouse) ;
 }

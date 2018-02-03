@@ -139,6 +139,7 @@ public class EmpServiceImpl extends AbstractService implements IEmpService {
 		Map<String,Dept> deptNames = new HashMap<String,Dept>() ;
 		Map<String,Level> levelTitles = new HashMap<String,Level>() ;
 		List<Emp> allEmps = this.empDAO.findSplit(super.converToMap(currentPage, lineSize, column, keyWord, start, end)) ;
+		int allRecorders = this.empDAO.getCount(super.converToMap(0, 0, column, keyWord, start, end)) ;
 		Iterator<Emp> iter = allEmps.iterator() ;
 		while(iter.hasNext()) {
 			Emp emp = iter.next() ;
@@ -146,6 +147,7 @@ public class EmpServiceImpl extends AbstractService implements IEmpService {
 			levelTitles.put(emp.getEid(), this.levelDAO.findById(emp.getLid())) ;
 		}
 		map.put("allEmps", allEmps) ;
+		map.put("allRecorders", allRecorders) ;
 		map.put("deptNames", deptNames) ;
 		map.put("levelTitles", levelTitles) ;
 		return map ;

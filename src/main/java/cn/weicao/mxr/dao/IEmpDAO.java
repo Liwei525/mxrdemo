@@ -42,4 +42,10 @@ public interface IEmpDAO {
 	 * @return 列出满足条件的雇员信息
 	 */
 	public List<Emp> findSplit(Map<String,Object> map) ;
+	/**
+	 * 时间模糊查询的数据量
+	 * @param map 时间模糊参数
+	 * @return 数据量
+	 */
+	public Integer getCount(Map<String,Object> map) ;
 }

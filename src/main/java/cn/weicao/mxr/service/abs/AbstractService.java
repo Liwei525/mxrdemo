@@ -7,8 +7,12 @@ import java.util.Map;
 public abstract class AbstractService {
 	protected Map<String,Object> converToMap(int currentPage,int lineSize,String column,String keyWord,Date start,Date end){
 		Map<String,Object> map = new HashMap<String,Object>() ;
-		map.put("start", (currentPage - 1) * lineSize) ;
-		map.put("lineSize", lineSize) ;
+		if(currentPage != 0) {
+			map.put("start", (currentPage - 1) * lineSize) ;
+		}
+		if(lineSize != 0) {
+			map.put("lineSize", lineSize) ;
+		}
 		if ("".equals(column)) {
 			map.put("column", null) ;
 		} else {

@@ -51,6 +51,7 @@ public interface IUCGoodsStorageApplyService {
 	 * @param end 结束时间
 	 * @return 以map形式返回
 	 * 1、key = allUCGoodsStorageApplys , value 表示所有的入库申请单信息
+	 * 1、key = allRecorders , value 表示入库申请单数量
 	 * 2、key = allUCWarehouses , value 表示所有的入库申请单的入库仓库信息
 	 */
 	public Map<String,Object> list(int currentPage,int lineSize,String column,String keyWord,Date start,Date end) ;

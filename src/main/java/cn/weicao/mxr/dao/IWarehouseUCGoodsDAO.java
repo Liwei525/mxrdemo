@@ -30,4 +30,16 @@ public interface IWarehouseUCGoodsDAO {
 	 * @return 修改成功返回true
 	 */
 	public boolean doEdit(WarehouseUCGoods warehouseUCGoods) ;
+	/**
+	 * 根据仓库编号查询出该仓库所有的半成品信息
+	 * @param map 仓库编号和分页信息
+	 * @return 该仓库所有的半成品信息
+	 */
+	public List<WarehouseUCGoods> findSplitByWid(Map<String,Object> map) ;
+	/**
+	 * 根据仓库编号查询出该仓库半成品数量
+	 * @param wid 仓库编号
+	 * @return 该仓库半成品的数量
+	 */
+	public int getCountByWid(Integer wid) ;
 }

@@ -14,9 +14,10 @@ public interface IUCGoodsStorageAuditService {
 	 * @param end 结束时间
 	 * @return 以map形式返回
 	 * 1、key = allUCGoodsStorageApply , value 表示所有的入库申请单
-	 * 2、key = allUCWarehouse , value 表示所有的仓库信息
-	 * 3、key = allSendMember , value 表示所有的发送人信息
-	 * 4、key = allTotalPrice , value 表示该入库申请单的进货总价
+	 * 2、key = allRecorders , value 表示入库申请单的数量
+	 * 3、key = allUCWarehouse , value 表示所有的仓库信息
+	 * 4、key = allSendMember , value 表示所有的发送人信息
+	 * 5、key = allTotalPrice , value 表示该入库申请单的进货总价
 	 */
 	public Map<String,Object> listPrepare(int currentPage,int lineSize,String column,String keyWord,Date start,Date end) ; 
 	/**
@@ -62,10 +63,11 @@ public interface IUCGoodsStorageAuditService {
 	 * @param end 结束时间
 	 * @return 以map形式返回
 	 * 1、key = allUCGoodsStorageApply , value 表示所有的入库申请单
-	 * 2、key = allUCWarehouse , value 表示所有的仓库信息
-	 * 3、key = allSendMember , value 表示所有的发送人信息
-	 * 4、key = allTotalPrice , value 表示该入库申请单的进货总价
-	 * 5、key = allAuditMember , value 表示所有的审核人信息
+	 * 2、key = allRecorders , value 表示入库申请单的数量
+	 * 3、key = allUCWarehouse , value 表示所有的仓库信息
+	 * 4、key = allSendMember , value 表示所有的发送人信息
+	 * 5、key = allTotalPrice , value 表示该入库申请单的进货总价
+	 * 6、key = allAuditMember , value 表示所有的审核人信息
 	 */
 	public Map<String,Object> listHistory(int currentPage,int lineSize,String column,String keyWord,Date start,Date end) ; 
 }

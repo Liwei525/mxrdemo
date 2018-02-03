@@ -5,4 +5,7 @@
 	<select id="findById" parameterType="int" resultType="City">
 		select cid,pid,title from city where cid=#{cid}
 	</select>
+	<select id="findAllByPid" parameterType="int" resultType="City">
+		select cid,pid,title from city where pid=#{pid}
+	</select>
 </mapper>

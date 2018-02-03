@@ -25,23 +25,23 @@ $(function(){
 		errorClass : "text-danger",
 		rules : {
 			"name" : {
-				required : true
-				//remote : {	// 确保仓库名称不重复
-//				url : "check.jsp", // 后台处理程序
-//				type : "post", // 数据发送方式
-//				dataType : "html", // 接受数据格式
-//				data : { // 要传递的数据
-//					code : function() {
-//						return $("#code").val();
-//					}
-//				},
-//				dataFilter : function(data, type) {
-//					if (data.trim() == "true")
-//						return true;
-//					else
-//						return false;
-//				}
-//}
+				required : true ,
+				remote : {
+					url : "pages/back/admin/warehouse/check_name.action" ,
+					type : "post", 
+					dataType : "json", 
+					data : { // 要传递的数据
+						name : function() {
+							return $("#name").val();
+						}
+					},
+					dataFilter : function(data, type) {
+						if (data.trim() == "true")
+							return true;
+						else
+							return false;
+					}
+				}
 			} ,
 			"pid" : {
 				required : true 
@@ -52,7 +52,7 @@ $(function(){
 			"address" : {
 				required : true 
 			},
-			"iid" : {
+			"wiid" : {
 				required : true 
 			},
 			"pic" : {
@@ -61,12 +61,27 @@ $(function(){
 			"note" : {
 				required : true
 			}
+		},
+		messages:{
+			name : {
+				remote : "该仓库名称已存在！" 
+			}
 		}
 	});
 	$(cid).on("change",function() {
 		handleAddress() ;	// 处理地址 
 	}) ;
 	$(pid).on("change",function(){
+		pid = $("#pid").val() ;
+		$("#cid").empty() ;
+		$("#cid").append("<option value=''>====== 请选择所在城市 ======</option>") ;
+		if(pid != ''){
+			$.post("pages/back/admin/warehouse/get_city.action",{"pid":pid},function(data){
+				for(var i = 0 ; i < data.length ; i ++){
+					$("#cid").append("<option value=" + data[i].cid + ">" + data[i].title + "</option>") ;
+				}
+			},"json") ;
+		}
 		if (this.value != "") {	// 有内容，需要进行ajax异步加载
 			handleAddress() ;	// 处理地址 
 		} else {

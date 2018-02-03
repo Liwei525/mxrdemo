@@ -1,5 +1,7 @@
 package cn.weicao.mxr.dao;
 
+import java.util.List;
+
 import cn.weicao.mxr.vo.Province;
 
 public interface IProvinceDAO {
@@ -9,4 +11,9 @@ public interface IProvinceDAO {
 	 * @return 省份信息
 	 */
 	public Province findById(Integer pid) ;
+	/**
+	 * 列出所有的省份信息
+	 * @return 所有的省份信息
+	 */
+	public List<Province> findAll() ;
 }

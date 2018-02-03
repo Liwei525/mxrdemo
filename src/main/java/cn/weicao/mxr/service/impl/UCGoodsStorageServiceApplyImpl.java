@@ -105,12 +105,14 @@ public class UCGoodsStorageServiceApplyImpl extends AbstractService implements I
 		Map<String,Object> map = new HashMap<String,Object>() ;
 		Map<String,Object> allUCWarehouses = new HashMap<String,Object>() ;
 		List<UCGoodsStorageApply> list = this.ucgoodsStorageApplyDAO.findSplit(super.converToMap(currentPage, lineSize, column, keyWord, start, end)) ;
+		int allRecorders = this.ucgoodsStorageApplyDAO.getCount(super.converToMap(0, 0, column, keyWord, start, end)) ;
 		Iterator<UCGoodsStorageApply> iter = list.iterator() ;
 		while(iter.hasNext()) {
 			UCGoodsStorageApply ucgoodsStorageApply = iter.next() ;
 			allUCWarehouses.put(ucgoodsStorageApply.getUsaid(), this.warehouseDAO.findById(ucgoodsStorageApply.getWid())) ;
 		}
 		map.put("allUCGoodsStorageApplys", list) ;
+		map.put("allRecorders", allRecorders) ;
 		map.put("allUCWarehouses", allUCWarehouses) ;
 		return map ;
 	}

@@ -14,4 +14,10 @@
 	<update id="doEdit" parameterType="WarehouseUCGoods">
 		update warehouse_ucgoods set wid=#{wid},ucid=#{ucid},name=#{name},size=#{size},unit=#{unit},num=#{num} where wuid=#{wuid}
 	</update>
+	<select id="findSplitByWid" parameterType="Map" resultType="WarehouseUCGoods">
+		select wuid,wid,ucid,name,size,unit,num from warehouse_ucgoods where wid=#{wid} order by ucid limit #{start},#{lineSize}
+	</select>
+	<select id="getCountByWid" parameterType="int" resultType="int">
+		select count(*) from warehouse_ucgoods where wid=#{wid}
+	</select>
 </mapper>

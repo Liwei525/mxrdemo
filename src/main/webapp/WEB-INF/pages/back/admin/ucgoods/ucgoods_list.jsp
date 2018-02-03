@@ -51,7 +51,7 @@
 									<td class="text-center">${ucgoods.size }</td>
 									<td class="text-center"><fmt:formatDate type="date" value="${ucgoods.lastin }" /></td>
 									<td class="text-center"><span id="storage-${ucgoods.ucid }" style="cursor:pointer;">${ucgoods.stornum }${ucgoods.unit == 1 ? "个" : "米" }</span></td>
-									<td class="text-center"><span id="mid-${allRecorders[ucgoods.ucid].eid }" style="cursor:pointer;">${allRecorders[ucgoods.ucid].ename }</span></td> 
+									<td class="text-center"><span id="mid-${allMembers[ucgoods.ucid].eid }" style="cursor:pointer;">${allMembers[ucgoods.ucid].ename }</span></td> 
 									<td class="text-center">
 										<a href="<%=UCGOODS_EDIT_URL%>?ucid=${ucgoods.ucid}" class="btn btn-primary btn-xs">
 												<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>

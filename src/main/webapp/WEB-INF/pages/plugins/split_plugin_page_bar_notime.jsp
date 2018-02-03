@@ -16,18 +16,18 @@
 	String handleUrl = null ; 
 	String column = (String) request.getAttribute("column") ;
 	String keyWord = (String) request.getAttribute("keyWord") ;
-	long allRecorders = 0 ;
-	long currentPage = 1 ;
-	long allPages = 1 ;
+	int allRecorders = 0 ;
+	int currentPage = 1 ;
+	int allPages = 1 ;
 	int lineSize = 5 ;
 	try {
 		handleUrl = request.getAttribute("basePath2").toString() +  request.getAttribute("handleUrl") ;
 	} catch (Exception e) {}
 	try {
-		currentPage = (Long) request.getAttribute("currentPage") ;
+		currentPage = (Integer) request.getAttribute("currentPage") ;
 	} catch (Exception e) {}
 	try {
-		allRecorders = (Long) request.getAttribute("allRecorders") ;
+		allRecorders = (Integer) request.getAttribute("allRecorders") ;
 	} catch (Exception e) {}
 	try {
 		lineSize = (Integer) request.getAttribute("lineSize") ;
@@ -61,12 +61,12 @@
 				<li class="disabled"><span>...</span></li>
 <%
 			}
-			long startPage = currentPage - seed ;
-			long endPage = currentPage + seed ;
+			int startPage = currentPage - seed ;
+			int endPage = currentPage + seed ;
 			if (endPage >= allPages) {	// 计算后的结果大于了总页数
 				endPage = allPages - 1 ;
 			}
-			for (long x = startPage ; x <= endPage ; x ++) {
+			for (int x = startPage ; x <= endPage ; x ++) {
 %>
 				<li class="<%=currentPage == x ? "active" : ""%>"><a href="<%=handleUrl%>?cp=<%=x%>&ls=<%=lineSize%>&col=<%=column%>&kw=<%=keyWord%>"><%=x%></a></li>
 <%

@@ -40,30 +40,22 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="text-left">10001</td>
-								<td class="text-left"><span id="wid-1" style="cursor:pointer;">北京通州仓库一号库</span></td>
-								<td class="text-left">北京 北京 通州XXX</td>
-								<td class="text-center">半成品</td>
-								<td class="text-center" id="admin-1"><span id="mid-admin" style="cursor:pointer;">老李</span></td> 
-								<td class="text-center">
-									<a href="<%=WAREHOUSE_EDIT_URL%>?wid=1" id="editinfo-1" class="btn btn-warning btn-xs">
-											<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑信息</a>
-								</td>
-							</tr>
-							<tr>
-								<td class="text-left">20001</td>
-								<td class="text-left"><span id="wid-2" style="cursor:pointer;">北京通州仓库一号库</span></td>
-								<td class="text-left">北京 北京 通州XXX</td>
-								<td class="text-center">成品</td>
-								<td class="text-center" id="admin-2"><span id="mid-admin" style="cursor:pointer;">老李</span></td> 
-								<td class="text-center">
-									<a href="<%=WAREHOUSE_EDIT_URL%>?wid=2" id="editinfo-1" class="btn btn-warning btn-xs">
-											<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑信息</a>
-								</td>
-							</tr>
+							<c:forEach items="#{allWarehouses }" var="warehouse">
+								<tr>
+									<td class="text-left">${warehouse.wid }</td>
+									<td class="text-left"><span id="wid-${warehouse.wid }" style="cursor:pointer;">${warehouse.name }</span></td>
+									<td class="text-left">${warehouse.address }</td>
+									<td class="text-center">${warehouse.wiid ==1 ? "半成品" : "成品" }</td>
+									<td class="text-center"><span id="mid-${warehouse.recorder }" style="cursor:pointer;">${allMembers[warehouse.wid].ename }</span></td> 
+									<td class="text-center">
+										<a href="<%=WAREHOUSE_EDIT_URL%>?wid=${warehouse.wid }" class="btn btn-warning btn-xs">
+												<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑信息</a>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
+					<div id="selectWid" style="display: none"></div>
 					<div id="splitBarDiv" style="float:right">
 						<jsp:include page="/WEB-INF/pages/plugins/split_plugin_page_bar_notime.jsp"/> 
 					</div>

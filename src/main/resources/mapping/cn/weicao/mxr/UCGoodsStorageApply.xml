@@ -25,6 +25,19 @@
 		order by status, appdate desc
 		limit #{start},#{lineSize}
 	</select>
+	<select id="getCount" parameterType="Map" resultType="int">
+		select count(*)
+		from ucgoods_storage_apply where 1 = 1 
+		<if test="column != null and keyWord != null">
+			and ${column} like #{keyWord}
+		</if>
+		<if test="startTime != null">
+			and appdate &gt;= #{startTime}
+		</if>
+		<if test="endTime != null">
+			and appdate &lt;= #{endTime}
+		</if>
+	</select>
 	<update id="doEdit" parameterType="UCGoodsStorageApply">
 		update ucgoods_storage_apply set title=#{title},pid=#{pid},cid=#{cid},wid=#{wid},note=#{note},status=#{status},appmid=#{appMid},appdate=#{appDate},sendmid=#{sendMid},senddate=#{sendDate},
 		auditmid=#{auditMid},auditdate=#{auditDate},auditnote=#{auditNote},storagemid=#{storageMid},storagedate=#{storageDate},pinyin=#{pinyin} where usaid=#{usaid}
@@ -34,7 +47,10 @@
 	</update>
 	<select id="findSplitByStatus" parameterType="Map" resultType="UCGoodsStorageApply">
 		select usaid,title,pid,cid,wid,note,status,appmid,appdate,sendmid,senddate,auditmid,auditdate,auditnote,storageMid,storageDate,pinyin
-		from ucgoods_storage_apply where 1 = 1 and status=#{status}
+		from ucgoods_storage_apply where 1 = 1 and status in
+		<foreach collection="allStatus" open="(" close=")" separator="," item="status">
+			#{status}
+		</foreach>
 		<if test="column != null and keyWord != null">
 			and ${column} like #{keyWord}
 		</if>
@@ -46,6 +62,22 @@
 		</if>
 		order by senddate desc
 		limit #{start},#{lineSize}
+	</select>
+	<select id="getCountByStatus" parameterType="Map" resultType="int">
+		select count(*)
+		from ucgoods_storage_apply where status in
+		<foreach collection="allStatus" open="(" close=")" separator="," item="status">
+			#{status}
+		</foreach>
+		<if test="column != null and keyWord != null">
+			and ${column} like #{keyWord}
+		</if>
+		<if test="startTime != null">
+			and senddate &gt;= #{startTime}
+		</if>
+		<if test="endTime != null">
+			and senddate &lt;= #{endTime}
+		</if>
 	</select>
 	<select id="usaidLikeByStatus3AndStatus4" parameterType="String" resultType="UCGoodsStorageApply">
 		select usaid,title,pid,cid,wid,note,status,appmid,appdate,sendmid,senddate,auditmid,auditdate,auditnote,storageMid,storageDate,pinyin

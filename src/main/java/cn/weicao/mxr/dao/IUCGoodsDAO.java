@@ -25,6 +25,12 @@ public interface IUCGoodsDAO {
 	 */
 	public List<UCGoods> findSplit(Map<String,Object> map) ;
 	/**
+	 * 时间模糊查询的数据量
+	 * @param map 有时间模糊参数
+	 * @return 数据量
+	 */
+	public int getCount(Map<String,Object> map) ;
+	/**
 	 * 根据半成品编号查询半成品信息
 	 * @param ucid 半成品编号
 	 * @return 半成品信息

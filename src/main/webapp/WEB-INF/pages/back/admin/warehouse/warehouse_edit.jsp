@@ -5,7 +5,7 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <jsp:include page="/WEB-INF/pages/plugins/back/back_header.jsp"/>
 <%!
-	public static final String WAREHOUSE_EDIT_URL = "" ;
+	public static final String WAREHOUSE_EDIT_URL = "pages/back/admin/warehouse/edit.action" ;
 %>
 <script type="text/javascript" src="js/pages/back/admin/warehouse/warehouse_edit.js"></script>
 <body class="hold-transition skin-blue sidebar-mini"> 
@@ -33,10 +33,10 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="name" name="name" class="form-control"
-											placeholder="请输入仓库标记名称">
+											placeholder="请输入仓库标记名称" value="${warehouse.name }">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
-									<div class="col-md-4" id="eidMsg"></div>
+									<div class="col-md-4" id="nameMsg"></div>
 								</div>
 								<div class="form-group" id="pidDiv">
 									<!-- 定义表单提示文字 -->
@@ -44,9 +44,9 @@
 									<div class="col-md-5">
 										<select id="pid" name="pid" class="form-control">
 											<option value="">====== 请选择所在省份 ======</option>
-											<option value="1">河北省</option>
-											<option value="2">山西部</option>
-											<option value="3">广东省</option>
+											<c:forEach items="${allProvinces }" var="province">
+												<option value="${province.pid }" ${warehouse.pid == province.pid ? "selected" : "" }>${province.title}</option>
+											</c:forEach>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -58,9 +58,9 @@
 									<div class="col-md-5">
 										<select id="cid" name="cid" class="form-control">
 											<option value="">====== 请选择所在城市 ======</option>
-											<option value="1">石家庄</option>
-											<option value="2">沧州</option>
-											<option value="3">邯郸</option>
+											<c:forEach items="${allCitys }" var="city">
+												<option value="${city.cid }" ${warehouse.cid == city.cid ? "selected" : "" }>${city.title}</option>
+											</c:forEach>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -72,29 +72,29 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="address" name="address" class="form-control"
-											placeholder="请输入仓库地址信息">
+											placeholder="请输入仓库地址信息" value="${warehouse.address }">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="addressMsg"></div>
 								</div>
-								<div class="form-group" id="iidDiv">
+								<div class="form-group" id="wiidDiv">
 									<!-- 定义表单提示文字 -->
-									<label class="col-md-3 control-label" for="iid">仓库用途：</label>
+									<label class="col-md-3 control-label" for="wiid">仓库用途：</label>
 									<div class="col-md-5">
-										<select id="iid" name="iid" class="form-control">
+										<select id="wiid" name="wiid" class="form-control">
 											<option value="">====== 请选择库存类型 ======</option>
-											<option value="1">半成品</option>
-											<option value="2">成品</option>
+											<option value="1" ${warehouse.wiid == 1 ? "selected" : "" }>半成品</option>
+											<option value="2" ${warehouse.wiid == 2 ? "selected" : "" }>成品</option>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
-									<div class="col-md-4" id="iidMsg"></div>
+									<div class="col-md-4" id="wiidMsg"></div>
 								</div>
 								<div class="form-group" id="picDiv">
 									<!-- 定义表单提示文字 -->
 									<label class="col-md-3 control-label" for="pic">仓库图片：</label>
 									<div class="col-md-5">
-										<img src="upload/emp/nophoto.jpg" style="width:200px;"/>
+										<img src="${warehouse.photo }" style="width:200px;"/>
 										<!-- 定义表单输入组件 -->
 										<input type="file" id="pic" name="pic" class="form-control"
 											placeholder="请选择仓库图片">
@@ -109,14 +109,15 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<textarea id="note" name="note"
-											class="form-control" placeholder="请输入仓库的详细信息" rows="10"></textarea>
+											class="form-control" placeholder="请输入仓库的详细信息" rows="10">${warehouse.note }</textarea>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="noteMsg"></div>
 								</div> 
 								<div class="form-group">
 									<div class="col-md-5 col-md-offset-3">
-										<input type="hidden" name="wid" id="wid" value="">
+										<input type="hidden" name="wid" id="wid" value="${warehouse.wid }">
+										<input type="hidden" name="photo" id="photo" value="${warehouse.photo }">
 										<button type="submit" class="btn btn-primary">编辑</button>
 										<button type="reset" class="btn btn-warning">重置</button>
 									</div>

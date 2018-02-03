@@ -1,5 +1,6 @@
 package cn.weicao.mxr.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -40,8 +41,13 @@ public class UCGoodsStorageAuditServiceImpl extends AbstractService implements I
 		Map<String,Object> allSendMember = new HashMap<String,Object>() ;
 		Map<String,Object> allTotalPrice = new HashMap<String,Object>() ;
 		Map<String,Object> param = super.converToMap(currentPage, lineSize, column, keyWord, start, end) ;
-		param.put("status", 1) ;
+		Map<String,Object> param2 = super.converToMap(0, 0, column, keyWord, start, end) ;
+		List<Integer> list = new ArrayList<Integer>() ;
+		list.add(3) ;
+		param.put("allStatus", list) ;
+		param2.put("allStatus", list) ;
 		List<UCGoodsStorageApply> allUCGoodsStorageApply = this.ucgoodsStorageApplyDAO.findSplitByStatus(param) ;
+		int allRecorders = this.ucgoodsStorageApplyDAO.getCountByStatus(param2) ;
 		Iterator<UCGoodsStorageApply> iter = allUCGoodsStorageApply.iterator() ;
 		while(iter.hasNext()) {
 			UCGoodsStorageApply ucgoodsStorageApply = iter.next() ;
@@ -56,6 +62,7 @@ public class UCGoodsStorageAuditServiceImpl extends AbstractService implements I
 			allTotalPrice.put(ucgoodsStorageApply.getUsaid(), MyMath.round(totalPrice,2)) ;
 		}
 		map.put("allUCGoodsStorageApply", allUCGoodsStorageApply) ;
+		map.put("allRecorders", allRecorders) ;
 		map.put("allUCWarehouse", allUCWarehouse) ;
 		map.put("allSendMember", allSendMember) ;
 		map.put("allTotalPrice", allTotalPrice) ;
@@ -145,8 +152,14 @@ public class UCGoodsStorageAuditServiceImpl extends AbstractService implements I
 		Map<String,Object> allTotalPrice = new HashMap<String,Object>() ;
 		Map<String,Object> allAuditMember = new HashMap<String,Object>() ;
 		Map<String,Object> param = super.converToMap(currentPage, lineSize, column, keyWord, start, end) ;
-		param.put("status", 3) ;
+		Map<String,Object> param2 = super.converToMap(0, 0, column, keyWord, start, end) ;
+		List<Integer> list = new ArrayList<Integer>() ;
+		list.add(3) ;
+		list.add(4) ;
+		param.put("allStatus", list) ;
+		param2.put("allStatus", list) ;
 		List<UCGoodsStorageApply> allUCGoodsStorageApply = this.ucgoodsStorageApplyDAO.findSplitByStatus(param) ;
+		int allRecorders = this.ucgoodsStorageApplyDAO.getCountByStatus(param2) ;
 		Iterator<UCGoodsStorageApply> iter = allUCGoodsStorageApply.iterator() ;
 		while(iter.hasNext()) {
 			UCGoodsStorageApply ucgoodsStorageApply = iter.next() ;
@@ -162,6 +175,7 @@ public class UCGoodsStorageAuditServiceImpl extends AbstractService implements I
 			allAuditMember.put(ucgoodsStorageApply.getUsaid(), this.empDAO.findById(ucgoodsStorageApply.getAuditMid())) ;
 		}
 		map.put("allUCGoodsStorageApply", allUCGoodsStorageApply) ;
+		map.put("allRecorders", allRecorders) ;
 		map.put("allUCWarehouse", allUCWarehouse) ;
 		map.put("allSendMember", allSendMember) ;
 		map.put("allTotalPrice", allTotalPrice) ;

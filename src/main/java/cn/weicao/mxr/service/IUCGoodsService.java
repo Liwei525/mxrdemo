@@ -28,7 +28,8 @@ public interface IUCGoodsService {
 	 * @param end 结束时间
 	 * @return 以map形式返回
 	 * 1、key = allUCGoods , 所有的半成品信息
-	 * 2、key = allRecorders , 所有的录入人员的姓名 
+	 * 2、key = allRecorders , 所有的半成品数量
+	 * 3、key = allMembers , 所有的录入人员的姓名 
 	 */
 	public Map<String,Object> list(int currentPage,int lineSize,String column,String keyWord,Date start,Date end) ;
 	/**

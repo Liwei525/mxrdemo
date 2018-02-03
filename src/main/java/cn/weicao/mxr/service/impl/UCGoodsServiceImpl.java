@@ -63,15 +63,17 @@ public class UCGoodsServiceImpl extends AbstractService implements IUCGoodsServi
 	@Override
 	public Map<String,Object> list(int currentPage, int lineSize, String column, String keyWord, Date start, Date end) {
 		Map<String,Object> map = new HashMap<String,Object>() ;
-		Map<Integer,Object> allRecorders = new HashMap<Integer,Object>() ;
+		Map<Integer,Object> allMembers = new HashMap<Integer,Object>() ;
 		List<UCGoods> allUCGoods = this.ucgoodsDAO.findSplit(super.converToMap(currentPage, lineSize, column, keyWord, start, end)) ;
+		int allRecorders = this.ucgoodsDAO.getCount(super.converToMap(0, 0, column, keyWord, start, end)) ;
 		Iterator<UCGoods> iter = allUCGoods.iterator() ;
 		while(iter.hasNext()) {
 			UCGoods ucgoods = iter.next() ;
-			allRecorders.put(ucgoods.getUcid(), this.empDAO.findById(ucgoods.getRecorder())) ;
+			allMembers.put(ucgoods.getUcid(), this.empDAO.findById(ucgoods.getRecorder())) ;
 		}
 		map.put("allUCGoods", allUCGoods) ;
 		map.put("allRecorders",allRecorders) ;
+		map.put("allMembers",allMembers) ;
 		return map ;
 	}
 
