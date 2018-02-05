@@ -504,7 +504,6 @@ function addDetails(tucid) {
 }
 
 function saveDetails(tucid) {
-	debugger ;
 	usaid = $("#usaid").text() ;
 	ucid = $("#tucid-" + tucid).val() ;
 	amount = $("#tamount-" + tucid).val() ;

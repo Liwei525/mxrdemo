@@ -2,6 +2,7 @@ package cn.weicao.mxr.dao;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import cn.weicao.mxr.vo.Warehouse;
 
@@ -16,13 +17,13 @@ public interface IWarehouseDAO {
 	 * 查找所有的半成品仓库的省份id
 	 * @return 省份id
 	 */
-	public List<Integer> findUcWarehousePid() ;
+	public Set<Integer> findUcWarehousePid() ;
 	/**
 	 * 根据省份信息查找有半成品仓库的城市编号
 	 * @param pid 省份信息
 	 * @return 城市编号
 	 */
-	public List<Integer> findUcWarehouseCidByPid(Integer pid) ;
+	public Set<Integer> findUcWarehouseCidByPid(Integer pid) ;
 	/**
 	 * 根据省份编号和城市编号查找满足条件的半成品仓库编号
 	 * @param map 里面有省份编号和城市编号

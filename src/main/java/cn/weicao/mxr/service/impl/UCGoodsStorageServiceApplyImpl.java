@@ -59,7 +59,7 @@ public class UCGoodsStorageServiceApplyImpl extends AbstractService implements I
 	@Override
 	public List<Province> addPre() {
 		List<Province> list = new ArrayList<Province>() ;
-		List<Integer> allPid = this.warehouseDAO.findUcWarehousePid() ;
+		Set<Integer> allPid = this.warehouseDAO.findUcWarehousePid() ;
 		Iterator<Integer> iter = allPid.iterator() ;
 		while(iter.hasNext()) {
 			list.add(this.provinceDAO.findById(iter.next())) ;
@@ -70,7 +70,7 @@ public class UCGoodsStorageServiceApplyImpl extends AbstractService implements I
 	@Override
 	public List<City> getCity(int pid) {
 		List<City> list = new ArrayList<City>() ;
-		List<Integer> allCid = this.warehouseDAO.findUcWarehouseCidByPid(pid) ;
+		Set<Integer> allCid = this.warehouseDAO.findUcWarehouseCidByPid(pid) ;
 		Iterator<Integer> iter = allCid.iterator() ;
 		while(iter.hasNext()) {
 			list.add(this.cityDAO.findById(iter.next())) ;
@@ -124,12 +124,12 @@ public class UCGoodsStorageServiceApplyImpl extends AbstractService implements I
 		List<City> allCitys = new ArrayList<City>() ;
 		List<Warehouse> allUCWarehouses = new ArrayList<Warehouse>() ;
 		UCGoodsStorageApply ucgoodsStorageApply = this.ucgoodsStorageApplyDAO.findById(usaid) ;
-		List<Integer> allProvincesPid = this.warehouseDAO.findUcWarehousePid() ;
+		Set<Integer> allProvincesPid = this.warehouseDAO.findUcWarehousePid() ;
 		Iterator<Integer> pidIter = allProvincesPid.iterator() ;
 		while(pidIter.hasNext()) {
 			allProvinces.add(this.provinceDAO.findById(pidIter.next())) ;
 		}
-		List<Integer> allCitysCid = this.warehouseDAO.findUcWarehouseCidByPid(ucgoodsStorageApply.getPid()) ;
+		Set<Integer> allCitysCid = this.warehouseDAO.findUcWarehouseCidByPid(ucgoodsStorageApply.getPid()) ;
 		Iterator<Integer> cidIter = allCitysCid.iterator() ;
 		while(cidIter.hasNext()) {
 			allCitys.add(this.cityDAO.findById(cidIter.next())) ;

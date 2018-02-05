@@ -208,7 +208,7 @@ CREATE TABLE replenish_apply(
    name                 varchar(50) ,
    pid                  int ,
    cid                  int ,
-   ucwid                int ,
+   wid                  int ,
    note                 text ,
    status               int ,
    appmid               varchar(50) ,

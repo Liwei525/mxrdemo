@@ -9,7 +9,7 @@ public class ReplenishApply implements Serializable{
 	private String name ;
 	private Integer pid ;
 	private Integer cid ;
-	private Integer ucwid ;
+	private Integer wid ;
 	private String note ;
 	private Integer status ;
 	private String appMid ;
@@ -43,11 +43,11 @@ public class ReplenishApply implements Serializable{
 	public void setCid(Integer cid) {
 		this.cid = cid;
 	}
-	public Integer getUcwid() {
-		return ucwid;
+	public Integer getWid() {
+		return wid;
 	}
-	public void setUcwid(Integer ucwid) {
-		this.ucwid = ucwid;
+	public void setWid(Integer wid) {
+		this.wid = wid;
 	}
 	public String getNote() {
 		return note;

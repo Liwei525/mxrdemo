@@ -40,7 +40,7 @@
 								<th class="text-left" style="width:10%;">申请标题</th> 
 								<th class="text-left" style="width:10%;">入库仓库</th>
 								<th class="text-center" style="width:6%;">申请状态</th>
-								<th class="text-center" style="width:10%;">申请日期</th>
+								<th class="text-center" style="width:10%;">提交日期</th>
 								<th class="text-center" style="width:25%;">操作</th>
 							</tr>
 						</thead>
@@ -77,7 +77,7 @@
 									<c:if test="${ucgoodsStorageApply.status == 4 }">
 										<td class="text-center text-success">已完成</td>
 									</c:if>
-									<td class="text-center"><fmt:formatDate type="date" value="${ucgoodsStorageApply.appDate }" /></td>
+									<td class="text-center"><fmt:formatDate type="date" value="${ucgoodsStorageApply.sendDate }" /></td>
 									<td class="text-center">
 										<c:if test="${ucgoodsStorageApply.status == 0 || ucgoodsStorageApply.status == 2 }">
 											<a href="<%=UCGOODSSTORAGE_SUBMIT_URL%>?usaid=${ucgoodsStorageApply.usaid }" class="btn btn-primary btn-xs">

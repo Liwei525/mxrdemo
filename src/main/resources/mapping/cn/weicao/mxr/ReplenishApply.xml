@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.weicao.mxr.dao.IReplenishApplyDAO">
+	<insert id="doCreate" parameterType="ReplenishApply">
+		insert replenish_apply(name,pid,cid,wid,note,status,appmid,appdate,sendmid,senddate,watchmid,watchdate,flag)
+			values(#{name},#{pid},#{cid},#{wid},#{note},#{status},#{appMid},#{appDate},#{sendMid},#{sendDate},#{watchMid},#{watchDate},#{flag})
+	</insert>
+	<select id="findSplit" parameterType="Map" resultType="ReplenishApply">
+		SELECT raid,name,pid,cid,wid,note,status,appmid,appdate,sendmid,senddate,watchmid,watchdate,flag from replenish_apply
+		where flag = 1 
+		<if test="column != null and keyWord != null">
+			and ${column} like #{keyWord}
+		</if>
+		<if test="startTime != null">
+			and senddate &gt;= #{startTime}
+		</if>
+		<if test="endTime != null">
+			and senddate &lt;= #{endTime}
+		</if>
+		order by status,senddate desc
+		limit #{start},#{lineSize}
+	</select>
+	<select id="getCount" parameterType="Map" resultType="int">
+		SELECT count(*) from replenish_apply 
+		where flag = 1 
+		<if test="column != null and keyWord != null">
+			and ${column} like #{keyWord}
+		</if>
+		<if test="startTime != null">
+			and senddate &gt;= #{startTime}
+		</if>
+		<if test="endTime != null">
+			and senddate &lt;= #{endTime}
+		</if>
+	</select>
+	<select id="findById" parameterType="int" resultType="ReplenishApply">
+		select raid,name,pid,cid,wid,note,status,appmid,appdate,sendmid,senddate,watchmid,watchdate,flag
+		from replenish_apply where flag = 1 and raid=#{raid}
+	</select>
+	<update id="doEdit" parameterType="ReplenishApply">
+		update replenish_apply set name=#{name},pid=#{pid},cid=#{cid},wid=#{wid},note=#{note},status=#{status},appmid=#{appMid},appdate=#{appDate},sendmid=#{sendMid},senddate=#{sendDate},watchmid=#{watchMid},watchdate=#{watchDate},flag=#{flag} where raid=#{raid} 
+	</update>
+	<update id="doRemove" parameterType="int">
+		update replenish_apply set flag = 0 where raid=#{raid}
+	</update>
+	<select id="findSplitByStatus" parameterType="Map" resultType="ReplenishApply">
+		SELECT raid,name,pid,cid,wid,note,status,appmid,appdate,sendmid,senddate,watchmid,watchdate,flag from replenish_apply
+		where flag = 1 and status in
+		<foreach collection="allStatus" open="(" close=")" separator="," item="status">
+			#{status}
+		</foreach>
+		<if test="column != null and keyWord != null">
+			and ${column} like #{keyWord}
+		</if>
+		<if test="startTime != null">
+			and senddate &gt;= #{startTime}
+		</if>
+		<if test="endTime != null">
+			and senddate &lt;= #{endTime}
+		</if>
+		order by status,senddate desc
+		limit #{start},#{lineSize}
+	</select>
+	<select id="getCountByStatus" parameterType="Map" resultType="int">
+		SELECT count(*) from replenish_apply 
+		where flag = 1 and status in
+		<foreach collection="allStatus" open="(" close=")" separator="," item="status">
+			#{status}
+		</foreach>
+		<if test="column != null and keyWord != null">
+			and ${column} like #{keyWord}
+		</if>
+		<if test="startTime != null">
+			and senddate &gt;= #{startTime}
+		</if>
+		<if test="endTime != null">
+			and senddate &lt;= #{endTime}
+		</if>
+	</select>
+</mapper>

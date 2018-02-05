@@ -17,12 +17,12 @@
 			and ${column} like #{keyWord}
 		</if>
 		<if test="startTime != null">
-			and appdate &gt;= #{startTime}
+			and senddate &gt;= #{startTime}
 		</if>
 		<if test="endTime != null">
-			and appdate &lt;= #{endTime}
+			and senddate &lt;= #{endTime}
 		</if>
-		order by status, appdate desc
+		order by status, senddate desc
 		limit #{start},#{lineSize}
 	</select>
 	<select id="getCount" parameterType="Map" resultType="int">
@@ -32,10 +32,10 @@
 			and ${column} like #{keyWord}
 		</if>
 		<if test="startTime != null">
-			and appdate &gt;= #{startTime}
+			and senddate &gt;= #{startTime}
 		</if>
 		<if test="endTime != null">
-			and appdate &lt;= #{endTime}
+			and senddate &lt;= #{endTime}
 		</if>
 	</select>
 	<update id="doEdit" parameterType="UCGoodsStorageApply">

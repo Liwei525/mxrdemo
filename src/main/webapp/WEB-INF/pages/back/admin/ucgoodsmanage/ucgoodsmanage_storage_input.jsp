@@ -34,7 +34,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="usaid" name="usaid" class="form-control"
-											placeholder="请输入合同编号">
+											placeholder="请输入合同编号" readOnly>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="usaidMsg"></div>

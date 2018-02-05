@@ -44,4 +44,31 @@ $(function(){
 			}
 		}
 	});
+	$("#pid").on("change",function(){
+		pid = $("#pid").val() ;
+		$("#cid").empty() ;
+		$("#wid").empty() ;
+		$("#cid").append("<option value=''>====== 请选择所在城市 ======</option>") ;
+		$("#wid").append("<option value=''>====== 请选择要存储的仓库 ======</option>") ;
+		if(pid != ''){
+			$.post("pages/back/admin/replenishapplication/get_city.action",{"pid":pid},function(data){
+				for(var i = 0 ; i < data.length ; i ++){
+					$("#cid").append("<option value=" + data[i].cid + ">" + data[i].title + "</option>") ;
+				}
+			},"json") ;
+		}
+	}) ;
+	$("#cid").on("change",function(){
+		pid = $("#pid").val() ;
+		cid = $("#cid").val() ;
+		$("#wid").empty() ;
+		$("#wid").append("<option value=''>====== 请选择要存储的仓库 ======</option>") ;
+		if(cid != ''){
+			$.post("pages/back/admin/replenishapplication/get_warehouse.action",{"pid":pid,"cid":cid},function(data){
+				for(var i = 0 ; i < data.length ; i ++){
+					$("#wid").append("<option value=" + data[i].wid + ">" + data[i].name + "</option>") ;
+				}
+			},"json") ;
+		}
+	}) ;
 })

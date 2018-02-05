@@ -42,20 +42,29 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<th class="text-center">20001010</th> 
-								<td class="text-left">2017双十一衣帽入库</td>
-								<td class="text-left"><span id="wid-2" style="cursor:pointer;">北京通州仓库一号库</span></td>
-								<td class="text-center">待查看</td>
-								<td class="text-center">2018-01-15</td>
-								<td class="text-center"><span id="mid-admin" style="cursor:pointer;">老李</span></td>
-								<td class="text-left">
-									<a href="<%=WAREHOUSEREPLENISH_SUBMIT_URL%>?sid=1" class="btn btn-primary btn-xs">
-										<span class="fa fa-rocket"></span>&nbsp;已查看</a>
-									<a href="<%=WAREHOUSEREPLENISH_LIST_DETAILS_URL%>" class="btn btn-warning btn-xs">
-										<span class="fa fa-th-list"></span>&nbsp;补货清单</a>
-								</td>
-							</tr>
+							<c:forEach items="${allReplenishApply }" var="replenishApply">
+								<tr>
+									<td class="text-center">${replenishApply.raid }</td> 
+									<td class="text-left">${replenishApply.name }</td>
+									<td class="text-left"><span style="cursor:pointer;" id="storageWid-${allWarehouses[replenishApply.raid ].wid }">${allWarehouses[replenishApply.raid ].name }</span></td>
+									<c:if test="${replenishApply.status == 1 }">
+										<td class="text-center text-primary">待查看</td>
+									</c:if>
+									<c:if test="${replenishApply.status == 2 }">
+										<td class="text-center text-success">已查看</td>
+									</c:if>
+									<td class="text-center"><fmt:formatDate type="date" value="${replenishApply.sendDate }" /></td>
+									<td class="text-center"><span id="eid-${allSendMembers[replenishApply.raid].eid }" style="cursor:pointer;">${allSendMembers[replenishApply.raid].ename }</span></td>
+									<td class="text-left">
+										<c:if test="${replenishApply.status == 1 }">
+											<a href="<%=WAREHOUSEREPLENISH_SUBMIT_URL%>?raid=${replenishApply.raid }" class="btn btn-primary btn-xs">
+												<span class="fa fa-rocket"></span>&nbsp;已查看</a>
+										</c:if>
+										<a href="<%=WAREHOUSEREPLENISH_LIST_DETAILS_URL%>?raid=${replenishApply.raid }" class="btn btn-warning btn-xs">
+											<span class="fa fa-th-list"></span>&nbsp;补货清单</a>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 					<div id="splitBarDiv" style="float:right">

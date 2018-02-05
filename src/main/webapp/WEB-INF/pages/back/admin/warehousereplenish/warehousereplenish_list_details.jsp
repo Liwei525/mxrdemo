@@ -25,37 +25,69 @@
 					<div>
 						<table class="table table-striped table-bordered table-hover">
 							<tr> 
-								<td style="width:150px;"><strong>补货标题：</strong></td>
-								<td>双13备货</td>
+								<td style="width:150px;"><strong>补货单号：</strong></td>
+								<td>${replenishApply.raid }</td>
+							</tr>
+							<tr> 
+								<td><strong>补货标题：</strong></td>
+								<td>${replenishApply.name }</td>
 							</tr>
 							<tr>
 								<td><strong>存入仓库名称：</strong></td>
-								<td>北京市 北京市 通州一号仓库</td>
+								<td><span style="cursor:pointer;" id="storageWid-${warehouse.wid }">${warehouse.name }</span></td>
 							</tr>
 							<tr>
+								<td><strong>发送人：</strong></td>
+								<td><span id="eid-${sendMember.eid }" style="cursor:pointer;">${sendMember.ename }</span></td>
+							</tr>
+							<tr>
+								<td><strong>发送时间：</strong></td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${replenishApply.sendDate }" /></td>
+							</tr>
+							<tr>
+								<td><strong>总价：</strong></td>
+								<td>${totalPrice }</td>
+							</tr>
+							<c:if test="${replenishApply.status == 2 }">
+								<tr>
+									<td><strong>查看人：</strong></td>
+									<td><span id="eid-${watchMember.eid }" style="cursor:pointer;">${watchMember.ename }</span></td>
+								</tr>
+								<tr>
+									<td><strong>查看时间：</strong></td>
+									<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${replenishApply.watchDate }" /></td>
+								</tr>
+							</c:if>
+							<tr>
 								<td><strong>备注信息：</strong></td>
-								<td>我要上</td>
+								<td>${replenishApply.note }</td>
 							</tr>
 						</table>
 					</div>
 					<div>
 						<table class="table table-condensed" id="detailsTab">
 							<thead>
-								<tr>
-									<th class="text-left" style="width:10%;">半成品编号</th> 
-									<th class="text-left" style="width:20%;">半成品名称</th> 
-									<th class="text-left" style="width:10%;">规格</th>
-									<th class="text-left" style="width:10%;">数量</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr id="dettr-1" class="text-success">
-									<td>10001</td>
-									<td>钢管</td>
-									<td>200</td>
-									<td>2000</td>
-								</tr>		
-							</tbody>
+									<tr>
+										<th class="text-center" style="width:10%;">半成品编号</th> 
+										<th class="text-left" style="width:40%;">半成品名称</th> 
+										<th class="text-center" style="width:10%;">入库数量</th>
+										<th class="text-center" style="width:15%;">商品单价（￥）</th>
+										<th class="text-center" style="width:15%;">规格</th>
+										<th class="text-center" style="width:10%;">总价（￥）</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${allReplenishApplyDetails }" var="ReplenishApplyDetails">
+										<tr class="text-primary">
+											<td class="text-center">${ReplenishApplyDetails.ucid }</td>
+											<td class="text-left">${ReplenishApplyDetails.name }</td>
+											<td class="text-center">${ReplenishApplyDetails.num }&nbsp;${ReplenishApplyDetails.unit == 1 ? "个" : "米" }</td>
+											<td class="text-center">${ReplenishApplyDetails.price }</td>
+											<td class="text-center">${ReplenishApplyDetails.size }</td>
+											<td class="text-center">${ReplenishApplyDetails.totalPrice }</td>
+										</tr>
+									</c:forEach>
+								</tbody>
 						</table>
 					</div>
 				</div>
@@ -74,6 +106,7 @@
 		<jsp:include page="/WEB-INF/pages/plugins/back/include_menu_sidebar.jsp" />
 		<div class="control-sidebar-bg"></div>
 	</div>
-	<jsp:include page="/WEB-INF/pages/plugins/back/info/emp_info_modal.jsp"/>
-	<jsp:include page="/WEB-INF/pages/plugins/back/include_javascript_foot.jsp" />
+<jsp:include page="/WEB-INF/pages/plugins/back/info/warehouse_info_modal.jsp"/>
+<jsp:include page="/WEB-INF/pages/plugins/back/info/emp_info_modal.jsp"/>
+<jsp:include page="/WEB-INF/pages/plugins/back/include_javascript_foot.jsp" />
 <jsp:include page="/WEB-INF/pages/plugins/back/back_footer.jsp"/>

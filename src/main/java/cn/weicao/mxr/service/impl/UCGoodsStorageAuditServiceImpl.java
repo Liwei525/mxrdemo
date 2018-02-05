@@ -98,7 +98,7 @@ public class UCGoodsStorageAuditServiceImpl extends AbstractService implements I
 		UCGoodsStorageApply ucgoodsStorageApply = this.ucgoodsStorageApplyDAO.findById(usaid) ;
 		Warehouse warehouse = this.warehouseDAO.findById(ucgoodsStorageApply.getWid()) ;
 		Emp sendMember = this.empDAO.findById(ucgoodsStorageApply.getSendMid()) ;
-		List<UCGoodsStorageApplyDetails> allUCGoodsStorageApplyDetails = this.ucgoodsStorageApplyDetailsDAO.findByUsaid(ucgoodsStorageApply.getUsaid()) ;
+		List<UCGoodsStorageApplyDetails> allUCGoodsStorageApplyDetails = this.ucgoodsStorageApplyDetailsDAO.findByUsaid(usaid) ;
 		double totalPrice = 0 ;
 		Iterator<UCGoodsStorageApplyDetails> ucgoodsStorageApplyDetailsIter = allUCGoodsStorageApplyDetails.iterator() ;
 		while(ucgoodsStorageApplyDetailsIter.hasNext()) {
@@ -108,7 +108,7 @@ public class UCGoodsStorageAuditServiceImpl extends AbstractService implements I
 		map.put("warehouse", warehouse) ;
 		map.put("totalPrice", MyMath.round(totalPrice,2)) ;
 		map.put("sendMember", sendMember) ;
-		map.put("allUCGoodsStorageApplyDetails", this.ucgoodsStorageApplyDetailsDAO.findByUsaid(usaid)) ;
+		map.put("allUCGoodsStorageApplyDetails", allUCGoodsStorageApplyDetails) ;
 		return map;
 	}
 	
