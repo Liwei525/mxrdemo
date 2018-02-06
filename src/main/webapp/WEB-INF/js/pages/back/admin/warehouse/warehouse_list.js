@@ -31,27 +31,32 @@ $(function(){
 }) ;
 function loadData() {	
 	wid = $("#selectWid").text() ;
-	$.post("pages/back/admin/warehouse/get_ucgoods.action",{"wid":wid,"jsCommonCp":jsCommonCp,"jsCommonLs":jsCommonLs},function(data){
-		$("#ucgoods").empty() ;
-		for(var i = 0 ; i < data.allWarehouseUCGoods.length ; i ++){
-			if(data.allWarehouseUCGoods[i].unit == 1){
-				trInfo = $(	"<tr class='text-primary'> " +
-						"	<td class='text-center'>" + data.allWarehouseUCGoods[i].ucid + "</td> " +
-						"	<td class='text-center'>" + data.allWarehouseUCGoods[i].name + "</td> " +
-						"	<td class='text-center'>" + data.allWarehouseUCGoods[i].size + "</td> " +
-						"	<td class='text-center'>" + data.allWarehouseUCGoods[i].num + " 个" + "</td> " + 
-						"</tr>") ;
-			}else{
-				trInfo = $(	"<tr class='text-primary'> " +
-						"	<td class='text-center'>" + data.allWarehouseUCGoods[i].ucid + "</td> " +
-						"	<td class='text-center'>" + data.allWarehouseUCGoods[i].name + "</td> " +
-						"	<td class='text-center'>" + data.allWarehouseUCGoods[i].size + "</td> " +
-						"	<td class='text-center'>" + data.allWarehouseUCGoods[i].num + " 米" + "</td> " + 
-						"</tr>") ;
+	wiid = $("#wiid-" + wid).text() ;
+	if(wiid == 1){
+		$.post("pages/back/admin/warehouse/get_ucgoods.action",{"wid":wid,"jsCommonCp":jsCommonCp,"jsCommonLs":jsCommonLs},function(data){
+			$("#ucgoods").empty() ;
+			for(var i = 0 ; i < data.allWarehouseUCGoods.length ; i ++){
+				if(data.allWarehouseUCGoods[i].unit == 1){
+					trInfo = $(	"<tr class='text-primary'> " +
+							"	<td class='text-center'>" + data.allWarehouseUCGoods[i].ucid + "</td> " +
+							"	<td class='text-center'>" + data.allWarehouseUCGoods[i].name + "</td> " +
+							"	<td class='text-center'>" + data.allWarehouseUCGoods[i].size + "</td> " +
+							"	<td class='text-center'>" + data.allWarehouseUCGoods[i].num + " 个" + "</td> " + 
+							"</tr>") ;
+				}else{
+					trInfo = $(	"<tr class='text-primary'> " +
+							"	<td class='text-center'>" + data.allWarehouseUCGoods[i].ucid + "</td> " +
+							"	<td class='text-center'>" + data.allWarehouseUCGoods[i].name + "</td> " +
+							"	<td class='text-center'>" + data.allWarehouseUCGoods[i].size + "</td> " +
+							"	<td class='text-center'>" + data.allWarehouseUCGoods[i].num + " 米" + "</td> " + 
+							"</tr>") ;
+				}
+				
+				$("#ucgoods").append(trInfo) ;
 			}
-			
-			$("#ucgoods").append(trInfo) ;
-		}
-		createSplitBar(data.count) ;	
-	},"json") ;
+			createSplitBar(data.count) ;	
+		},"json") ;
+	}else{
+		
+	}
 }

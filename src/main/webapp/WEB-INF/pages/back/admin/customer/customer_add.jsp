@@ -5,7 +5,7 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <jsp:include page="/WEB-INF/pages/plugins/back/back_header.jsp"/>
 <%!
-	public static final String CUSTOMER_ADD_URL = "" ;
+	public static final String CUSTOMER_ADD_URL = "pages/back/admin/customer/add.action" ;
 %>
 <script type="text/javascript" src="js/pages/back/admin/customer/customer_add.js"></script>
 <body class="hold-transition skin-blue sidebar-mini"> 
@@ -24,19 +24,19 @@
 				</div>
 				<shiro:hasPermission name="customer:add">
 					<div class="panel-body">
-						<form class="form-horizontal" action="<%=CUSTOMER_ADD_URL%>" id="myform" method="post">
+						<form class="form-horizontal" action="<%=CUSTOMER_ADD_URL%>" id="myform" method="post" enctype="multipart/form-data">
 							<fieldset>
 								<!-- 定义输入表单样式，其中id主要用于设置颜色样式 -->
-								<div class="form-group" id="cnameDiv">
+								<div class="form-group" id="nameDiv">
 									<!-- 定义表单提示文字 -->
-									<label class="col-md-3 control-label" for="cname">公司名称：</label>
+									<label class="col-md-3 control-label" for="name">公司名称：</label>
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
-										<input type="text" id="cname" name="cname" class="form-control"
+										<input type="text" id="name" name="name" class="form-control"
 											placeholder="请输入公司名称">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
-									<div class="col-md-4" id="cnameMsg"></div>
+									<div class="col-md-4" id="nameMsg"></div>
 								</div>
 								<div class="form-group" id="ciidDiv">
 									<!-- 定义表单提示文字 -->
@@ -44,9 +44,9 @@
 									<div class="col-md-5">
 										<select id="ciid" name="ciid" class="form-control">
 											<option value="">====== 请选择客户重要性 ======</option>
-											<option value="1">潜在客户</option>
-											<option value="2">大单客户</option>
-											<option value="3">重要客户</option>
+											<c:forEach items="${allCitems }" var="citem">
+												<option value="${citem.ciid }">${citem.title }</option>
+											</c:forEach>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -58,10 +58,10 @@
 									<div class="col-md-5">
 										<select id="pid" name="pid" class="form-control">
 											<option value="">====== 请选择所在省份 ======</option>
-											<option value="1">河北省</option>
-											<option value="2">山西部</option>
-											<option value="3">广东省</option>
-										</select>
+											<c:forEach items="${allProvinces }" var="province">
+												<option value="${province.pid }">${province.title }</option>
+											</c:forEach>
+										</select> 
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="pidMsg"></div>
@@ -72,9 +72,6 @@
 									<div class="col-md-5">
 										<select id="cid" name="cid" class="form-control">
 											<option value="">====== 请选择所在城市 ======</option>
-											<option value="1">石家庄</option>
-											<option value="2">沧州</option>
-											<option value="3">邯郸</option>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -102,27 +99,27 @@
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="accountMsg"></div>
 								</div>
-								<div class="form-group" id="openbankDiv">
+								<div class="form-group" id="openBankDiv">
 									<!-- 定义表单提示文字 -->
-									<label class="col-md-3 control-label" for="openbank">开户行：</label>
+									<label class="col-md-3 control-label" for="openBank">开户行：</label>
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
-										<input type="text" id="openbank" name="openbank" class="form-control"
+										<input type="text" id="openBank" name="openBank" class="form-control"
 											placeholder="请输入账号开户行">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
-									<div class="col-md-4" id="openbankMsg"></div>
+									<div class="col-md-4" id="openBankMsg"></div>
 								</div>
-								<div class="form-group" id="dutyparaDiv">
+								<div class="form-group" id="dutyParaDiv">
 									<!-- 定义表单提示文字 -->
-									<label class="col-md-3 control-label" for="dutypara">税号：</label>
+									<label class="col-md-3 control-label" for="dutyPara">税号：</label>
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
-										<input type="text" id="dutypara" name="dutypara" class="form-control"
+										<input type="text" id="dutyPara" name="dutyPara" class="form-control"
 											placeholder="请输入公司税号">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
-									<div class="col-md-4" id="dutyparaMsg"></div>
+									<div class="col-md-4" id="dutyParaMsg"></div>
 								</div>
 								<div class="form-group" id="faxDiv">
 									<!-- 定义表单提示文字 -->

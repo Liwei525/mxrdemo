@@ -45,7 +45,7 @@
 									<td class="text-left">${warehouse.wid }</td>
 									<td class="text-left"><span id="wid-${warehouse.wid }" style="cursor:pointer;">${warehouse.name }</span></td>
 									<td class="text-left">${warehouse.address }</td>
-									<td class="text-center">${warehouse.wiid ==1 ? "半成品" : "成品" }</td>
+									<td class="text-center"><span id="wiid-${warehouse.wid}" style="display: none">${warehouse.wiid}</span>${warehouse.wiid ==1 ? "半成品" : "成品" }</td>
 									<td class="text-center"><span id="mid-${warehouse.recorder }" style="cursor:pointer;">${allMembers[warehouse.wid].ename }</span></td> 
 									<td class="text-center">
 										<a href="<%=WAREHOUSE_EDIT_URL%>?wid=${warehouse.wid }" class="btn btn-warning btn-xs">

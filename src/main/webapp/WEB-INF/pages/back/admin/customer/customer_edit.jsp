@@ -5,7 +5,7 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <jsp:include page="/WEB-INF/pages/plugins/back/back_header.jsp"/>
 <%!
-	public static final String CUSTOMER_ADD_URL = "" ;
+	public static final String CUSTOMER_ADD_URL = "pages/back/admin/customer/edit.action" ;
 %>
 <script type="text/javascript" src="js/pages/back/admin/customer/customer_edit.js"></script>
 <body class="hold-transition skin-blue sidebar-mini"> 
@@ -24,19 +24,19 @@
 				</div>
 				<shiro:hasPermission name="customer:edit">
 					<div class="panel-body">
-						<form class="form-horizontal" action="<%=CUSTOMER_ADD_URL%>" id="myform" method="post">
+						<form class="form-horizontal" action="<%=CUSTOMER_ADD_URL%>" id="myform" method="post" enctype="multipart/form-data">
 							<fieldset>
 								<!-- 定义输入表单样式，其中id主要用于设置颜色样式 -->
-								<div class="form-group" id="cnameDiv">
+								<div class="form-group" id="nameDiv">
 									<!-- 定义表单提示文字 -->
-									<label class="col-md-3 control-label" for="cname">公司名称：</label>
+									<label class="col-md-3 control-label" for="name">公司名称：</label>
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
-										<input type="text" id="cname" name="cname" class="form-control"
-											placeholder="请输入公司名称">
+										<input type="text" id="name" name="name" class="form-control"
+											placeholder="请输入公司名称" value="${customer.name }">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
-									<div class="col-md-4" id="cnameMsg"></div>
+									<div class="col-md-4" id="nameMsg"></div>
 								</div>
 								<div class="form-group" id="ciidDiv">
 									<!-- 定义表单提示文字 -->
@@ -44,9 +44,9 @@
 									<div class="col-md-5">
 										<select id="ciid" name="ciid" class="form-control">
 											<option value="">====== 请选择客户重要性 ======</option>
-											<option value="1">潜在客户</option>
-											<option value="2">大单客户</option>
-											<option value="3">重要客户</option>
+											<c:forEach items="${allCitems }" var="citem">
+												<option value="${citem.ciid }" ${customer.ciid == citem.ciid ? "selected" : "" }>${citem.title }</option>
+											</c:forEach>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -58,9 +58,9 @@
 									<div class="col-md-5">
 										<select id="pid" name="pid" class="form-control">
 											<option value="">====== 请选择所在省份 ======</option>
-											<option value="1">河北省</option>
-											<option value="2">山西部</option>
-											<option value="3">广东省</option>
+											<c:forEach items="${allProvinces }" var="province">
+												<option value="${province.pid }" ${customer.pid == province.pid ? "selected" : "" }>${province.title }</option>
+											</c:forEach>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -72,9 +72,9 @@
 									<div class="col-md-5">
 										<select id="cid" name="cid" class="form-control">
 											<option value="">====== 请选择所在城市 ======</option>
-											<option value="1">石家庄</option>
-											<option value="2">沧州</option>
-											<option value="3">邯郸</option>
+											<c:forEach items="${allCitys }" var="city">
+												<option value="${city.cid }" ${customer.cid == city.cid ? "selected" : "" }>${city.title }</option>
+											</c:forEach>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -86,7 +86,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="address" name="address" class="form-control"
-											placeholder="请输入公司详细地址信息">
+											placeholder="请输入公司详细地址信息" value="${customer.address }">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="addressMsg"></div>
@@ -97,32 +97,32 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="account" name="account" class="form-control"
-											placeholder="请输入公司账号">
+											placeholder="请输入公司账号" value="${customer.account }">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="accountMsg"></div>
 								</div>
-								<div class="form-group" id="openbankDiv">
+								<div class="form-group" id="openBankDiv">
 									<!-- 定义表单提示文字 -->
-									<label class="col-md-3 control-label" for="openbank">开户行：</label>
+									<label class="col-md-3 control-label" for="openBank">开户行：</label>
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
-										<input type="text" id="openbank" name="openbank" class="form-control"
-											placeholder="请输入账号开户行">
+										<input type="text" id="openBank" name="openBank" class="form-control"
+											placeholder="请输入账号开户行" value="${customer.openBank }">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
-									<div class="col-md-4" id="openbankMsg"></div>
+									<div class="col-md-4" id="openBankMsg"></div>
 								</div>
-								<div class="form-group" id="dutyparaDiv">
+								<div class="form-group" id="dutyParaDiv">
 									<!-- 定义表单提示文字 -->
-									<label class="col-md-3 control-label" for="dutypara">税号：</label>
+									<label class="col-md-3 control-label" for="dutyPara">税号：</label>
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
-										<input type="text" id="dutypara" name="dutypara" class="form-control"
-											placeholder="请输入公司税号">
+										<input type="text" id="dutyPara" name="dutyPara" class="form-control"
+											placeholder="请输入公司税号" value="${customer.dutyPara }">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
-									<div class="col-md-4" id="dutyparaMsg"></div>
+									<div class="col-md-4" id="dutyParaMsg"></div>
 								</div>
 								<div class="form-group" id="faxDiv">
 									<!-- 定义表单提示文字 -->
@@ -130,7 +130,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="fax" name="fax" class="form-control"
-											placeholder="请输入公司传真">
+											placeholder="请输入公司传真" value="${customer.fax }">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="faxMsg"></div>
@@ -141,7 +141,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="lname" name="lname" class="form-control"
-											placeholder="请输入联系人姓名">
+											placeholder="请输入联系人姓名" value="${customer.lname }">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="lnameMsg"></div>
@@ -152,7 +152,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="phone" name="phone" class="form-control"
-											placeholder="请输入联系人联系电话">
+											placeholder="请输入联系人联系电话" value="${customer.phone }">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="phoneMsg"></div>
@@ -161,7 +161,7 @@
 									<!-- 定义表单提示文字 -->
 									<label class="col-md-3 control-label" for="pic">公司图片：</label>
 									<div class="col-md-5">
-										<img src="upload/emp/nophoto.png" style="width:200px;"/>
+										<img src="${customer.photo }" style="width:200px;"/>
 										<!-- 定义表单输入组件 -->
 										<input type="file" id="pic" name="pic" class="form-control"
 											placeholder="请上传公司正门照片">
@@ -176,15 +176,15 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<textarea id="note" name="note"
-											class="form-control" placeholder="请输入公司的详细信息" rows="10"></textarea>
+											class="form-control" placeholder="请输入公司的详细信息" rows="10">${customer.note }</textarea>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="noteMsg"></div>
 								</div> 
 								<div class="form-group">
 									<div class="col-md-5 col-md-offset-3">
-										<input type="hidden" id="pic" value="">
-										<input type="hidden" id="cuid" value="">
+										<input type="hidden" id="photo" name="photo" value="${customer.photo }">
+										<input type="hidden" id="ctid" name="ctid" value="${customer.ctid }">
 										<button type="submit" class="btn btn-primary">增加</button>
 										<button type="reset" class="btn btn-warning">重置</button>
 									</div>

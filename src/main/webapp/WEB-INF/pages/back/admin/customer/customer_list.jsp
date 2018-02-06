@@ -8,6 +8,8 @@
 <script type="text/javascript" src="js/split_page.js"></script>
 <%!
 	public static final String CUSTOMER_EDIT_URL = "pages/back/admin/customer/edit_pre.action" ;
+	public static final String CUSTOMER_REMOVE_URL = "pages/back/admin/customer/remove.action" ;
+	public static final String CUSTOMER_LIST_DETAILS_URL = "pages/back/admin/customer/list_details.action" ;
 %>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -42,19 +44,25 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="text-center">1001</td>
-								<td class="text-left">微草科技</td>
-								<td class="text-left"><span class="text-danger">重要客户</span></td>
-								<td class="text-left">北京市天安门广场</td>
-								<td class="text-left">2018-01-13</td>
-								<td class="text-center">饶磊磊</td>
-								<td class="text-center">123456789</td> 
-								<td class="text-center">
-									<a type="button" class="btn btn-warning btn-xs" href="<%=CUSTOMER_EDIT_URL%>?cuid=1">
-												<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>
-								</td>
-							</tr>
+							<c:forEach items="${allCustomers }" var="customer">
+								<tr>
+									<td class="text-center">${customer.ctid }</td>
+									<td class="text-left">${customer.name }</td>
+									<td class="text-left">${allCitems[customer.ctid].title }</td>
+									<td class="text-left">${customer.address }</td>
+									<td class="text-left"><fmt:formatDate type="date" value="${customer.indate }"/></td>
+									<td class="text-center">${customer.lname }</td>
+									<td class="text-center">${customer.phone }</td> 
+									<td class="text-center">
+										<a type="button" class="btn btn-warning btn-xs" href="<%=CUSTOMER_EDIT_URL%>?ctid=${customer.ctid }">
+													<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>
+										<a type="button" class="btn btn-danger btn-xs" href="<%=CUSTOMER_REMOVE_URL%>?ctid=${customer.ctid }">
+													<span class="glyphicon glyphicon-remove"></span>&nbsp;删除</a>
+										<a type="button" class="btn btn-primary btn-xs" href="<%=CUSTOMER_LIST_DETAILS_URL%>?ctid=${customer.ctid }">
+													<span class="glyphicon glyphicon-th"></span>&nbsp;查看详情</a>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 					<div id="splitBarDiv" style="float:right">
