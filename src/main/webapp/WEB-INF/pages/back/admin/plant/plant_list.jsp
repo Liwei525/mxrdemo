@@ -7,6 +7,7 @@
 <script type="text/javascript" src="js/pages/back/admin/plant/plant_list.js"></script>
 <%!
 	public static final String PLANT_EDIT_URL = "pages/back/admin/plant/edit_pre.action" ;
+	public static final String PLANT_REMOVE_URL = "pages/back/admin/plant/remove.action" ;
 %>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -25,41 +26,41 @@
 			<div class="panel-body">
 				<shiro:hasPermission name="plant:list">
 					<div>
-						<jsp:include page="/WEB-INF/pages/plugins/split_plugin_search_bar.jsp"/>
+						<jsp:include page="/WEB-INF/pages/plugins/split_plugin_search_bar_notime.jsp"/>
 					</div>
 					<table class="table table-condensed">
 						<thead>
 							<tr>
 								<th class="text-center">车间编号</th>
-								<th class="text-center">照片</th> 
 								<th class="text-center">车间名称</th>
 								<th class="text-center">车间地址</th>
-								<th class="text-center">录入日期</th>
 								<th class="text-center">车间电话</th>
+								<th class="text-center">录入日期</th>
 								<th class="text-center">录入人</th>
 								<th class="text-center">操作</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="text-center">00001</td>
-								<td class="text-center">
-									<img src="upload/emp/nophoto.png" style="width:20px;"/> 
-								</td> 
-								<td class="text-center">相城车间-1</td>
-								<td class="text-center">江苏 苏州 相城区</td>
-								<td class="text-center">2019-10-10</td>
-								<td class="text-center">23141324</td>
-								<td class="text-center"><span id="mid-admin" style="cursor:pointer;">老李</span></td>
-								<td class="text-center">
-									<a type="button" class="btn btn-warning btn-xs" href="<%=PLANT_EDIT_URL%>?eid=1">
-											<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>
-								</td>
-							</tr>
+							<c:forEach items="${allPlants }" var="plant">
+								<tr>
+									<td class="text-center">${plant.plid }</td>
+									<td class="text-center">${plant.name }</td>
+									<td class="text-center">${plant.address }</td>
+									<td class="text-center">${plant.phone }</td>
+									<td class="text-center"><fmt:formatDate value="${plant.indate }" type="date"/></td>
+									<td class="text-center"><span id="eid-${plant.recorder }" style="cursor:pointer;">${allMembers[plant.plid].ename }</span></td>
+									<td class="text-center">
+										<a type="button" class="btn btn-warning btn-xs" href="<%=PLANT_EDIT_URL%>?plid=${plant.plid }">
+												<span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</a>
+										<a type="button" class="btn btn-danger btn-xs" href="<%=PLANT_REMOVE_URL%>?plid=${plant.plid }">
+												<span class="glyphicon glyphicon-remove"></span>&nbsp;删除</a>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 					<div id="splitBarDiv" style="float:right">
-						<jsp:include page="/WEB-INF/pages/plugins/split_plugin_page_bar.jsp"/>
+						<jsp:include page="/WEB-INF/pages/plugins/split_plugin_page_bar_notime.jsp"/>
 					</div>
 				</shiro:hasPermission>
 				<shiro:lacksPermission name="plant:list">

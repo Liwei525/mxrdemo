@@ -245,7 +245,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-	 	<profiles>	<!-- 明确的进行具体的资源名称的配置，这个名称是在maven打包的时候使用的名称 -->
+	<profiles>	<!-- 明确的进行具体的资源名称的配置，这个名称是在maven打包的时候使用的名称 -->
 		<profile>
 			<id>dev</id>
 			<properties>

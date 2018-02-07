@@ -268,9 +268,10 @@ CREATE TABLE plant(
    pid                  int ,
    cid                  int ,
    address              varchar(50) ,
-   photo                varchar(50) ,
+   photo                varchar(100) ,
    note                 text ,
    recorder             varchar(50) ,
+   indate               datetime , 
    flag                 int ,
    CONSTRAINT pk_plid PRIMARY KEY(plid)
 ) engine='innodb' ;

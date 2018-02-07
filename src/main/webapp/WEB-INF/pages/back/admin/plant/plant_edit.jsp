@@ -5,7 +5,7 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <jsp:include page="/WEB-INF/pages/plugins/back/back_header.jsp"/>
 <%!
-	public static final String PLANT_EDIT_URL = "" ;
+	public static final String PLANT_EDIT_URL = "pages/back/admin/plant/edit.action" ;
 %>
 <script type="text/javascript" src="js/pages/back/admin/plant/plant_edit.js"></script>
 <body class="hold-transition skin-blue sidebar-mini"> 
@@ -26,26 +26,16 @@
 					<div class="panel-body">
 						<form class="form-horizontal" action="<%=PLANT_EDIT_URL%>" id="myform" method="post" enctype="multipart/form-data">
 							<fieldset>
-								<div class="form-group" id="plantidDiv">
+								<div class="form-group" id="nameDiv">
 									<!-- 定义表单提示文字 -->
-									<label class="col-md-3 control-label" for="plantid">车间编号：</label>
+									<label class="col-md-3 control-label" for="name">车间名称：</label>
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
-										<input type="text" id="plantid" name="plantid" class="form-control" disabled>
+										<input type="text" id="name" name="name" class="form-control"
+											placeholder="请输入车间名称" value="${plant.name }">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
-									<div class="col-md-4" id="plantidMsg"></div>
-								</div>
-								<div class="form-group" id="pnameDiv">
-									<!-- 定义表单提示文字 -->
-									<label class="col-md-3 control-label" for="pname">车间名称：</label>
-									<div class="col-md-5">
-										<!-- 定义表单输入组件 -->
-										<input type="text" id="pname" name="pname" class="form-control"
-											placeholder="请输入车间名称">
-									</div>
-									<!-- 定义表单错误提示显示元素 -->
-									<div class="col-md-4" id="pnameMsg"></div>
+									<div class="col-md-4" id="nameMsg"></div>
 								</div>
 								<div class="form-group" id="phoneDiv">
 									<!-- 定义表单提示文字 -->
@@ -53,7 +43,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="phone" name="phone" class="form-control"
-											placeholder="请输入车间联系电话">
+											placeholder="请输入车间联系电话" value="${plant.phone }">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="phoneMsg"></div>
@@ -64,9 +54,9 @@
 									<div class="col-md-5">
 										<select id="pid" name="pid" class="form-control">
 											<option value="">====== 请选择所在省份 ======</option>
-											<option value="1">河北省</option>
-											<option value="2">山西部</option>
-											<option value="3">广东省</option>
+											<c:forEach items="${allProvinces }" var="province">
+												<option value="${province.pid }" ${plant.pid == province.pid ? "selected" : "" }>${province.title }</option>
+											</c:forEach>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -78,9 +68,9 @@
 									<div class="col-md-5">
 										<select id="cid" name="cid" class="form-control">
 											<option value="">====== 请选择所在城市 ======</option>
-											<option value="1">石家庄</option>
-											<option value="2">沧州</option>
-											<option value="3">邯郸</option>
+											<c:forEach items="${allCitys }" var="city">
+												<option value="${city.cid }" ${plant.cid == city.cid ? "selected" : "" }>${city.title }</option>
+											</c:forEach>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -92,7 +82,7 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<input type="text" id="address" name="address" class="form-control"
-											placeholder="请输入车间地址信息">
+											placeholder="请输入车间地址信息" value="${plant.address }">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="addressMsg"></div>
@@ -101,7 +91,7 @@
 									<!-- 定义表单提示文字 -->
 									<label class="col-md-3 control-label" for="pic">车间照片：</label>
 									<div class="col-md-5">
-										<img src="upload/emp/nophoto.png" style="width:200px;"/>
+										<img src="${plant.photo }" style="width:200px;"/>
 										<!-- 定义表单输入组件 -->
 										<input type="file" id="pic" name="pic" class="form-control"
 											placeholder="请选择车间照片">
@@ -116,15 +106,15 @@
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
 										<textarea id="note" name="note"
-											class="form-control" placeholder="请输入车间的备注信息" rows="10"></textarea>
+											class="form-control" placeholder="请输入车间的备注信息" rows="10">${plant.note }</textarea>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
 									<div class="col-md-4" id="noteMsg"></div>
 								</div> 
 								<div class="form-group">
 									<div class="col-md-5 col-md-offset-3">
-										<input type="hidden" id="pic" value="">
-										<input type="hidden" id="pid" value="">
+										<input type="hidden" id="photo" name="photo" value="${plant.photo }">
+										<input type="hidden" id="plid" name="plid" value="${plant.plid }">
 										<button type="submit" class="btn btn-primary">编辑</button>
 										<button type="reset" class="btn btn-warning">重置</button>
 									</div>

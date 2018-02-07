@@ -24,27 +24,24 @@ $(function(){
 		},
 		errorClass : "text-danger",
 		rules : {
-			"plantid" : {
-				required : true
-				//remote : {
-//				url : "check.jsp", // 后台处理程序
-//				type : "post", // 数据发送方式
-//				dataType : "html", // 接受数据格式
-//				data : { // 要传递的数据
-//					code : function() {
-//						return $("#code").val();
-//					}
-//				},
-//				dataFilter : function(data, type) {
-//					if (data.trim() == "true")
-//						return true;
-//					else
-//						return false;
-//				}
-//}
-			} ,
-			"pname" : {
-				required : true
+			"name" : {
+				required : true ,
+				remote : {	
+					url : "pages/back/admin/plant/check_name.action", 
+					type : "post", 
+					dataType : "json", 
+					data : { // 要传递的数据
+						name : function() {
+							return $("#name").val();
+						}
+					},
+					dataFilter : function(data, type) {
+						if (data.trim() == "true")
+							return true;
+						else
+							return false;
+					}
+				}
 			} ,
 			"phone" : {
 				required : true 
@@ -65,12 +62,27 @@ $(function(){
 			"note" : {
 				required : true
 			}
+		},
+		messages : {
+			name : {
+				remote : "该车间名称已存在！"
+			}
 		}
 	});
 	$(cid).on("change",function() {
 		handleAddress() ;	// 处理地址 
 	}) ;
 	$(pid).on("change",function(){
+		pid = $("#pid").val() ;
+		$("#cid").empty() ;
+		$("#cid").append("<option value=''>====== 请选择所在城市 ======</option>") ;
+		if(pid != ''){
+			$.post("pages/back/admin/plant/get_city.action",{"pid":pid},function(data){
+				for(var i = 0 ; i < data.length ; i ++){
+					$("#cid").append("<option value=" + data[i].cid + ">" + data[i].title + "</option>") ;
+				}
+			},"json") ;
+		}
 		if (this.value != "") {	// 有内容，需要进行ajax异步加载
 			handleAddress() ;	// 处理地址 
 		} else {
@@ -78,6 +90,7 @@ $(function(){
 		}
 	}) ;
 })
+
 function handleAddress() {	// 实现地址处理过程
 	address = $("#address").val() ;	// 获得address原始内容
 	ptitle = $("#pid option:selected").text() + " " ;

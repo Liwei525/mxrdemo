@@ -5,7 +5,7 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <jsp:include page="/WEB-INF/pages/plugins/back/back_header.jsp"/>
 <%!
-	public static final String PLANT_ADD_URL = "" ;
+	public static final String PLANT_ADD_URL = "pages/back/admin/plant/add.action" ;
 %>
 <script type="text/javascript" src="js/pages/back/admin/plant/plant_add.js"></script>
 <body class="hold-transition skin-blue sidebar-mini"> 
@@ -27,27 +27,16 @@
 						<form class="form-horizontal" action="<%=PLANT_ADD_URL%>" id="myform" method="post" enctype="multipart/form-data">
 							<fieldset>
 								<!-- 定义输入表单样式，其中id主要用于设置颜色样式 -->
-								<div class="form-group" id="plantidDiv">
+								<div class="form-group" id="nameDiv">
 									<!-- 定义表单提示文字 -->
-									<label class="col-md-3 control-label" for="plantid">车间编号：</label>
+									<label class="col-md-3 control-label" for="name">车间名称：</label>
 									<div class="col-md-5">
 										<!-- 定义表单输入组件 -->
-										<input type="text" id="plantid" name="plantid" class="form-control"
-											placeholder="请输入车间编号">
-									</div>
-									<!-- 定义表单错误提示显示元素 -->
-									<div class="col-md-4" id="plantidMsg"></div>
-								</div>
-								<div class="form-group" id="pnameDiv">
-									<!-- 定义表单提示文字 -->
-									<label class="col-md-3 control-label" for="pname">车间名称：</label>
-									<div class="col-md-5">
-										<!-- 定义表单输入组件 -->
-										<input type="text" id="pname" name="pname" class="form-control"
+										<input type="text" id="name" name="name" class="form-control"
 											placeholder="请输入车间名称">
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
-									<div class="col-md-4" id="pnameMsg"></div>
+									<div class="col-md-4" id="nameMsg"></div>
 								</div>
 								<div class="form-group" id="phoneDiv">
 									<!-- 定义表单提示文字 -->
@@ -66,9 +55,9 @@
 									<div class="col-md-5">
 										<select id="pid" name="pid" class="form-control">
 											<option value="">====== 请选择所在省份 ======</option>
-											<option value="1">河北省</option>
-											<option value="2">山西部</option>
-											<option value="3">广东省</option>
+											<c:forEach items="${allProvinces }" var="province">
+												<option value="${province.pid }">${province.title}</option>
+											</c:forEach>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
@@ -80,9 +69,6 @@
 									<div class="col-md-5">
 										<select id="cid" name="cid" class="form-control">
 											<option value="">====== 请选择所在城市 ======</option>
-											<option value="1">石家庄</option>
-											<option value="2">沧州</option>
-											<option value="3">邯郸</option>
 										</select>
 									</div>
 									<!-- 定义表单错误提示显示元素 -->
